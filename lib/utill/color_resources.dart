@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 
 class ColorResources {
   static Color getPrimaryColor(BuildContext context) {
-    return Provider.of<ThemeProvider>(context).darkTheme ? Color(0xFFba4f41) : Color(0xFFFC6A57);
+    return Provider.of<ThemeProvider>(context).darkTheme ? Color(0xFFFAAF40) : Color(0xFFFAAF40);
   }
   static Color getGreyColor(BuildContext context) {
     return Provider.of<ThemeProvider>(context).darkTheme ? Color(0xFF6f7275) : Color(0xFFA0A4A8);

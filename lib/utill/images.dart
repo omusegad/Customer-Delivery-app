@@ -33,7 +33,7 @@ class Images {
   static const String guest_login = 'assets/image/guest_login.png';
 
   // for Icon
-  static const String efood = 'assets/icon/efood.png';
+  static const String efood = 'assets/icon/jubulee_white.png';
   static const String efood_bike = 'assets/icon/efood_bike.png';
   static const String marker = 'assets/icon/marker.png';
   static const String my_location = 'assets/icon/my_location.png';
@@ -63,6 +63,6 @@ class Images {
   static const String onboarding_three = 'assets/image/onboarding_three.png';
   static const String onboarding_two = 'assets/image/onboarding_two.png';
   static const String united_kindom = 'assets/image/united_kindom.png';
-  static const String efood_bike_with_person = 'assets/icon/efood_bike_with_person.png';
+  static const String efood_bike_with_person = 'assets/icon/junubee_orange.png';
   static const String done = 'assets/icon/done.png';
 }

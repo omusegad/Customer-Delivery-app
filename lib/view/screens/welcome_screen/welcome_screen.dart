@@ -25,8 +25,8 @@ class WelcomeScreen extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(Dimensions.PADDING_SIZE_DEFAULT),
-            child: Text(
-              getTranslated('welcome_to_efood', context),
+            child: Text( ' To Junubee Xpress',
+              //getTranslated('welcome_to_efood', context),
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.headline2.copyWith(color: ColorResources.getGreyColor(context)),
             ),

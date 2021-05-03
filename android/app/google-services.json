@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "571463982888",
+    "firebase_url": "https://api-project-571463982888.firebaseio.com",
+    "project_id": "api-project-571463982888",
+    "storage_bucket": "api-project-571463982888.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:571463982888:android:302a3c2b5d7f3b4f187a1d",
+        "android_client_info": {
+          "package_name": "com.junubeexpress.junubeexpress"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "571463982888-3eshlpm7cka9sns12s7f9f79mo3vt62n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtI57w7XqQZMM7wB4wDOXnkZEOuDqzTuc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "571463982888-3eshlpm7cka9sns12s7f9f79mo3vt62n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:571463982888:android:f14e3fa5ac75ae96187a1d",
+        "android_client_info": {
+          "package_name": "com.junubeexpress.restaurant"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "571463982888-3eshlpm7cka9sns12s7f9f79mo3vt62n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtI57w7XqQZMM7wB4wDOXnkZEOuDqzTuc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "571463982888-3eshlpm7cka9sns12s7f9f79mo3vt62n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

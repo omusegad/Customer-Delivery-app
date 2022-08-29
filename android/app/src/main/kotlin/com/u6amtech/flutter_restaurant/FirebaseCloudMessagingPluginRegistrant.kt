@@ -26,5 +26,7 @@ class FirebaseCloudMessagingPluginRegistrant {
             registry.registrarFor(key)
             return false
         }
+
+        fun setPluginRegistrant(){}
     }
 }

@@ -36,7 +36,7 @@ class CartScreen extends StatelessWidget {
         builder: (context, cart, child) {
           double deliveryCharge = 0;
           Provider.of<OrderProvider>(context).orderType == 'delivery'
-              ? deliveryCharge = double.parse(Provider.of<SplashProvider>(context, listen: false).configModel.deliveryCharge) : deliveryCharge = 0;
+              ? deliveryCharge = double.parse(Provider.of<SplashProvider>(context, listen: false).configModel!.deliveryCharge!) : deliveryCharge = 0;
           List<List<AddOns>> _addOnsList = [];
           List<bool> _availableList = [];
           double _itemPrice = 0;
@@ -46,8 +46,8 @@ class CartScreen extends StatelessWidget {
           cart.cartList.forEach((cartModel) {
 
             List<AddOns> _addOnList = [];
-            cartModel.addOnIds.forEach((addOnId) {
-              for(AddOns addOns in cartModel.product.addOns) {
+            cartModel.addOnIds!.forEach((addOnId) {
+              for(AddOns addOns in cartModel.product!.addOns!) {
                 if(addOns.id == addOnId.id) {
                   _addOnList.add(addOns);
                   break;
@@ -57,8 +57,8 @@ class CartScreen extends StatelessWidget {
             _addOnsList.add(_addOnList);
 
             DateTime _currentTime = Provider.of<SplashProvider>(context, listen: false).currentTime;
-            DateTime _start = DateFormat('hh:mm:ss').parse(cartModel.product.availableTimeStarts);
-            DateTime _end = DateFormat('hh:mm:ss').parse(cartModel.product.availableTimeEnds);
+            DateTime _start = DateFormat('hh:mm:ss').parse(cartModel.product!.availableTimeStarts!);
+            DateTime _end = DateFormat('hh:mm:ss').parse(cartModel.product!.availableTimeEnds!);
             DateTime _startTime = DateTime(_currentTime.year, _currentTime.month, _currentTime.day, _start.hour, _start.minute, _start.second);
             DateTime _endTime = DateTime(_currentTime.year, _currentTime.month, _currentTime.day, _end.hour, _end.minute, _end.second);
             if(_endTime.isBefore(_startTime)) {
@@ -68,14 +68,14 @@ class CartScreen extends StatelessWidget {
             _availableList.add(_isAvailable);
 
             for(int index=0; index<_addOnList.length; index++) {
-              _addOns = _addOns + (_addOnList[index].price * cartModel.addOnIds[index].quantity);
+              _addOns = _addOns + (_addOnList[index].price! * cartModel.addOnIds![index].quantity!);
             }
-            _itemPrice = _itemPrice + (cartModel.price * cartModel.quantity);
-            _discount = _discount + (cartModel.discountAmount * cartModel.quantity);
-            _tax = _tax + (cartModel.taxAmount * cartModel.quantity);
+            _itemPrice = _itemPrice + (cartModel.price! * cartModel.quantity!);
+            _discount = _discount + (cartModel.discountAmount! * cartModel.quantity!);
+            _tax = _tax + (cartModel.taxAmount! * cartModel.quantity!);
           });
           double _subTotal = _itemPrice + _tax + _addOns;
-          double _total = _subTotal - _discount - Provider.of<CouponProvider>(context).discount + deliveryCharge;
+          double _total = _subTotal - _discount - Provider.of<CouponProvider>(context).discount! + deliveryCharge;
 
           double _orderAmount = _itemPrice + _addOns;
 
@@ -109,7 +109,7 @@ class CartScreen extends StatelessWidget {
                                 isDense: true,
                                 filled: true,
                                 enabled: coupon.discount == 0,
-                                fillColor: Theme.of(context).accentColor,
+                                fillColor: Theme.of(context).colorScheme.secondary,
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.horizontal(
                                     left: Radius.circular(Provider.of<LocalizationProvider>(context, listen: false).isLtr ? 10 : 0),
@@ -123,15 +123,15 @@ class CartScreen extends StatelessWidget {
                         InkWell(
                           onTap: () {
                             if(_couponController.text.isNotEmpty && !coupon.isLoading) {
-                              if(coupon.discount < 1) {
+                              if(coupon.discount! < 1) {
                                 coupon.applyCoupon(_couponController.text, _total).then((discount) {
-                                  if (discount > 0) {
-                                    _scaffoldKey.currentState.showSnackBar(
+                                  if (discount! > 0) {
+                                    _scaffoldKey.currentState!.showSnackBar(
                                         SnackBar(content: Text('You got ${Provider.of<SplashProvider>(context, listen: false)
-                                            .configModel.currencySymbol}$discount discount'), backgroundColor: Colors.green));
+                                            .configModel!.currencySymbol}$discount discount'), backgroundColor: Colors.green));
                                   } else {
-                                    _scaffoldKey.currentState.showSnackBar(SnackBar(
-                                      content: Text(getTranslated('invalid_code_or', context)),
+                                    _scaffoldKey.currentState!.showSnackBar(SnackBar(
+                                      content: Text(getTranslated('invalid_code_or', context)!),
                                       backgroundColor: Colors.red,
                                     ));
                                   }
@@ -140,7 +140,7 @@ class CartScreen extends StatelessWidget {
                                 coupon.removeCouponData(true);
                               }
                             } else if(_couponController.text.isEmpty) {
-                              showCustomSnackBar(getTranslated('enter_a_Coupon_code', context), context);
+                              showCustomSnackBar(getTranslated('enter_a_Coupon_code', context)!, context);
                             }
                           },
                           child: Container(
@@ -153,8 +153,8 @@ class CartScreen extends StatelessWidget {
                                 right: Radius.circular(Provider.of<LocalizationProvider>(context, listen: false).isLtr ? 10 : 0),
                               ),
                             ),
-                            child: coupon.discount <= 0 ? !coupon.isLoading ? Text(
-                              getTranslated('apply', context),
+                            child: coupon.discount! <= 0 ? !coupon.isLoading ? Text(
+                              getTranslated('apply', context)!,
                               style: rubikMedium.copyWith(color: Colors.white),
                             ) : CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Colors.white)) : Icon(Icons.clear, color: Colors.white),
                           ),
@@ -165,25 +165,25 @@ class CartScreen extends StatelessWidget {
                   SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
 
                   // Order type
-                  Text(getTranslated('delivery_option', context), style: rubikMedium.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
+                  Text(getTranslated('delivery_option', context)!, style: rubikMedium.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
                   DeliveryOptionButton(value: 'delivery', title: getTranslated('delivery', context)),
                   DeliveryOptionButton(value: 'take_away', title: getTranslated('take_away', context)),
 
                   // Total
                   Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                    Text(getTranslated('items_price', context), style: rubikRegular.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
+                    Text(getTranslated('items_price', context)!, style: rubikRegular.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
                     Text(PriceConverter.convertPrice(context, _itemPrice), style: rubikRegular.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
                   ]),
                   SizedBox(height: 10),
 
                   Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                    Text(getTranslated('tax', context), style: rubikRegular.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
+                    Text(getTranslated('tax', context)!, style: rubikRegular.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
                     Text('(+) ${PriceConverter.convertPrice(context, _tax)}', style: rubikRegular.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
                   ]),
                   SizedBox(height: 10),
 
                   Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                    Text(getTranslated('addons', context), style: rubikRegular.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
+                    Text(getTranslated('addons', context)!, style: rubikRegular.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
                     Text('(+) ${PriceConverter.convertPrice(context, _addOns)}', style: rubikRegular.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
                   ]),
 
@@ -193,19 +193,19 @@ class CartScreen extends StatelessWidget {
                   ),
 
                   Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                    Text(getTranslated('subtotal', context), style: rubikMedium.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
+                    Text(getTranslated('subtotal', context)!, style: rubikMedium.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
                     Text(PriceConverter.convertPrice(context, _subTotal), style: rubikMedium.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
                   ]),
                   SizedBox(height: 10),
 
                   Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                    Text(getTranslated('discount', context), style: rubikRegular.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
+                    Text(getTranslated('discount', context)!, style: rubikRegular.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
                     Text('(-) ${PriceConverter.convertPrice(context, _discount)}', style: rubikRegular.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
                   ]),
                   SizedBox(height: 10),
 
                   Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                    Text(getTranslated('coupon_discount', context), style: rubikRegular.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
+                    Text(getTranslated('coupon_discount', context)!, style: rubikRegular.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
                     Text(
                       '(-) ${PriceConverter.convertPrice(context, Provider.of<CouponProvider>(context).discount)}',
                       style: rubikRegular.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE),
@@ -214,7 +214,7 @@ class CartScreen extends StatelessWidget {
                   SizedBox(height: 10),
 
                   Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                    Text(getTranslated('delivery_fee', context), style: rubikRegular.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
+                    Text(getTranslated('delivery_fee', context)!, style: rubikRegular.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
                     Text('(+) ${PriceConverter.convertPrice(context, deliveryCharge)}', style: rubikRegular.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
                   ]),
 
@@ -224,7 +224,7 @@ class CartScreen extends StatelessWidget {
                   ),
 
                   Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                    Text(getTranslated('total_amount', context), style: rubikMedium.copyWith(
+                    Text(getTranslated('total_amount', context)!, style: rubikMedium.copyWith(
                       fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE, color: Theme.of(context).primaryColor,
                     )),
                     Text(
@@ -240,13 +240,13 @@ class CartScreen extends StatelessWidget {
                 padding: EdgeInsets.all(Dimensions.PADDING_SIZE_SMALL),
                 child: CustomButton(btnTxt: getTranslated('place_order', context), onTap: () {
                   if(_availableList.contains(false)) {
-                    _scaffoldKey.currentState.showSnackBar(SnackBar(
-                      content: Text(getTranslated('one_or_more_product_unavailable', context)),
+                    _scaffoldKey.currentState!.showSnackBar(SnackBar(
+                      content: Text(getTranslated('one_or_more_product_unavailable', context)!),
                       backgroundColor: Colors.red,
                     ));
-                  }if(_orderAmount < Provider.of<SplashProvider>(context, listen: false).configModel.minimumOrderValue) {
+                  }if(_orderAmount < Provider.of<SplashProvider>(context, listen: false).configModel!.minimumOrderValue!) {
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(
-                      'Minimum order amount is ${PriceConverter.convertPrice(context, Provider.of<SplashProvider>(context, listen: false).configModel
+                      'Minimum order amount is ${PriceConverter.convertPrice(context, Provider.of<SplashProvider>(context, listen: false).configModel!
                           .minimumOrderValue)}, you have ${PriceConverter.convertPrice(context, _orderAmount)} in your cart, please add more item.',
                     ), backgroundColor: Colors.red));
                   } else {

@@ -5,7 +5,7 @@ class RatingBar extends StatelessWidget {
   final double rating;
   final double size;
 
-  RatingBar({@required this.rating, this.size = 18});
+  RatingBar({required this.rating, this.size = 18});
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +47,7 @@ class RatingBar extends StatelessWidget {
 class _Clipper extends CustomClipper<Rect> {
   final int part;
 
-  _Clipper({@required this.part});
+  _Clipper({required this.part});
 
   @override
   Rect getClip(Size size) {

@@ -3,10 +3,10 @@ import 'package:flutter_restaurant/utill/color_resources.dart';
 import 'package:flutter_restaurant/utill/dimensions.dart';
 
 class CustomButton extends StatelessWidget {
-  final Function onTap;
-  final String btnTxt;
-  final Color backgroundColor;
-  CustomButton({this.onTap, @required this.btnTxt, this.backgroundColor});
+  final Function? onTap;
+  final String? btnTxt;
+  final Color? backgroundColor;
+  CustomButton({this.onTap, required this.btnTxt, this.backgroundColor});
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +20,10 @@ class CustomButton extends StatelessWidget {
     );
 
     return TextButton(
-      onPressed: onTap,
+      onPressed: onTap as void Function()?,
       style: flatButtonStyle,
       child: Text(btnTxt??"",
-          style: Theme.of(context).textTheme.headline3.copyWith(color: ColorResources.COLOR_WHITE, fontSize: Dimensions.FONT_SIZE_LARGE)),
+          style: Theme.of(context).textTheme.headline3!.copyWith(color: ColorResources.COLOR_WHITE, fontSize: Dimensions.FONT_SIZE_LARGE)),
     );
   }
 }

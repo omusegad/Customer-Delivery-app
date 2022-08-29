@@ -6,9 +6,9 @@ import 'package:flutter_restaurant/data/repository/search_repo.dart';
 import 'package:flutter_restaurant/helper/api_checker.dart';
 
 class SearchProvider with ChangeNotifier {
-  final SearchRepo searchRepo;
+  final SearchRepo? searchRepo;
 
-  SearchProvider({@required this.searchRepo});
+  SearchProvider({required this.searchRepo});
 
   int _filterIndex = 0;
   double _lowerValue = 0;
@@ -32,34 +32,34 @@ class SearchProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void sortSearchList(int categoryIndex, List<CategoryModel> categoryList) {
+  void sortSearchList(int categoryIndex, List<CategoryModel>? categoryList) {
     _searchProductList= [];
-    _searchProductList.addAll(_filterProductList);
+    _searchProductList!.addAll(_filterProductList!);
     if(_upperValue > 0) {
-      _searchProductList.removeWhere((product) => (product.price) <= _lowerValue || (product.price) >= _upperValue);
+      _searchProductList!.removeWhere((product) => product.price! <= _lowerValue || product.price! >= _upperValue);
     }
     if(categoryIndex != -1) {
-      int categoryID = categoryList[categoryIndex].id;
-      _searchProductList.removeWhere((product) {
-        List<String> _ids = [];
-        product.categoryIds.forEach((element) => _ids.add(element.id));
+      int? categoryID = categoryList![categoryIndex].id;
+      _searchProductList!.removeWhere((product) {
+        List<String?> _ids = [];
+        product.categoryIds!.forEach((element) => _ids.add(element.id));
         return !_ids.contains(categoryID.toString());
       });
     }
     if(_rating != -1) {
-      _searchProductList.removeWhere((product) => product.rating == null || product.rating.length == 0 || double.parse(product.rating[0].average) < _rating);
+      _searchProductList!.removeWhere((product) => product.rating == null || product.rating!.length == 0 || double.parse(product.rating![0].average!) < _rating);
     }
     notifyListeners();
   }
 
-  List<Product> _searchProductList;
-  List<Product> _filterProductList;
+  List<Product>? _searchProductList;
+  List<Product>? _filterProductList;
   bool _isClear = true;
   String _searchText = '';
 
-  List<Product> get searchProductList => _searchProductList;
+  List<Product>? get searchProductList => _searchProductList;
 
-  List<Product> get filterProductList => _filterProductList;
+  List<Product>? get filterProductList => _filterProductList;
 
   bool get isClear => _isClear;
 
@@ -87,15 +87,15 @@ class SearchProvider with ChangeNotifier {
     _lowerValue = 0;
     notifyListeners();
 
-    ApiResponse apiResponse = await searchRepo.getSearchProductList(query);
-    if (apiResponse.response != null && apiResponse.response.statusCode == 200) {
+    ApiResponse apiResponse = await searchRepo!.getSearchProductList(query);
+    if (apiResponse.response != null && apiResponse.response!.statusCode == 200) {
       if (query.isEmpty) {
         _searchProductList = [];
       } else {
         _searchProductList = [];
-        _searchProductList.addAll(ProductModel.fromJson(apiResponse.response.data).products);
+        _searchProductList!.addAll(ProductModel.fromJson(apiResponse.response!.data).products!);
         _filterProductList = [];
-        _filterProductList.addAll(ProductModel.fromJson(apiResponse.response.data).products);
+        _filterProductList!.addAll(ProductModel.fromJson(apiResponse.response!.data).products!);
       }
       notifyListeners();
     } else {
@@ -105,19 +105,19 @@ class SearchProvider with ChangeNotifier {
 
   void initHistoryList() {
     _historyList = [];
-    _historyList.addAll(searchRepo.getSearchAddress());
+    _historyList.addAll(searchRepo!.getSearchAddress());
   }
 
   void saveSearchAddress(String searchAddress) async {
     if (!_historyList.contains(searchAddress)) {
       _historyList.add(searchAddress);
-      searchRepo.saveSearchAddress(searchAddress);
+      searchRepo!.saveSearchAddress(searchAddress);
       notifyListeners();
     }
   }
 
   void clearSearchAddress() async {
-    searchRepo.clearSearchAddress();
+    searchRepo!.clearSearchAddress();
     _historyList = [];
     notifyListeners();
   }

@@ -5,18 +5,18 @@ import 'package:flutter_restaurant/data/repository/set_menu_repo.dart';
 import 'package:flutter_restaurant/helper/api_checker.dart';
 
 class SetMenuProvider extends ChangeNotifier {
-  final SetMenuRepo setMenuRepo;
-  SetMenuProvider({@required this.setMenuRepo});
+  final SetMenuRepo? setMenuRepo;
+  SetMenuProvider({required this.setMenuRepo});
 
-  List<Product> _setMenuList;
-  List<Product> get setMenuList => _setMenuList;
+  List<Product>? _setMenuList;
+  List<Product>? get setMenuList => _setMenuList;
 
   Future<void> getSetMenuList(BuildContext context, bool reload) async {
     if(setMenuList == null || reload) {
-      ApiResponse apiResponse = await setMenuRepo.getSetMenuList();
-      if (apiResponse.response != null && apiResponse.response.statusCode == 200) {
+      ApiResponse apiResponse = await setMenuRepo!.getSetMenuList();
+      if (apiResponse.response != null && apiResponse.response!.statusCode == 200) {
         _setMenuList = [];
-        apiResponse.response.data.forEach((setMenu) => _setMenuList.add(Product.fromJson(setMenu)));
+        apiResponse.response!.data.forEach((setMenu) => _setMenuList!.add(Product.fromJson(setMenu)));
       } else {
         ApiChecker.checkApi(context, apiResponse);
       }

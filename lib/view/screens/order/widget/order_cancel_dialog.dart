@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_restaurant/localization/language_constrants.dart';
 import 'package:flutter_restaurant/provider/order_provider.dart';
@@ -10,7 +9,7 @@ import 'package:provider/provider.dart';
 class OrderCancelDialog extends StatelessWidget {
   final String orderID;
   final Function callback;
-  OrderCancelDialog({@required this.orderID, @required this.callback});
+  OrderCancelDialog({required this.orderID, required this.callback});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +19,7 @@ class OrderCancelDialog extends StatelessWidget {
 
         Padding(
           padding: EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_LARGE, vertical: 50),
-          child: Text(getTranslated('are_you_sure_to_cancel', context), style: rubikBold, textAlign: TextAlign.center),
+          child: Text(getTranslated('are_you_sure_to_cancel', context)!, style: rubikBold, textAlign: TextAlign.center),
         ),
 
         Divider(height: 0, color: ColorResources.getHintColor(context)),
@@ -37,7 +36,7 @@ class OrderCancelDialog extends StatelessWidget {
               padding: EdgeInsets.all(Dimensions.PADDING_SIZE_SMALL),
               alignment: Alignment.center,
               decoration: BoxDecoration(borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10))),
-              child: Text(getTranslated('yes', context), style: rubikBold.copyWith(color: ColorResources.COLOR_PRIMARY)),
+              child: Text(getTranslated('yes', context)!, style: rubikBold.copyWith(color: ColorResources.COLOR_PRIMARY)),
             ),
           )),
 
@@ -47,7 +46,7 @@ class OrderCancelDialog extends StatelessWidget {
               padding: EdgeInsets.all(Dimensions.PADDING_SIZE_SMALL),
               alignment: Alignment.center,
               decoration: BoxDecoration(color: ColorResources.getPrimaryColor(context), borderRadius: BorderRadius.only(bottomRight: Radius.circular(10))),
-              child: Text(getTranslated('no', context), style: rubikBold.copyWith(color: Colors.white)),
+              child: Text(getTranslated('no', context)!, style: rubikBold.copyWith(color: Colors.white)),
             ),
           )),
 

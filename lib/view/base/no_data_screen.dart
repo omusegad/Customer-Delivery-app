@@ -23,14 +23,14 @@ class NoDataScreen extends StatelessWidget {
         ),
 
         Text(
-          getTranslated(isOrder ? 'no_order_history_available' : isCart ? 'empty_cart' : 'nothing_found', context),
+          getTranslated(isOrder ? 'no_order_history_available' : isCart ? 'empty_cart' : 'nothing_found', context)!,
           style: rubikBold.copyWith(color: Theme.of(context).primaryColor, fontSize: MediaQuery.of(context).size.height*0.023),
           textAlign: TextAlign.center,
         ),
         SizedBox(height: 10),
 
         Text(
-          isOrder ? getTranslated('buy_something_to_see', context) : isCart ? getTranslated('look_like_have_not_added', context) : '',
+          isOrder ? getTranslated('buy_something_to_see', context)! : isCart ? getTranslated('look_like_have_not_added', context)! : '',
           style: rubikMedium.copyWith(fontSize: MediaQuery.of(context).size.height*0.0175), textAlign: TextAlign.center,
         ),
 

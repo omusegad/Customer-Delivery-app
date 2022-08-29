@@ -1,38 +1,38 @@
 import 'package:flutter_restaurant/data/model/response/product_model.dart';
 
 class OrderDetailsModel {
-  int _id;
-  int _productId;
-  int _orderId;
-  double _price;
-  Product _productDetails;
-  List<Variation> _variation;
-  double _discountOnProduct;
-  String _discountType;
-  int _quantity;
-  double _taxAmount;
-  String _createdAt;
-  String _updatedAt;
-  List<int> _addOnIds;
-  List<int> _addOnQtys;
-  String _variant;
+  int? _id;
+  int? _productId;
+  int? _orderId;
+  double? _price;
+  Product? _productDetails;
+  List<Variation>? _variation;
+  double? _discountOnProduct;
+  String? _discountType;
+  int? _quantity;
+  double? _taxAmount;
+  String? _createdAt;
+  String? _updatedAt;
+  List<int>? _addOnIds;
+  List<int>? _addOnQtys;
+  String? _variant;
 
   OrderDetailsModel(
-      {int id,
-        int productId,
-        int orderId,
-        double price,
-        Product productDetails,
-        List<Variation> variation,
-        double discountOnProduct,
-        String discountType,
-        int quantity,
-        double taxAmount,
-        String createdAt,
-        String updatedAt,
-        List<int> addOnIds,
-        List<int> addOnQtys,
-        String variant}) {
+      {int? id,
+        int? productId,
+        int? orderId,
+        double? price,
+        Product? productDetails,
+        List<Variation>? variation,
+        double? discountOnProduct,
+        String? discountType,
+        int? quantity,
+        double? taxAmount,
+        String? createdAt,
+        String? updatedAt,
+        List<int>? addOnIds,
+        List<int>? addOnQtys,
+        String? variant}) {
     this._id = id;
     this._productId = productId;
     this._orderId = orderId;
@@ -50,21 +50,21 @@ class OrderDetailsModel {
     this._variant = variant;
   }
 
-  int get id => _id;
-  int get productId => _productId;
-  int get orderId => _orderId;
-  double get price => _price;
-  Product get productDetails => _productDetails;
-  List<Variation> get variation => _variation;
-  double get discountOnProduct => _discountOnProduct;
-  String get discountType => _discountType;
-  int get quantity => _quantity;
-  double get taxAmount => _taxAmount;
-  String get createdAt => _createdAt;
-  String get updatedAt => _updatedAt;
-  List<int> get addOnIds => _addOnIds;
-  List<int> get addOnQtys => _addOnQtys;
-  String get variant => _variant;
+  int? get id => _id;
+  int? get productId => _productId;
+  int? get orderId => _orderId;
+  double? get price => _price;
+  Product? get productDetails => _productDetails;
+  List<Variation>? get variation => _variation;
+  double? get discountOnProduct => _discountOnProduct;
+  String? get discountType => _discountType;
+  int? get quantity => _quantity;
+  double? get taxAmount => _taxAmount;
+  String? get createdAt => _createdAt;
+  String? get updatedAt => _updatedAt;
+  List<int>? get addOnIds => _addOnIds;
+  List<int>? get addOnQtys => _addOnQtys;
+  String? get variant => _variant;
 
   OrderDetailsModel.fromJson(Map<String, dynamic> json) {
     _id = json['id'];
@@ -77,7 +77,7 @@ class OrderDetailsModel {
     if (json['variation'] != null) {
       _variation = [];
       json['variation'].forEach((v) {
-        _variation.add(new Variation.fromJson(v));
+        _variation!.add(new Variation.fromJson(v));
       });
     }
     _discountOnProduct = json['discount_on_product'].toDouble();
@@ -98,10 +98,10 @@ class OrderDetailsModel {
     data['order_id'] = this._orderId;
     data['price'] = this._price;
     if (this._productDetails != null) {
-      data['product_details'] = this._productDetails.toJson();
+      data['product_details'] = this._productDetails!.toJson();
     }
     if (this._variation != null) {
-      data['variation'] = this._variation.map((v) => v.toJson()).toList();
+      data['variation'] = this._variation!.map((v) => v.toJson()).toList();
     }
     data['discount_on_product'] = this._discountOnProduct;
     data['discount_type'] = this._discountType;

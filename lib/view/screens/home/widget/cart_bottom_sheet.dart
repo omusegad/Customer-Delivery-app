@@ -19,12 +19,12 @@ import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 
 class CartBottomSheet extends StatelessWidget {
-  final Product product;
+  final Product? product;
   final bool fromSetMenu;
-  final Function callback;
-  final CartModel cart;
-  final int cartIndex;
-  CartBottomSheet({@required this.product, this.fromSetMenu = false, this.callback, this.cart, this.cartIndex});
+  final Function? callback;
+  final CartModel? cart;
+  final int? cartIndex;
+  CartBottomSheet({required this.product, this.fromSetMenu = false, this.callback, this.cart, this.cartIndex});
 
   @override
   Widget build(BuildContext context) {
@@ -35,29 +35,29 @@ class CartBottomSheet extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(Dimensions.PADDING_SIZE_DEFAULT),
       decoration: BoxDecoration(
-        color: Theme.of(context).accentColor,
+        color: Theme.of(context).colorScheme.secondary,
         borderRadius: BorderRadius.only(topRight: Radius.circular(20), topLeft: Radius.circular(20)),
       ),
       child: Consumer<ProductProvider>(
         builder: (context, productProvider, child) {
 
-          double _startingPrice;
-          double _endingPrice;
-          if(product.choiceOptions.length != 0) {
-            List<double> _priceList = [];
-            product.variations.forEach((variation) => _priceList.add(variation.price));
-            _priceList.sort((a, b) => a.compareTo(b));
+          double? _startingPrice;
+          double? _endingPrice;
+          if(product!.choiceOptions!.length != 0) {
+            List<double?> _priceList = [];
+            product!.variations!.forEach((variation) => _priceList.add(variation.price));
+            _priceList.sort((a, b) => a!.compareTo(b!));
             _startingPrice = _priceList[0];
-            if(_priceList[0] < _priceList[_priceList.length-1]) {
+            if(_priceList[0]! < _priceList[_priceList.length-1]!) {
               _endingPrice = _priceList[_priceList.length-1];
             }
           }else {
-            _startingPrice = product.price;
+            _startingPrice = product!.price;
           }
 
           List<String> _variationList = [];
-          for(int index=0; index < product.choiceOptions.length; index++) {
-            _variationList.add(product.choiceOptions[index].options[productProvider.variationIndex[index]].replaceAll(' ', ''));
+          for(int index=0; index < product!.choiceOptions!.length; index++) {
+            _variationList.add(product!.choiceOptions![index].options![productProvider.variationIndex![index]].replaceAll(' ', ''));
           }
           String variationType = '';
           bool isFirst = true;
@@ -70,29 +70,29 @@ class CartBottomSheet extends StatelessWidget {
             }
           });
 
-          double price = product.price;
-          for(Variation variation in product.variations) {
+          double? price = product!.price;
+          for(Variation variation in product!.variations!) {
             if(variation.type == variationType) {
               price = variation.price;
               _variation = variation;
               break;
             }
           }
-          double priceWithDiscount = PriceConverter.convertWithDiscount(context, price, product.discount, product.discountType);
-          double priceWithQuantity = priceWithDiscount * productProvider.quantity;
+          double priceWithDiscount = PriceConverter.convertWithDiscount(context, price, product!.discount, product!.discountType)!;
+          double priceWithQuantity = priceWithDiscount * productProvider.quantity!;
           double addonsCost = 0;
           List<AddOn> _addOnIdList = [];
-          for(int index=0; index<product.addOns.length; index++) {
+          for(int index=0; index<product!.addOns!.length; index++) {
             if(productProvider.addOnActiveList[index]) {
-              addonsCost = addonsCost + (product.addOns[index].price * productProvider.addOnQtyList[index]);
-              _addOnIdList.add(AddOn(id: product.addOns[index].id, quantity: productProvider.addOnQtyList[index]));
+              addonsCost = addonsCost + (product!.addOns![index].price! * productProvider.addOnQtyList[index]!);
+              _addOnIdList.add(AddOn(id: product!.addOns![index].id, quantity: productProvider.addOnQtyList[index]));
             }
           }
           double priceWithAddons = priceWithQuantity + addonsCost;
 
           DateTime _currentTime = Provider.of<SplashProvider>(context, listen: false).currentTime;
-          DateTime _start = DateFormat('hh:mm:ss').parse(product.availableTimeStarts);
-          DateTime _end = DateFormat('hh:mm:ss').parse(product.availableTimeEnds);
+          DateTime _start = DateFormat('hh:mm:ss').parse(product!.availableTimeStarts!);
+          DateTime _end = DateFormat('hh:mm:ss').parse(product!.availableTimeEnds!);
           DateTime _startTime = DateTime(_currentTime.year, _currentTime.month, _currentTime.day, _start.hour, _start.minute, _start.second);
           DateTime _endTime = DateTime(_currentTime.year, _currentTime.month, _currentTime.day, _end.hour, _end.minute, _end.second);
           if(_endTime.isBefore(_startTime)) {
@@ -102,8 +102,8 @@ class CartBottomSheet extends StatelessWidget {
 
           CartModel _cartModel = CartModel(
             price, priceWithDiscount, [_variation],
-            (price - PriceConverter.convertWithDiscount(context, price, product.discount, product.discountType)),
-            productProvider.quantity, price - PriceConverter.convertWithDiscount(context, price, product.tax, product.taxType),
+            (price! - PriceConverter.convertWithDiscount(context, price, product!.discount, product!.discountType)!),
+            productProvider.quantity, price - PriceConverter.convertWithDiscount(context, price, product!.tax, product!.taxType)!,
             _addOnIdList, product,
           );
           bool isExistInCart = Provider.of<CartProvider>(context, listen: false).isExistInCart(_cartModel, fromCart, cartIndex);
@@ -117,7 +117,7 @@ class CartBottomSheet extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                   child: FadeInImage.assetNetwork(
                     placeholder: Images.placeholder_rectangle,
-                    image: '${Provider.of<SplashProvider>(context, listen: false).baseUrls.productImageUrl}/${product.image}',
+                    image: '${Provider.of<SplashProvider>(context, listen: false).baseUrls!.productImageUrl}/${product!.image}',
                     width: 100, height: 100, fit: BoxFit.cover,
                   ),
                 ),
@@ -125,31 +125,31 @@ class CartBottomSheet extends StatelessWidget {
                 Expanded(
                   child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                     Text(
-                      product.name, maxLines: 2, overflow: TextOverflow.ellipsis,
+                      product!.name!, maxLines: 2, overflow: TextOverflow.ellipsis,
                       style: rubikMedium.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE),
                     ),
-                    RatingBar(rating: product.rating.length > 0 ? double.parse(product.rating[0].average) : 0.0, size: 15),
+                    RatingBar(rating: product!.rating!.length > 0 ? double.parse(product!.rating![0].average!) : 0.0, size: 15),
                     SizedBox(height: 10),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          '${PriceConverter.convertPrice(context, _startingPrice, discount: product.discount, discountType: product.discountType)}'
-                              '${_endingPrice!= null ? ' - ${PriceConverter.convertPrice(context, _endingPrice, discount: product.discount,
-                              discountType: product.discountType)}' : ''}',
+                          '${PriceConverter.convertPrice(context, _startingPrice, discount: product!.discount, discountType: product!.discountType)}'
+                              '${_endingPrice!= null ? ' - ${PriceConverter.convertPrice(context, _endingPrice, discount: product!.discount,
+                              discountType: product!.discountType)}' : ''}',
                           style: rubikMedium.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE),
                         ),
                         price == priceWithDiscount ? Consumer<WishListProvider>(
                             builder: (context, wishList, child) {
                               return InkWell(
                                 onTap: () {
-                                  wishList.wishIdList.contains(product.id)
-                                      ? wishList.removeFromWishList(product, (message) {})
-                                      : wishList.addToWishList(product, (message) {});
+                                  wishList.wishIdList.contains(product!.id)
+                                      ? wishList.removeFromWishList(product!, (message) {})
+                                      : wishList.addToWishList(product!, (message) {});
                                 },
                                 child: Icon(
-                                  wishList.wishIdList.contains(product.id) ? Icons.favorite : Icons.favorite_border,
-                                  color: wishList.wishIdList.contains(product.id) ? ColorResources.COLOR_PRIMARY : ColorResources.COLOR_GREY,
+                                  wishList.wishIdList.contains(product!.id) ? Icons.favorite : Icons.favorite_border,
+                                  color: wishList.wishIdList.contains(product!.id) ? ColorResources.COLOR_PRIMARY : ColorResources.COLOR_GREY,
                                 ),
                               );
                             }
@@ -166,13 +166,13 @@ class CartBottomSheet extends StatelessWidget {
                         builder: (context, wishList, child) {
                           return InkWell(
                             onTap: () {
-                              wishList.wishIdList.contains(product.id)
-                                  ? wishList.removeFromWishList(product, (message) {})
-                                  : wishList.addToWishList(product, (message) {});
+                              wishList.wishIdList.contains(product!.id)
+                                  ? wishList.removeFromWishList(product!, (message) {})
+                                  : wishList.addToWishList(product!, (message) {});
                             },
                             child: Icon(
-                              wishList.wishIdList.contains(product.id) ? Icons.favorite : Icons.favorite_border,
-                              color: wishList.wishIdList.contains(product.id) ? ColorResources.COLOR_PRIMARY : ColorResources.COLOR_GREY,
+                              wishList.wishIdList.contains(product!.id) ? Icons.favorite : Icons.favorite_border,
+                              color: wishList.wishIdList.contains(product!.id) ? ColorResources.COLOR_PRIMARY : ColorResources.COLOR_GREY,
                             ),
                           );
                         }
@@ -185,14 +185,14 @@ class CartBottomSheet extends StatelessWidget {
 
               // Quantity
               Row(children: [
-                Text(getTranslated('quantity', context), style: rubikMedium.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
+                Text(getTranslated('quantity', context)!, style: rubikMedium.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
                 Expanded(child: SizedBox()),
                 Container(
                   decoration: BoxDecoration(color: ColorResources.getBackgroundColor(context), borderRadius: BorderRadius.circular(5)),
                   child: Row(children: [
                     InkWell(
                       onTap: () {
-                        if (productProvider.quantity > 1) {
+                        if (productProvider.quantity! > 1) {
                           productProvider.setQuantity(false);
                         }
                       },
@@ -217,11 +217,11 @@ class CartBottomSheet extends StatelessWidget {
               // Variation
               ListView.builder(
                 shrinkWrap: true,
-                itemCount: product.choiceOptions.length,
+                itemCount: product!.choiceOptions!.length,
                 physics: NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
                   return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                    Text(product.choiceOptions[index].title, style: rubikMedium.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
+                    Text(product!.choiceOptions![index].title!, style: rubikMedium.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
                     SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
                     GridView.builder(
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -232,7 +232,7 @@ class CartBottomSheet extends StatelessWidget {
                       ),
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
-                      itemCount: product.choiceOptions[index].options.length,
+                      itemCount: product!.choiceOptions![index].options!.length,
                       itemBuilder: (context, i) {
                         return InkWell(
                           onTap: () {
@@ -242,36 +242,36 @@ class CartBottomSheet extends StatelessWidget {
                             alignment: Alignment.center,
                             padding: EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_EXTRA_SMALL),
                             decoration: BoxDecoration(
-                              color: productProvider.variationIndex[index] != i ? ColorResources.BACKGROUND_COLOR : ColorResources.COLOR_PRIMARY,
+                              color: productProvider.variationIndex![index] != i ? ColorResources.BACKGROUND_COLOR : ColorResources.COLOR_PRIMARY,
                               borderRadius: BorderRadius.circular(5),
-                              border: productProvider.variationIndex[index] != i ? Border.all(color: ColorResources.BORDER_COLOR, width: 2) : null,
+                              border: productProvider.variationIndex![index] != i ? Border.all(color: ColorResources.BORDER_COLOR, width: 2) : null,
                             ),
                             child: Text(
-                              product.choiceOptions[index].options[i].trim(), maxLines: 1, overflow: TextOverflow.ellipsis,
+                              product!.choiceOptions![index].options![i].trim(), maxLines: 1, overflow: TextOverflow.ellipsis,
                               style: rubikRegular.copyWith(
-                                color: productProvider.variationIndex[index] != i ? ColorResources.COLOR_BLACK : ColorResources.COLOR_WHITE,
+                                color: productProvider.variationIndex![index] != i ? ColorResources.COLOR_BLACK : ColorResources.COLOR_WHITE,
                               ),
                             ),
                           ),
                         );
                       },
                     ),
-                    SizedBox(height: index != product.choiceOptions.length-1 ? Dimensions.PADDING_SIZE_LARGE : 0),
+                    SizedBox(height: index != product!.choiceOptions!.length-1 ? Dimensions.PADDING_SIZE_LARGE : 0),
                   ]);
                 },
               ),
-              product.choiceOptions.length > 0 ? SizedBox(height: Dimensions.PADDING_SIZE_LARGE) : SizedBox(),
+              product!.choiceOptions!.length > 0 ? SizedBox(height: Dimensions.PADDING_SIZE_LARGE) : SizedBox(),
 
               fromSetMenu ? Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Text(getTranslated('description', context), style: rubikMedium.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
+                Text(getTranslated('description', context)!, style: rubikMedium.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
                 SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
-                Text(product.description ?? '', style: rubikRegular),
+                Text(product!.description ?? '', style: rubikRegular),
                 SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
               ]) : SizedBox(),
 
               // Addons
-              product.addOns.length > 0 ? Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Text(getTranslated('addons', context), style: rubikMedium.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
+              product!.addOns!.length > 0 ? Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Text(getTranslated('addons', context)!, style: rubikMedium.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
                 SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
                 GridView.builder(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -282,7 +282,7 @@ class CartBottomSheet extends StatelessWidget {
                   ),
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
-                  itemCount: product.addOns.length,
+                  itemCount: product!.addOns!.length,
                   itemBuilder: (context, index) {
                     return InkWell(
                       onTap: () {
@@ -300,30 +300,30 @@ class CartBottomSheet extends StatelessWidget {
                           borderRadius: BorderRadius.circular(5),
                           border: productProvider.addOnActiveList[index] ? null : Border.all(color: ColorResources.BORDER_COLOR, width: 2),
                           boxShadow: productProvider.addOnActiveList[index] ? [BoxShadow(color: Colors.grey[Provider.of<ThemeProvider>(context)
-                              .darkTheme ? 700 : 300], blurRadius: 5, spreadRadius: 1)] : null,
+                              .darkTheme ? 700 : 300]!, blurRadius: 5, spreadRadius: 1)] : null,
                         ),
                         child: Column(children: [
                           Expanded(child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-                            Text(product.addOns[index].name, maxLines: 2, overflow: TextOverflow.ellipsis, textAlign: TextAlign.center, style: rubikMedium.copyWith(
+                            Text(product!.addOns![index].name!, maxLines: 2, overflow: TextOverflow.ellipsis, textAlign: TextAlign.center, style: rubikMedium.copyWith(
                               color: productProvider.addOnActiveList[index]
                                   ? ColorResources.COLOR_WHITE : ColorResources.COLOR_BLACK,
                               fontSize: Dimensions.FONT_SIZE_SMALL,
                             )),
                             SizedBox(height: 5),
                             Text(
-                              PriceConverter.convertPrice(context, product.addOns[index].price), maxLines: 1, overflow: TextOverflow.ellipsis,
+                              PriceConverter.convertPrice(context, product!.addOns![index].price), maxLines: 1, overflow: TextOverflow.ellipsis,
                               style: rubikRegular.copyWith(color: productProvider.addOnActiveList[index] ? ColorResources.COLOR_WHITE
                                   : ColorResources.COLOR_BLACK, fontSize: Dimensions.FONT_SIZE_EXTRA_SMALL),
                             ),
                           ])),
                           productProvider.addOnActiveList[index] ? Container(
                             height: 25,
-                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: Theme.of(context).accentColor),
+                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: Theme.of(context).colorScheme.secondary),
                             child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                               Expanded(
                                 child: InkWell(
                                   onTap: () {
-                                    if (productProvider.addOnQtyList[index] > 1) {
+                                    if (productProvider.addOnQtyList[index]! > 1) {
                                       productProvider.setAddOnQuantity(false, index);
                                     }else {
                                       productProvider.addAddOn(false, index);
@@ -365,7 +365,7 @@ class CartBottomSheet extends StatelessWidget {
                   if(!isExistInCart) {
                     Navigator.pop(context);
                     Provider.of<CartProvider>(context, listen: false).addToCart(_cartModel, cartIndex);
-                    callback(_cartModel);
+                    callback!(_cartModel);
                   }
                 } : null,
               ) : Container(
@@ -376,13 +376,13 @@ class CartBottomSheet extends StatelessWidget {
                   color: Theme.of(context).primaryColor.withOpacity(0.1),
                 ),
                 child: Column(children: [
-                  Text(getTranslated('not_available_now', context), style: rubikMedium.copyWith(
+                  Text(getTranslated('not_available_now', context)!, style: rubikMedium.copyWith(
                     color: Theme.of(context).primaryColor,
                     fontSize: Dimensions.FONT_SIZE_LARGE,
                   )),
                   Text(
-                    '${getTranslated('available_will_be', context)} ${DateConverter.convertTimeToTime(product.availableTimeStarts)} '
-                        '- ${DateConverter.convertTimeToTime(product.availableTimeEnds)}',
+                    '${getTranslated('available_will_be', context)} ${DateConverter.convertTimeToTime(product!.availableTimeStarts!)} '
+                        '- ${DateConverter.convertTimeToTime(product!.availableTimeEnds!)}',
                     style: rubikRegular,
                   ),
                 ]),

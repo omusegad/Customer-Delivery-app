@@ -1,9 +1,9 @@
 class WishListModel {
-  int id;
-  int userId;
-  int productId;
-  String createdAt;
-  String updatedAt;
+  int? id;
+  int? userId;
+  int? productId;
+  String? createdAt;
+  String? updatedAt;
 
   WishListModel(
       {this.id, this.userId, this.productId, this.createdAt, this.updatedAt});

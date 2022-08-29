@@ -5,7 +5,6 @@ ThemeData light = ThemeData(
   fontFamily: 'Rubik',
   primaryColor: Color(0xFFFAAF40),
   brightness: Brightness.light,
-  accentColor: Colors.white,
   focusColor: Color(0xFFADC4C8),
   hintColor: Color(0xFF52575C),
   textButtonTheme: TextButtonThemeData(style: TextButton.styleFrom(
@@ -27,5 +26,5 @@ ThemeData light = ThemeData(
     subtitle1: TextStyle(fontSize: 15.0, fontWeight: FontWeight.w500),
     bodyText2: TextStyle(fontSize: 12.0),
     bodyText1: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w600),
-  ),
+  ), colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.white),
 );

@@ -1,21 +1,21 @@
 class ChatModel {
-  int _id;
-  int _userId;
-  String _message;
-  String _reply;
-  String _createdAt;
-  String _updatedAt;
-  String _image;
+  int? _id;
+  int? _userId;
+  String? _message;
+  String? _reply;
+  String? _createdAt;
+  String? _updatedAt;
+  String? _image;
 
   ChatModel(
-      {int id,
-        int userId,
-        String message,
-        String reply,
-        String createdAt,
-        String updatedAt,
-        String checked,
-        String image}) {
+      {int? id,
+        int? userId,
+        String? message,
+        String? reply,
+        String? createdAt,
+        String? updatedAt,
+        String? checked,
+        String? image}) {
     this._id = id;
     this._userId = userId;
     this._message = message;
@@ -25,13 +25,13 @@ class ChatModel {
     this._image = image;
   }
 
-  int get id => _id;
-  int get userId => _userId;
-  String get message => _message;
-  String get reply => _reply;
-  String get createdAt => _createdAt;
-  String get updatedAt => _updatedAt;
-  String get image => _image;
+  int? get id => _id;
+  int? get userId => _userId;
+  String? get message => _message;
+  String? get reply => _reply;
+  String? get createdAt => _createdAt;
+  String? get updatedAt => _updatedAt;
+  String? get image => _image;
 
   ChatModel.fromJson(Map<String, dynamic> json) {
     _id = json['id'];

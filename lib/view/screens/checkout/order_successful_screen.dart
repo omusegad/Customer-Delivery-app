@@ -9,9 +9,9 @@ import 'package:flutter_restaurant/view/screens/track/order_tracking_screen.dart
 
 class OrderSuccessfulScreen extends StatelessWidget {
   final String orderID;
-  final int addressID;
+  final int? addressID;
   final int status;
-  OrderSuccessfulScreen({@required this.orderID, this.status = 0, @required this.addressID});
+  OrderSuccessfulScreen({required this.orderID, this.status = 0, required this.addressID});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class OrderSuccessfulScreen extends StatelessWidget {
         SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
 
         Text(
-          getTranslated(status == 0 ? 'order_placed_successfully' : status == 1 ? 'payment_failed' : 'payment_cancelled', context),
+          getTranslated(status == 0 ? 'order_placed_successfully' : status == 1 ? 'payment_failed' : 'payment_cancelled', context)!,
           style: rubikMedium.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE),
         ),
         SizedBox(height: Dimensions.PADDING_SIZE_SMALL),

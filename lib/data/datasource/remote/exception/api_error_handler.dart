@@ -23,21 +23,21 @@ class ApiErrorHandler {
               "Receive timeout in connection with API server";
               break;
             case DioErrorType.response:
-              switch (error.response.statusCode) {
+              switch (error.response!.statusCode) {
                 case 404:
                 case 500:
                 case 503:
-                  errorDescription = error.response.statusMessage;
+                  errorDescription = error.response!.statusMessage;
                   break;
                 default:
                   ErrorResponse errorResponse =
-                  ErrorResponse.fromJson(error.response.data);
+                  ErrorResponse.fromJson(error.response!.data);
                   if (errorResponse.errors != null &&
-                      errorResponse.errors.length > 0)
+                      errorResponse.errors!.length > 0)
                     errorDescription = errorResponse;
                   else
                     errorDescription =
-                    "Failed to load data - status code: ${error.response.statusCode}";
+                    "Failed to load data - status code: ${error.response!.statusCode}";
               }
               break;
             case DioErrorType.sendTimeout:

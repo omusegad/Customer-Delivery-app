@@ -10,25 +10,27 @@ import 'package:flutter_restaurant/view/screens/checkout/widget/cancel_dialog.da
 import 'package:webview_flutter/webview_flutter.dart';
 
 class PaymentScreen extends StatefulWidget {
-  final OrderModel orderModel;
+  final OrderModel? orderModel;
   final bool fromCheckout;
-  PaymentScreen({@required this.orderModel, @required this.fromCheckout});
+  PaymentScreen({required this.orderModel, required this.fromCheckout});
 
   @override
   _PaymentScreenState createState() => _PaymentScreenState();
 }
 
 class _PaymentScreenState extends State<PaymentScreen> {
-  String selectedUrl;
+  String? selectedUrl;
   double value = 0.0;
   bool _isLoading = true;
-  final Completer<WebViewController> _controller = Completer<WebViewController>();
-  WebViewController controllerGlobal;
+  final Completer<WebViewController> _controller =
+      Completer<WebViewController>();
+  late WebViewController controllerGlobal;
 
   @override
   void initState() {
     super.initState();
-    selectedUrl = '${AppConstants.BASE_URL}/payment-mobile?customer_id=${widget.orderModel.userId}&order_id=${widget.orderModel.id}';
+    selectedUrl =
+        '${AppConstants.BASE_URL}/payment-mobile?customer_id=${widget.orderModel!.userId}&order_id=${widget.orderModel!.id}';
 
     if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
   }
@@ -36,17 +38,20 @@ class _PaymentScreenState extends State<PaymentScreen> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () => _exitApp(context),
+      onWillPop: (() => _exitApp(context).then((value) => value!)),
       child: Scaffold(
         backgroundColor: Theme.of(context).primaryColor,
-        appBar: CustomAppBar(title: getTranslated('PAYMENT', context), onBackPressed: () => _exitApp(context)),
+        appBar: CustomAppBar(
+            title: getTranslated('PAYMENT', context),
+            onBackPressed: () => _exitApp(context)),
         body: Stack(
           children: [
             WebView(
               javascriptMode: JavascriptMode.unrestricted,
               initialUrl: selectedUrl,
               gestureNavigationEnabled: true,
-              userAgent: 'Mozilla/5.0 (Linux; Android 4.4.4; One Build/KTU84L.H4) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/33.0.0.0 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/28.0.0.20.16;]',
+              userAgent:
+                  'Mozilla/5.0 (Linux; Android 4.4.4; One Build/KTU84L.H4) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/33.0.0.0 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/28.0.0.20.16;]',
               onWebViewCreated: (WebViewController webViewController) {
                 _controller.future.then((value) => controllerGlobal = value);
                 _controller.complete(webViewController);
@@ -56,18 +61,33 @@ class _PaymentScreenState extends State<PaymentScreen> {
                 setState(() {
                   _isLoading = true;
                 });
-                if(url == '${AppConstants.BASE_URL}/payment-success'){
-                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => OrderSuccessfulScreen(
-                    orderID: widget.orderModel.id.toString(), status: 0, addressID: widget.orderModel.deliveryAddressId,
-                  )));
-                }else if(url == '${AppConstants.BASE_URL}/payment-fail') {
-                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => OrderSuccessfulScreen(
-                    orderID: widget.orderModel.id.toString(), status: 1, addressID: widget.orderModel.deliveryAddressId,
-                  )));
-                }else if(url == '${AppConstants.BASE_URL}/payment-cancel') {
-                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => OrderSuccessfulScreen(
-                    orderID: widget.orderModel.id.toString(), status: 2, addressID: widget.orderModel.deliveryAddressId,
-                  )));
+                if (url == '${AppConstants.BASE_URL}/payment-success') {
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (_) => OrderSuccessfulScreen(
+                                orderID: widget.orderModel!.id.toString(),
+                                status: 0,
+                                addressID: widget.orderModel!.deliveryAddressId,
+                              )));
+                } else if (url == '${AppConstants.BASE_URL}/payment-fail') {
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (_) => OrderSuccessfulScreen(
+                                orderID: widget.orderModel!.id.toString(),
+                                status: 1,
+                                addressID: widget.orderModel!.deliveryAddressId,
+                              )));
+                } else if (url == '${AppConstants.BASE_URL}/payment-cancel') {
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (_) => OrderSuccessfulScreen(
+                                orderID: widget.orderModel!.id.toString(),
+                                status: 2,
+                                addressID: widget.orderModel!.deliveryAddressId,
+                              )));
                 }
               },
               onPageFinished: (String url) {
@@ -77,22 +97,29 @@ class _PaymentScreenState extends State<PaymentScreen> {
                 });
               },
             ),
-
-            _isLoading ? Center(
-              child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor)),
-            ) : SizedBox.shrink(),
+            _isLoading
+                ? Center(
+                    child: CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                            Theme.of(context).primaryColor)),
+                  )
+                : SizedBox.shrink(),
           ],
         ),
       ),
     );
   }
 
-  Future<bool> _exitApp(BuildContext context) async {
+  Future<bool?> _exitApp(BuildContext context) async {
     if (await controllerGlobal.canGoBack()) {
       controllerGlobal.goBack();
       return Future.value(false);
     } else {
-      return showDialog(context: context, builder: (context) => CancelDialog(orderModel: widget.orderModel, fromCheckout: widget.fromCheckout));
+      return showDialog(
+          context: context,
+          builder: (context) => CancelDialog(
+              orderModel: widget.orderModel,
+              fromCheckout: widget.fromCheckout));
     }
   }
 }

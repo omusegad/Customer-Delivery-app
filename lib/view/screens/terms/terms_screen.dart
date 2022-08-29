@@ -10,7 +10,7 @@ class TermsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(title: getTranslated('terms_and_condition', context)),
-      body: Html(data: Provider.of<SplashProvider>(context, listen: false).configModel.termsAndConditions
+      body: Html(data: Provider.of<SplashProvider>(context, listen: false).configModel!.termsAndConditions
           ?? getTranslated('no_terms_and_condition', context)),
     );
   }

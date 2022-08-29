@@ -30,10 +30,10 @@ class _WishListScreenState extends State<WishListScreen> {
             },
             backgroundColor: Theme.of(context).primaryColor,
             child: ListView.builder(
-              itemCount: wishlistProvider.wishList.length,
+              itemCount: wishlistProvider.wishList!.length,
               padding: EdgeInsets.all(Dimensions.PADDING_SIZE_SMALL),
               itemBuilder: (context, index) {
-                return ProductWidget(product: wishlistProvider.wishList[index]);
+                return ProductWidget(product: wishlistProvider.wishList![index]);
               },
             ),
           ): NoDataScreen()

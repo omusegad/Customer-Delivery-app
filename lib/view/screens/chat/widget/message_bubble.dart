@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_restaurant/data/model/response/chat_model.dart';
 import 'package:flutter_restaurant/helper/date_converter.dart';
@@ -12,15 +11,15 @@ import 'package:provider/provider.dart';
 class MessageBubble extends StatelessWidget {
   final ChatModel chat;
   final bool addDate;
-  MessageBubble({@required this.chat, @required this.addDate});
+  MessageBubble({required this.chat, required this.addDate});
 
   @override
   Widget build(BuildContext context) {
     bool isMe = chat.reply == null;
-    String dateTime = DateConverter.isoStringToLocalTimeOnly(chat.createdAt);
-    String _date = DateConverter.isoStringToLocalDateOnly(chat.createdAt) == DateConverter.estimatedDate(DateTime.now()) ? 'Today'
-        : DateConverter.isoStringToLocalDateOnly(chat.createdAt) == DateConverter.estimatedDate(DateTime.now().subtract(Duration(days: 1)))
-        ? 'Yesterday' : DateConverter.isoStringToLocalDateOnly(chat.createdAt);
+    String dateTime = DateConverter.isoStringToLocalTimeOnly(chat.createdAt!);
+    String _date = DateConverter.isoStringToLocalDateOnly(chat.createdAt!) == DateConverter.estimatedDate(DateTime.now()) ? 'Today'
+        : DateConverter.isoStringToLocalDateOnly(chat.createdAt!) == DateConverter.estimatedDate(DateTime.now().subtract(Duration(days: 1)))
+        ? 'Yesterday' : DateConverter.isoStringToLocalDateOnly(chat.createdAt!);
 
     return Column(
       crossAxisAlignment: isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
@@ -55,15 +54,15 @@ class MessageBubble extends StatelessWidget {
 
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_LARGE, vertical: Dimensions.PADDING_SIZE_SMALL),
-                              child: Text(isMe ? chat.message : chat.reply, style: rubikRegular.copyWith(color: isMe ? Theme.of(context).accentColor
-                                  : Theme.of(context).textTheme.bodyText1.color)),
+                              child: Text(isMe ? chat.message! : chat.reply!, style: rubikRegular.copyWith(color: isMe ? Theme.of(context).colorScheme.secondary
+                                  : Theme.of(context).textTheme.bodyText1!.color)),
                             ),
 
                             chat.image != null ? ClipRRect(
                               borderRadius: BorderRadius.only(bottomLeft: Radius.circular(isMe ? 10 : 0), bottomRight: Radius.circular(isMe ? 0 : 10)),
                               child: FadeInImage.assetNetwork(
                                 placeholder: Images.placeholder_image,
-                                image: '${Provider.of<SplashProvider>(context, listen: false).baseUrls.chatImageUrl}/${chat.image}',
+                                image: '${Provider.of<SplashProvider>(context, listen: false).baseUrls!.chatImageUrl}/${chat.image}',
                                 width: MediaQuery.of(context).size.width,
                                 fit: BoxFit.fitWidth,
                               ),

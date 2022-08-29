@@ -3,9 +3,9 @@ import 'package:flutter_restaurant/utill/app_constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LocalizationProvider extends ChangeNotifier {
-  final SharedPreferences sharedPreferences;
+  final SharedPreferences? sharedPreferences;
 
-  LocalizationProvider({@required this.sharedPreferences}) {
+  LocalizationProvider({required this.sharedPreferences}) {
     _loadCurrentLanguage();
   }
 
@@ -26,14 +26,14 @@ class LocalizationProvider extends ChangeNotifier {
   }
 
   _loadCurrentLanguage() async {
-    _locale = Locale(sharedPreferences.getString(AppConstants.LANGUAGE_CODE) ?? 'en',
-        sharedPreferences.getString(AppConstants.COUNTRY_CODE) ?? 'US');
+    _locale = Locale(sharedPreferences!.getString(AppConstants.LANGUAGE_CODE) ?? 'en',
+        sharedPreferences!.getString(AppConstants.COUNTRY_CODE) ?? 'US');
     _isLtr = _locale.languageCode == 'en';
     notifyListeners();
   }
 
   _saveLanguage(Locale locale) async {
-    sharedPreferences.setString(AppConstants.LANGUAGE_CODE, locale.languageCode);
-    sharedPreferences.setString(AppConstants.COUNTRY_CODE, locale.countryCode);
+    sharedPreferences!.setString(AppConstants.LANGUAGE_CODE, locale.languageCode);
+    sharedPreferences!.setString(AppConstants.COUNTRY_CODE, locale.countryCode!);
   }
 }

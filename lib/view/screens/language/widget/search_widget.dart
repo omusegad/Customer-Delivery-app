@@ -15,7 +15,7 @@ class SearchWidget extends StatelessWidget {
         onChanged: (String query) {
           searchProvider.searchLanguage(query, context);
         },
-        style: Theme.of(context).textTheme.headline2.copyWith(color: Theme.of(context).textTheme.bodyText1.color, fontSize: Dimensions.FONT_SIZE_LARGE),
+        style: Theme.of(context).textTheme.headline2!.copyWith(color: Theme.of(context).textTheme.bodyText1!.color, fontSize: Dimensions.FONT_SIZE_LARGE),
         textInputAction: TextInputAction.search,
         decoration: InputDecoration(
           contentPadding: EdgeInsets.symmetric(vertical: 9, horizontal: 10),
@@ -25,12 +25,12 @@ class SearchWidget extends StatelessWidget {
           ),
           isDense: true,
           hintText: Strings.find_language,
-          fillColor: Theme.of(context).accentColor,
-          hintStyle: Theme.of(context).textTheme.headline2.copyWith(fontSize: Dimensions.FONT_SIZE_SMALL, color: ColorResources.getHintColor(context)),
+          fillColor: Theme.of(context).colorScheme.secondary,
+          hintStyle: Theme.of(context).textTheme.headline2!.copyWith(fontSize: Dimensions.FONT_SIZE_SMALL, color: ColorResources.getHintColor(context)),
           filled: true,
           suffixIcon: Padding(
             padding: const EdgeInsets.only(left: Dimensions.PADDING_SIZE_LARGE, right: Dimensions.PADDING_SIZE_SMALL),
-            child: Image.asset(Images.search, width: 15, height: 15, color: Theme.of(context).textTheme.bodyText1.color),
+            child: Image.asset(Images.search, width: 15, height: 15, color: Theme.of(context).textTheme.bodyText1!.color),
           ),
         ),
       ),

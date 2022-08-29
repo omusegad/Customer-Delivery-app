@@ -13,8 +13,8 @@ import 'package:flutter_restaurant/view/base/product_widget.dart';
 import 'package:provider/provider.dart';
 
 class CategoryScreen extends StatefulWidget {
-  final CategoryModel categoryModel;
-  CategoryScreen({@required this.categoryModel});
+  final CategoryModel? categoryModel;
+  CategoryScreen({required this.categoryModel});
 
   @override
   _CategoryScreenState createState() => _CategoryScreenState();
@@ -26,7 +26,7 @@ class _CategoryScreenState extends State<CategoryScreen> with TickerProviderStat
   @override
   void initState() {
     super.initState();
-    Provider.of<CategoryProvider>(context, listen: false).getSubCategoryList(context, widget.categoryModel.id.toString());
+    Provider.of<CategoryProvider>(context, listen: false).getSubCategoryList(context, widget.categoryModel!.id.toString());
   }
 
   @override
@@ -46,7 +46,7 @@ class _CategoryScreenState extends State<CategoryScreen> with TickerProviderStat
                 backgroundColor: Theme.of(context).primaryColor,
                 leading: IconButton(icon: Icon(Icons.chevron_left, color: ColorResources.COLOR_WHITE), onPressed: () => Navigator.pop(context)),
                 flexibleSpace: FlexibleSpaceBar(
-                  title: Text(widget.categoryModel.name, style: rubikMedium.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE, color: Colors.white)),
+                  title: Text(widget.categoryModel!.name!, style: rubikMedium.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE, color: Colors.white)),
                   titlePadding: EdgeInsets.only(
                     bottom: 54 + (MediaQuery.of(context).padding.top/2),
                     left: 50,
@@ -56,7 +56,7 @@ class _CategoryScreenState extends State<CategoryScreen> with TickerProviderStat
                     margin: EdgeInsets.only(bottom: 50),
                     child: FadeInImage.assetNetwork(
                       placeholder: Images.placeholder_rectangle,
-                      image: '${Provider.of<SplashProvider>(context, listen: false).baseUrls.categoryImageUrl}/${widget.categoryModel.image}',
+                      image: '${Provider.of<SplashProvider>(context, listen: false).baseUrls!.categoryImageUrl}/${widget.categoryModel!.image}',
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -65,22 +65,22 @@ class _CategoryScreenState extends State<CategoryScreen> with TickerProviderStat
                   preferredSize: Size.fromHeight(30.0),
                   child: Container(
                     width: MediaQuery.of(context).size.width,
-                    color: Theme.of(context).accentColor,
+                    color: Theme.of(context).colorScheme.secondary,
                     child: TabBar(
-                      controller: TabController(initialIndex: _tabIndex, length: category.subCategoryList.length+1, vsync: this),
+                      controller: TabController(initialIndex: _tabIndex, length: category.subCategoryList!.length+1, vsync: this),
                       isScrollable: true,
                       unselectedLabelColor: ColorResources.getGreyColor(context),
                       indicatorWeight: 3,
                       indicatorSize: TabBarIndicatorSize.label,
                       indicatorColor: Theme.of(context).primaryColor,
-                      labelColor: Theme.of(context).textTheme.bodyText1.color,
+                      labelColor: Theme.of(context).textTheme.bodyText1!.color,
                       tabs: _tabs(category),
                       onTap: (int index) {
                         _tabIndex = index;
                         if(index == 0) {
-                          category.getCategoryProductList(context, widget.categoryModel.id.toString());
+                          category.getCategoryProductList(context, widget.categoryModel!.id.toString());
                         }else {
-                          category.getCategoryProductList(context, category.subCategoryList[index-1].id.toString());
+                          category.getCategoryProductList(context, category.subCategoryList![index-1].id.toString());
                         }
                       },
                     ),
@@ -89,13 +89,13 @@ class _CategoryScreenState extends State<CategoryScreen> with TickerProviderStat
               ),
 
               SliverToBoxAdapter(
-                child: category.categoryProductList != null ? category.categoryProductList.length > 0 ? ListView.builder(
-                  itemCount: category.categoryProductList.length,
+                child: category.categoryProductList != null ? category.categoryProductList!.length > 0 ? ListView.builder(
+                  itemCount: category.categoryProductList!.length,
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
                   padding: EdgeInsets.all(Dimensions.PADDING_SIZE_SMALL),
                   itemBuilder: (context, index) {
-                    return ProductWidget(product: category.categoryProductList[index]);
+                    return ProductWidget(product: category.categoryProductList![index]);
                   },
                 ) : NoDataScreen() : ListView.builder(
                   itemCount: 10,
@@ -118,7 +118,7 @@ class _CategoryScreenState extends State<CategoryScreen> with TickerProviderStat
   List<Tab> _tabs(CategoryProvider category) {
     List<Tab> tabList = [];
     tabList.add(Tab(text: 'All'));
-    category.subCategoryList.forEach((subCategory) => tabList.add(Tab(text: subCategory.name)));
+    category.subCategoryList!.forEach((subCategory) => tabList.add(Tab(text: subCategory.name)));
     return tabList;
   }
 }

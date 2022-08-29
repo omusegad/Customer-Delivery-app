@@ -10,7 +10,7 @@ import 'package:provider/provider.dart';
 class ChangeMethodDialog extends StatelessWidget {
   final String orderID;
   final Function callback;
-  ChangeMethodDialog({@required this.orderID, @required this.callback});
+  ChangeMethodDialog({required this.orderID, required this.callback});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class ChangeMethodDialog extends StatelessWidget {
               SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
 
               Text(
-                getTranslated('do_you_want_to_switch', context), textAlign: TextAlign.justify,
+                getTranslated('do_you_want_to_switch', context)!, textAlign: TextAlign.justify,
                 style: rubikMedium.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE),
               ),
               SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
@@ -38,7 +38,7 @@ class ChangeMethodDialog extends StatelessWidget {
                       minimumSize: Size(1, 50),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10), side: BorderSide(width: 2, color: Theme.of(context).primaryColor)),
                     ),
-                    child: Text(getTranslated('no', context)),
+                    child: Text(getTranslated('no', context)!),
                     onPressed: () => Navigator.pop(context),
                   ),
                 ),

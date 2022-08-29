@@ -1,9 +1,9 @@
 class SignUpModel {
-  String fName;
-  String lName;
-  String phone;
-  String email;
-  String password;
+  String? fName;
+  String? lName;
+  String? phone;
+  String? email;
+  String? password;
 
   SignUpModel({this.fName, this.lName, this.phone, this.email='', this.password});
 

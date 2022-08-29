@@ -55,8 +55,8 @@ class SearchScreen extends StatelessWidget {
                             Navigator.of(context).pop();
                           },
                           child: Text(
-                            getTranslated('cancel', context),
-                            style: Theme.of(context).textTheme.headline2.copyWith(color: ColorResources.getGreyBunkerColor(context)),
+                            getTranslated('cancel', context)!,
+                            style: Theme.of(context).textTheme.headline2!.copyWith(color: ColorResources.getGreyBunkerColor(context)),
                           ))
                     ],
                   ),
@@ -66,15 +66,15 @@ class SearchScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        getTranslated('recent_search', context),
-                        style: Theme.of(context).textTheme.headline3.copyWith(color: ColorResources.COLOR_GREY_BUNKER),
+                        getTranslated('recent_search', context)!,
+                        style: Theme.of(context).textTheme.headline3!.copyWith(color: ColorResources.COLOR_GREY_BUNKER),
                       ),
                       searchProvider.historyList.length > 0
                           ? TextButton(
                               onPressed: searchProvider.clearSearchAddress,
                               child: Text(
-                                getTranslated('remove_all', context),
-                                style: Theme.of(context).textTheme.headline2.copyWith(color: ColorResources.COLOR_GREY_BUNKER),
+                                getTranslated('remove_all', context)!,
+                                style: Theme.of(context).textTheme.headline2!.copyWith(color: ColorResources.COLOR_GREY_BUNKER),
                               ))
                           : SizedBox.shrink(),
                     ],
@@ -104,7 +104,7 @@ class SearchScreen extends StatelessWidget {
                                           searchProvider.historyList[index],
                                           style: Theme.of(context)
                                               .textTheme
-                                              .headline2
+                                              .headline2!
                                               .copyWith(color: ColorResources.COLOR_HINT, fontSize: Dimensions.FONT_SIZE_SMALL),
                                         )
                                       ],

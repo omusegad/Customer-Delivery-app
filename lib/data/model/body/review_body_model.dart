@@ -1,18 +1,18 @@
 class ReviewBody {
-  String _productId;
-  String _deliveryManId;
-  String _comment;
-  String _rating;
-  List<String> _fileUpload;
-  String _orderId;
+  String? _productId;
+  String? _deliveryManId;
+  String? _comment;
+  String? _rating;
+  List<String>? _fileUpload;
+  String? _orderId;
 
   ReviewBody(
-      {String productId,
-        String deliveryManId,
-        String comment,
-        String rating,
-        String orderId,
-        List<String> fileUpload}) {
+      {String? productId,
+        String? deliveryManId,
+        String? comment,
+        String? rating,
+        String? orderId,
+        List<String>? fileUpload}) {
     this._productId = productId;
     this._deliveryManId = deliveryManId;
     this._comment = comment;
@@ -21,12 +21,12 @@ class ReviewBody {
     this._fileUpload = fileUpload;
   }
 
-  String get productId => _productId;
-  String get deliveryManId => _deliveryManId;
-  String get comment => _comment;
-  String get orderId => _orderId;
-  String get rating => _rating;
-  List<String> get fileUpload => _fileUpload;
+  String? get productId => _productId;
+  String? get deliveryManId => _deliveryManId;
+  String? get comment => _comment;
+  String? get orderId => _orderId;
+  String? get rating => _rating;
+  List<String>? get fileUpload => _fileUpload;
 
   ReviewBody.fromJson(Map<String, dynamic> json) {
     _productId = json['product_id'];

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_restaurant/helper/date_converter.dart';
@@ -27,19 +26,19 @@ class CouponScreen extends StatelessWidget {
       appBar: CustomAppBar(title: getTranslated('coupon', context)),
       body: _isLoggedIn ? Consumer<CouponProvider>(
         builder: (context, coupon, child) {
-          return coupon.couponList != null ? coupon.couponList.length > 0 ? RefreshIndicator(
+          return coupon.couponList != null ? coupon.couponList!.length > 0 ? RefreshIndicator(
             onRefresh: () async {
               await Provider.of<CouponProvider>(context, listen: false).getCouponList(context);
             },
             backgroundColor: Theme.of(context).primaryColor,
             child: ListView.builder(
-              itemCount: coupon.couponList.length,
+              itemCount: coupon.couponList!.length,
               padding: EdgeInsets.all(Dimensions.PADDING_SIZE_LARGE),
               itemBuilder: (context, index) {
                 return InkWell(
                   onTap: () {
-                    Clipboard.setData(ClipboardData(text: coupon.couponList[index].code));
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(getTranslated('coupon_code_copied', context)), backgroundColor: Colors.green));
+                    Clipboard.setData(ClipboardData(text: coupon.couponList![index].code));
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(getTranslated('coupon_code_copied', context)!), backgroundColor: Colors.green));
                   },
                   child: Padding(
                     padding: EdgeInsets.only(bottom: Dimensions.PADDING_SIZE_LARGE),
@@ -63,18 +62,18 @@ class CouponScreen extends StatelessWidget {
                           Expanded(
                             child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisAlignment: MainAxisAlignment.center, children: [
                               SelectableText(
-                                coupon.couponList[index].code,
+                                coupon.couponList![index].code!,
                                 style: rubikRegular.copyWith(color: ColorResources.COLOR_WHITE),
                               ),
                               SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
                               Text(
-                                '${coupon.couponList[index].discount}${coupon.couponList[index].discountType == 'percent' ? '%'
-                                    : Provider.of<SplashProvider>(context, listen: false).configModel.currencySymbol} off',
+                                '${coupon.couponList![index].discount}${coupon.couponList![index].discountType == 'percent' ? '%'
+                                    : Provider.of<SplashProvider>(context, listen: false).configModel!.currencySymbol} off',
                                 style: rubikMedium.copyWith(color: ColorResources.COLOR_WHITE, fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE),
                               ),
                               SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
                               Text(
-                                '${getTranslated('valid_until', context)} ${DateConverter.isoStringToLocalDateOnly(coupon.couponList[index].expireDate)}',
+                                '${getTranslated('valid_until', context)} ${DateConverter.isoStringToLocalDateOnly(coupon.couponList![index].expireDate!)}',
                                 style: rubikRegular.copyWith(color: ColorResources.COLOR_WHITE, fontSize: Dimensions.FONT_SIZE_SMALL),
                               ),
                             ]),

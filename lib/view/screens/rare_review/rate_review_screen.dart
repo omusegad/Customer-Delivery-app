@@ -13,22 +13,22 @@ import 'package:flutter_restaurant/view/screens/rare_review/widget/product_revie
 import 'package:provider/provider.dart';
 
 class RateReviewScreen extends StatefulWidget {
-  final List<OrderDetailsModel> orderDetailsList;
-  final DeliveryMan deliveryMan;
-  RateReviewScreen({@required this.orderDetailsList, @required this.deliveryMan});
+  final List<OrderDetailsModel>? orderDetailsList;
+  final DeliveryMan? deliveryMan;
+  RateReviewScreen({required this.orderDetailsList, required this.deliveryMan});
 
   @override
   _RateReviewScreenState createState() => _RateReviewScreenState();
 }
 
 class _RateReviewScreenState extends State<RateReviewScreen> with TickerProviderStateMixin {
-  TabController _tabController;
+  TabController? _tabController;
 
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: widget.deliveryMan == null ? 1 : 2, initialIndex: 0, vsync: this);
-    Provider.of<ProductProvider>(context, listen: false).initRatingData(widget.orderDetailsList);
+    Provider.of<ProductProvider>(context, listen: false).initRatingData(widget.orderDetailsList!);
   }
   @override
   Widget build(BuildContext context) {
@@ -38,19 +38,19 @@ class _RateReviewScreenState extends State<RateReviewScreen> with TickerProvider
       body: Column(children: [
 
         Container(
-          color: Theme.of(context).accentColor,
+          color: Theme.of(context).colorScheme.secondary,
           child: TabBar(
             controller: _tabController,
-            labelColor: Theme.of(context).textTheme.bodyText1.color,
+            labelColor: Theme.of(context).textTheme.bodyText1!.color,
             indicatorColor: ColorResources.COLOR_PRIMARY,
             indicatorWeight: 3,
             unselectedLabelStyle: rubikRegular.copyWith(color: ColorResources.COLOR_HINT, fontSize: Dimensions.FONT_SIZE_SMALL),
             labelStyle: rubikMedium.copyWith(fontSize: Dimensions.FONT_SIZE_SMALL),
             tabs: widget.deliveryMan != null ? [
-              Tab(text: getTranslated(widget.orderDetailsList.length > 1 ? 'items' : 'item', context)),
+              Tab(text: getTranslated(widget.orderDetailsList!.length > 1 ? 'items' : 'item', context)),
               Tab(text: getTranslated('delivery_man', context)),
             ] : [
-              Tab(text: getTranslated(widget.orderDetailsList.length > 1 ? 'items' : 'item', context)),
+              Tab(text: getTranslated(widget.orderDetailsList!.length > 1 ? 'items' : 'item', context)),
             ],
           ),
         ),
@@ -59,7 +59,7 @@ class _RateReviewScreenState extends State<RateReviewScreen> with TickerProvider
           controller: _tabController,
           children: widget.deliveryMan != null ? [
             ProductReviewWidget(orderDetailsList: widget.orderDetailsList),
-            DeliveryManReviewWidget(deliveryMan: widget.deliveryMan, orderID: widget.orderDetailsList[0].orderId.toString()),
+            DeliveryManReviewWidget(deliveryMan: widget.deliveryMan, orderID: widget.orderDetailsList![0].orderId.toString()),
           ] : [
             ProductReviewWidget(orderDetailsList: widget.orderDetailsList),
           ],

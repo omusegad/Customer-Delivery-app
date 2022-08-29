@@ -33,16 +33,20 @@ import 'package:flutter_restaurant/view/screens/splash/splash_screen.dart';
 import 'package:provider/provider.dart';
 import 'di_container.dart' as di;
 
-final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+    FlutterLocalNotificationsPlugin();
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await di.init();
-  final NotificationAppLaunchDetails notificationAppLaunchDetails = await flutterLocalNotificationsPlugin.getNotificationAppLaunchDetails();
-  int _orderID;
+  final NotificationAppLaunchDetails? notificationAppLaunchDetails =
+      await flutterLocalNotificationsPlugin.getNotificationAppLaunchDetails();
+  int? _orderID;
   if (notificationAppLaunchDetails?.didNotificationLaunchApp ?? false) {
-    _orderID = notificationAppLaunchDetails.payload != null ? int.parse(notificationAppLaunchDetails.payload) : null;
+    _orderID = notificationAppLaunchDetails!.payload != null
+        ? int.parse(notificationAppLaunchDetails.payload!)
+        : null;
   }
   await MyNotification.initialize(flutterLocalNotificationsPlugin);
   FirebaseMessaging.onBackgroundMessage(myBackgroundMessageHandler);
@@ -56,16 +60,19 @@ Future<void> main() async {
       ChangeNotifierProvider(create: (context) => di.sl<CategoryProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<BannerProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<ProductProvider>()),
-      ChangeNotifierProvider(create: (context) => di.sl<LocalizationProvider>()),
+      ChangeNotifierProvider(
+          create: (context) => di.sl<LocalizationProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<AuthProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<LocationProvider>()),
-      ChangeNotifierProvider(create: (context) => di.sl<LocalizationProvider>()),
+      ChangeNotifierProvider(
+          create: (context) => di.sl<LocalizationProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<CartProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<OrderProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<ChatProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<SetMenuProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<ProfileProvider>()),
-      ChangeNotifierProvider(create: (context) => di.sl<NotificationProvider>()),
+      ChangeNotifierProvider(
+          create: (context) => di.sl<NotificationProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<CouponProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<WishListProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<SearchProvider>()),
@@ -75,8 +82,8 @@ Future<void> main() async {
 }
 
 class MyApp extends StatelessWidget {
-  final int orderId;
-  MyApp({@required this.orderId});
+  final int? orderId;
+  MyApp({required this.orderId});
 
   static final navigatorKey = new GlobalKey<NavigatorState>();
 
@@ -84,7 +91,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Locale> _locals = [];
     AppConstants.languages.forEach((language) {
-      _locals.add(Locale(language.languageCode, language.countryCode));
+      _locals.add(Locale(language.languageCode!, language.countryCode));
     });
     return MaterialApp(
       title: 'eFood',
@@ -99,7 +106,9 @@ class MyApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: _locals,
-      home: orderId == null ? SplashScreen() : OrderDetailsScreen(orderModel: null, orderId: orderId),
+      home: orderId == null
+          ? SplashScreen()
+          : OrderDetailsScreen(orderModel: null, orderId: orderId),
     );
   }
 }

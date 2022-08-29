@@ -1,30 +1,30 @@
 class CouponModel {
-  int _id;
-  String _title;
-  String _code;
-  String _startDate;
-  String _expireDate;
-  double _minPurchase;
-  double _maxDiscount;
-  double _discount;
-  String _discountType;
-  int _status;
-  String _createdAt;
-  String _updatedAt;
+  int? _id;
+  String? _title;
+  String? _code;
+  String? _startDate;
+  String? _expireDate;
+  double? _minPurchase;
+  double? _maxDiscount;
+  double? _discount;
+  String? _discountType;
+  int? _status;
+  String? _createdAt;
+  String? _updatedAt;
 
   CouponModel(
-      {int id,
-        String title,
-        String code,
-        String startDate,
-        String expireDate,
-        double minPurchase,
-        double maxDiscount,
-        double discount,
-        String discountType,
-        int status,
-        String createdAt,
-        String updatedAt}) {
+      {int? id,
+        String? title,
+        String? code,
+        String? startDate,
+        String? expireDate,
+        double? minPurchase,
+        double? maxDiscount,
+        double? discount,
+        String? discountType,
+        int? status,
+        String? createdAt,
+        String? updatedAt}) {
     this._id = id;
     this._title = title;
     this._code = code;
@@ -39,18 +39,18 @@ class CouponModel {
     this._updatedAt = updatedAt;
   }
 
-  int get id => _id;
-  String get title => _title;
-  String get code => _code;
-  String get startDate => _startDate;
-  String get expireDate => _expireDate;
-  double get minPurchase => _minPurchase;
-  double get maxDiscount => _maxDiscount;
-  double get discount => _discount;
-  String get discountType => _discountType;
-  int get status => _status;
-  String get createdAt => _createdAt;
-  String get updatedAt => _updatedAt;
+  int? get id => _id;
+  String? get title => _title;
+  String? get code => _code;
+  String? get startDate => _startDate;
+  String? get expireDate => _expireDate;
+  double? get minPurchase => _minPurchase;
+  double? get maxDiscount => _maxDiscount;
+  double? get discount => _discount;
+  String? get discountType => _discountType;
+  int? get status => _status;
+  String? get createdAt => _createdAt;
+  String? get updatedAt => _updatedAt;
 
   CouponModel.fromJson(Map<String, dynamic> json) {
     _id = json['id'];

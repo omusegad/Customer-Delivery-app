@@ -6,7 +6,7 @@ import 'package:shimmer/shimmer.dart';
 
 class ProductShimmer extends StatelessWidget {
   final bool isEnabled;
-  ProductShimmer({@required this.isEnabled});
+  ProductShimmer({required this.isEnabled});
 
   @override
   Widget build(BuildContext context) {
@@ -15,13 +15,13 @@ class ProductShimmer extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: Dimensions.PADDING_SIZE_EXTRA_SMALL, horizontal: Dimensions.PADDING_SIZE_SMALL),
       margin: EdgeInsets.only(bottom: Dimensions.PADDING_SIZE_DEFAULT),
       decoration: BoxDecoration(
-        color: Theme.of(context).accentColor,
+        color: Theme.of(context).colorScheme.secondary,
         borderRadius: BorderRadius.circular(10),
-        boxShadow: [BoxShadow(color: Colors.grey[200], blurRadius: 10, spreadRadius: 1)],
+        boxShadow: [BoxShadow(color: Colors.grey[200]!, blurRadius: 10, spreadRadius: 1)],
       ),
       child: Shimmer.fromColors(
-        baseColor: Colors.grey[300],
-        highlightColor: Colors.grey[100],
+        baseColor: Colors.grey[300]!,
+        highlightColor: Colors.grey[100]!,
         enabled: isEnabled,
         child: Row(children: [
           Container(

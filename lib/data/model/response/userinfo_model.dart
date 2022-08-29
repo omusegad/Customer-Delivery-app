@@ -1,16 +1,16 @@
 class UserInfoModel {
-  int id;
-  String fName;
-  String lName;
-  String email;
-  String image;
-  int isPhoneVerified;
-  String emailVerifiedAt;
-  String createdAt;
-  String updatedAt;
-  String emailVerificationToken;
-  String phone;
-  String cmFirebaseToken;
+  int? id;
+  String? fName;
+  String? lName;
+  String? email;
+  String? image;
+  int? isPhoneVerified;
+  String? emailVerifiedAt;
+  String? createdAt;
+  String? updatedAt;
+  String? emailVerificationToken;
+  String? phone;
+  String? cmFirebaseToken;
 
   UserInfoModel(
       {this.id,

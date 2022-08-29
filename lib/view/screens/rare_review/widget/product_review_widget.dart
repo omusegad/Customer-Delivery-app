@@ -15,15 +15,15 @@ import 'package:flutter_restaurant/view/base/custom_text_field.dart';
 import 'package:provider/provider.dart';
 
 class ProductReviewWidget extends StatelessWidget {
-  final List<OrderDetailsModel> orderDetailsList;
-  ProductReviewWidget({@required this.orderDetailsList});
+  final List<OrderDetailsModel>? orderDetailsList;
+  ProductReviewWidget({required this.orderDetailsList});
 
   @override
   Widget build(BuildContext context) {
     return Consumer<ProductProvider>(
       builder: (context, productProvider, child) {
         return ListView.builder(
-          itemCount: orderDetailsList.length,
+          itemCount: orderDetailsList!.length,
           physics: BouncingScrollPhysics(),
           padding: EdgeInsets.all(Dimensions.PADDING_SIZE_SMALL),
           itemBuilder: (context, index) {
@@ -32,7 +32,7 @@ class ProductReviewWidget extends StatelessWidget {
               margin: EdgeInsets.only(bottom: Dimensions.PADDING_SIZE_SMALL),
               decoration: BoxDecoration(
                 boxShadow: [BoxShadow(color: Colors.grey.withOpacity(0.2), spreadRadius: 1, blurRadius: 2, offset: Offset(0, 1))],
-                color: Theme.of(context).accentColor,
+                color: Theme.of(context).colorScheme.secondary,
                 borderRadius: BorderRadius.circular(Dimensions.PADDING_SIZE_SMALL),
               ),
               child: Column(
@@ -45,7 +45,7 @@ class ProductReviewWidget extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10),
                         child: FadeInImage.assetNetwork(
                           placeholder: Images.placeholder_image,
-                          image: '${Provider.of<SplashProvider>(context, listen: false).baseUrls.productImageUrl}/${orderDetailsList[index].productDetails.image}',
+                          image: '${Provider.of<SplashProvider>(context, listen: false).baseUrls!.productImageUrl}/${orderDetailsList![index].productDetails!.image}',
                           height: 70,
                           width: 85,
                           fit: BoxFit.cover,
@@ -56,9 +56,9 @@ class ProductReviewWidget extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(orderDetailsList[index].productDetails.name, style: rubikMedium, maxLines: 2, overflow: TextOverflow.ellipsis),
+                          Text(orderDetailsList![index].productDetails!.name!, style: rubikMedium, maxLines: 2, overflow: TextOverflow.ellipsis),
                           SizedBox(height: 10),
-                          Text(PriceConverter.convertPrice(context, orderDetailsList[index].productDetails.price), style: rubikBold),
+                          Text(PriceConverter.convertPrice(context, orderDetailsList![index].productDetails!.price), style: rubikBold),
                         ],
                       )),
                       Row(children: [
@@ -67,7 +67,7 @@ class ProductReviewWidget extends StatelessWidget {
                           style: rubikMedium.copyWith(color: ColorResources.getGreyBunkerColor(context)), overflow: TextOverflow.ellipsis,
                         ),
                         Text(
-                          orderDetailsList[index].quantity.toString(),
+                          orderDetailsList![index].quantity.toString(),
                           style: rubikMedium.copyWith(color: ColorResources.getPrimaryColor(context), fontSize: Dimensions.FONT_SIZE_SMALL),
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -78,7 +78,7 @@ class ProductReviewWidget extends StatelessWidget {
 
                   // Rate
                   Text(
-                    getTranslated('rate_the_food', context),
+                    getTranslated('rate_the_food', context)!,
                     style: rubikMedium.copyWith(color: ColorResources.getGreyBunkerColor(context)), overflow: TextOverflow.ellipsis,
                   ),
                   SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
@@ -108,7 +108,7 @@ class ProductReviewWidget extends StatelessWidget {
                   ),
                   SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
                   Text(
-                    getTranslated('share_your_opinion', context),
+                    getTranslated('share_your_opinion', context)!,
                     style: rubikMedium.copyWith(color: ColorResources.getGreyBunkerColor(context)), overflow: TextOverflow.ellipsis,
                   ),
                   SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
@@ -144,17 +144,17 @@ class ProductReviewWidget extends StatelessWidget {
                                   currentFocus.unfocus();
                                 }
                                 ReviewBody reviewBody = ReviewBody(
-                                  productId: orderDetailsList[index].productId.toString(),
+                                  productId: orderDetailsList![index].productId.toString(),
                                   rating: productProvider.ratingList[index].toString(),
                                   comment: productProvider.reviewList[index],
-                                  orderId: orderDetailsList[index].orderId.toString(),
+                                  orderId: orderDetailsList![index].orderId.toString(),
                                 );
                                 productProvider.submitReview(index, reviewBody).then((value) {
                                   if (value.isSuccess) {
-                                    showCustomSnackBar(value.message, context, isError: false);
+                                    showCustomSnackBar(value.message!, context, isError: false);
                                     productProvider.setReview(index, '');
                                   } else {
-                                    showCustomSnackBar(value.message, context);
+                                    showCustomSnackBar(value.message!, context);
                                   }
                                 });
                               }

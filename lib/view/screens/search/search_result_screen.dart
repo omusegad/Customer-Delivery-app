@@ -12,7 +12,7 @@ import 'package:flutter_restaurant/view/screens/search/widget/filter_widget.dart
 import 'package:provider/provider.dart';
 
 class SearchResultScreen extends StatelessWidget {
-  final String searchString;
+  final String? searchString;
   SearchResultScreen({this.searchString});
 
   @override
@@ -20,7 +20,7 @@ class SearchResultScreen extends StatelessWidget {
     TextEditingController _searchController = TextEditingController();
     int atamp = 0;
     if (atamp == 0) {
-      _searchController.text = searchString;
+      _searchController.text = searchString!;
       atamp = 1;
     }
 
@@ -50,10 +50,10 @@ class SearchResultScreen extends StatelessWidget {
                             showDialog(
                                 context: context,
                                 builder: (BuildContext context) {
-                                  List<double> _prices = [];
-                                  searchProvider.filterProductList.forEach((product) => _prices.add(product.price));
+                                  List<double?> _prices = [];
+                                  searchProvider.filterProductList!.forEach((product) => _prices.add(product.price));
                                   _prices.sort();
-                                  double _maxValue = _prices.length > 0 ? _prices[_prices.length-1] : 1000;
+                                  double? _maxValue = _prices.length > 0 ? _prices[_prices.length-1] : 1000;
                                   return Dialog(
                                     shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(20.0)),
@@ -85,18 +85,18 @@ class SearchResultScreen extends StatelessWidget {
                   SizedBox(height: 10),
                   searchProvider.searchProductList != null
                       ? Text(
-                          '${searchProvider.searchProductList.length} ${getTranslated('product_found', context)}',
-                          style: Theme.of(context).textTheme.headline2.copyWith(color: ColorResources.getGreyBunkerColor(context)),
+                          '${searchProvider.searchProductList!.length} ${getTranslated('product_found', context)}',
+                          style: Theme.of(context).textTheme.headline2!.copyWith(color: ColorResources.getGreyBunkerColor(context)),
                         )
                       : SizedBox.shrink(),
                   SizedBox(height: 13),
                   Expanded(
                     child: searchProvider.searchProductList != null
-                        ? searchProvider.searchProductList.length > 0
+                        ? searchProvider.searchProductList!.length > 0
                             ? ListView.builder(
-                                itemCount: searchProvider.searchProductList.length,
+                                itemCount: searchProvider.searchProductList!.length,
                                 padding: EdgeInsets.all(Dimensions.PADDING_SIZE_EXTRA_SMALL),
-                                itemBuilder: (context, index) => ProductWidget(product: searchProvider.searchProductList[index]))
+                                itemBuilder: (context, index) => ProductWidget(product: searchProvider.searchProductList![index]))
                             : NoDataScreen()
                         : ListView.builder(
                       itemCount: 10,

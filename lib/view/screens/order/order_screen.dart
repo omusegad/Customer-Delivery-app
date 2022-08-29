@@ -16,8 +16,8 @@ class OrderScreen extends StatefulWidget {
 }
 
 class _OrderScreenState extends State<OrderScreen> with TickerProviderStateMixin {
-  TabController _tabController;
-  bool _isLoggedIn;
+  TabController? _tabController;
+  late bool _isLoggedIn;
 
   @override
   void initState() {
@@ -33,17 +33,17 @@ class _OrderScreenState extends State<OrderScreen> with TickerProviderStateMixin
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).accentColor,
+      backgroundColor: Theme.of(context).colorScheme.secondary,
       appBar: CustomAppBar(title: getTranslated('my_order', context),isBackButtonExist: false,),
       body: _isLoggedIn ? Consumer<OrderProvider>(
         builder: (context, order, child) {
           return Column(children: [
 
             Container(
-              color: Theme.of(context).accentColor,
+              color: Theme.of(context).colorScheme.secondary,
               child: TabBar(
                 controller: _tabController,
-                labelColor: Theme.of(context).textTheme.bodyText1.color,
+                labelColor: Theme.of(context).textTheme.bodyText1!.color,
                 indicatorColor: ColorResources.COLOR_PRIMARY,
                 indicatorWeight: 3,
                 unselectedLabelStyle: rubikRegular.copyWith(color: ColorResources.COLOR_HINT, fontSize: Dimensions.FONT_SIZE_SMALL),

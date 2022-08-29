@@ -33,7 +33,7 @@ class ChooseLanguageScreen extends StatelessWidget {
               padding: const EdgeInsets.only(left: Dimensions.PADDING_SIZE_LARGE, top: Dimensions.PADDING_SIZE_LARGE),
               child: Text(
                 Strings.choose_the_language,
-                style: Theme.of(context).textTheme.headline3.copyWith(fontSize: 22, color: Theme.of(context).textTheme.bodyText1.color),
+                style: Theme.of(context).textTheme.headline3!.copyWith(fontSize: 22, color: Theme.of(context).textTheme.bodyText1!.color),
               ),
             ),
             SizedBox(height: 30),
@@ -58,8 +58,8 @@ class ChooseLanguageScreen extends StatelessWidget {
                         onTap: () {
                           if(languageProvider.languages.length > 0 && languageProvider.selectIndex != -1) {
                             Provider.of<LocalizationProvider>(context, listen: false).setLanguage(Locale(
-                              AppConstants.languages[languageProvider.selectIndex].languageCode,
-                              AppConstants.languages[languageProvider.selectIndex].countryCode,
+                              AppConstants.languages[languageProvider.selectIndex!].languageCode!,
+                              AppConstants.languages[languageProvider.selectIndex!].countryCode,
                             ));
                             if (fromMenu) {
                               Navigator.pop(context);
@@ -67,7 +67,7 @@ class ChooseLanguageScreen extends StatelessWidget {
                               Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => OnBoardingScreen()));
                             }
                           }else {
-                            showCustomSnackBar(getTranslated('select_a_language', context), context);
+                            showCustomSnackBar(getTranslated('select_a_language', context)!, context);
                           }
                         },
                       ),
@@ -78,7 +78,7 @@ class ChooseLanguageScreen extends StatelessWidget {
     );
   }
 
-  Widget _languageWidget({BuildContext context, LanguageModel languageModel, LanguageProvider languageProvider, int index}) {
+  Widget _languageWidget({required BuildContext context, required LanguageModel languageModel, required LanguageProvider languageProvider, int? index}) {
     return InkWell(
       onTap: () {
         languageProvider.setSelectIndex(index);
@@ -104,11 +104,11 @@ class ChooseLanguageScreen extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Image.asset(languageModel.imageUrl, width: 34, height: 34),
+                  Image.asset(languageModel.imageUrl!, width: 34, height: 34),
                   SizedBox(width: 30),
                   Text(
-                    languageModel.languageName,
-                    style: Theme.of(context).textTheme.headline2.copyWith(color: Theme.of(context).textTheme.bodyText1.color),
+                    languageModel.languageName!,
+                    style: Theme.of(context).textTheme.headline2!.copyWith(color: Theme.of(context).textTheme.bodyText1!.color),
                   ),
                 ],
               ),

@@ -34,13 +34,13 @@ class SignUpScreen extends StatelessWidget {
               SizedBox(height: 20),
               Center(
                   child: Text(
-                getTranslated('signup', context),
-                style: Theme.of(context).textTheme.headline3.copyWith(fontSize: 24, color: ColorResources.getGreyBunkerColor(context)),
+                getTranslated('signup', context)!,
+                style: Theme.of(context).textTheme.headline3!.copyWith(fontSize: 24, color: ColorResources.getGreyBunkerColor(context)),
               )),
               SizedBox(height: 35),
               Text(
-                getTranslated('email', context),
-                style: Theme.of(context).textTheme.headline2.copyWith(color: ColorResources.getHintColor(context)),
+                getTranslated('email', context)!,
+                style: Theme.of(context).textTheme.headline2!.copyWith(color: ColorResources.getHintColor(context)),
               ),
               SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
               CustomTextField(
@@ -54,14 +54,14 @@ class SignUpScreen extends StatelessWidget {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  authProvider.verificationMessage.length > 0
+                  authProvider.verificationMessage!.length > 0
                       ? CircleAvatar(backgroundColor: ColorResources.getPrimaryColor(context), radius: 5)
                       : SizedBox.shrink(),
                   SizedBox(width: 8),
                   Expanded(
                     child: Text(
                       authProvider.verificationMessage ?? "",
-                      style: Theme.of(context).textTheme.headline2.copyWith(
+                      style: Theme.of(context).textTheme.headline2!.copyWith(
                             fontSize: Dimensions.FONT_SIZE_SMALL,
                             color: ColorResources.getPrimaryColor(context),
                           ),
@@ -77,9 +77,9 @@ class SignUpScreen extends StatelessWidget {
                       onTap: () {
                         String _email = _emailController.text.trim();
                         if (_email.isEmpty) {
-                          showCustomSnackBar(getTranslated('enter_email_address', context), context);
+                          showCustomSnackBar(getTranslated('enter_email_address', context)!, context);
                         }else if (EmailChecker.isNotValid(_email)) {
-                          showCustomSnackBar(getTranslated('enter_valid_email', context), context);
+                          showCustomSnackBar(getTranslated('enter_valid_email', context)!, context);
                         }else {
                           authProvider.checkEmail(_email).then((value) async {
                             if (value.isSuccess) {
@@ -112,15 +112,15 @@ class SignUpScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        getTranslated('already_have_account', context),
-                        style: Theme.of(context).textTheme.headline2.copyWith(fontSize: Dimensions.FONT_SIZE_SMALL, color: ColorResources.getGreyColor(context)),
+                        getTranslated('already_have_account', context)!,
+                        style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: Dimensions.FONT_SIZE_SMALL, color: ColorResources.getGreyColor(context)),
                       ),
                       SizedBox(width: Dimensions.PADDING_SIZE_SMALL),
                       Text(
-                        getTranslated('login', context),
+                        getTranslated('login', context)!,
                         style: Theme.of(context)
                             .textTheme
-                            .headline3
+                            .headline3!
                             .copyWith(fontSize: Dimensions.FONT_SIZE_SMALL, color: ColorResources.getGreyBunkerColor(context)),
                       ),
                     ],

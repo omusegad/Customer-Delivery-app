@@ -13,8 +13,8 @@ import 'package:provider/provider.dart';
 
 class OrderTrackingScreen extends StatelessWidget {
   final String orderID;
-  final int addressID;
-  OrderTrackingScreen({@required this.orderID, @required this.addressID});
+  final int? addressID;
+  OrderTrackingScreen({required this.orderID, required this.addressID});
 
   @override
   Widget build(BuildContext context) {
@@ -27,24 +27,24 @@ class OrderTrackingScreen extends StatelessWidget {
       appBar: CustomAppBar(title: getTranslated('order_tracking', context)),
       body: Consumer<OrderProvider>(
         builder: (context, order, child) {
-          String _status;
+          String? _status;
           if(order.trackModel != null) {
-            _status = order.trackModel.orderStatus;
+            _status = order.trackModel!.orderStatus;
           }
 
           if(_status != null && _status == _statusList[5] || _status == _statusList[6] || _status == _statusList[7]) {
             return Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(_status),
+                Text(_status!),
                 SizedBox(height: 50),
                 CustomButton(btnTxt: getTranslated('back_home', context), onTap: () {
                   Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_) => DashboardScreen()), (route) => false);
                 }),
               ],
             );
-          } else if(order.responseModel != null && !order.responseModel.isSuccess) {
-            return Center(child: Text(order.responseModel.message));
+          } else if(order.responseModel != null && !order.responseModel!.isSuccess) {
+            return Center(child: Text(order.responseModel!.message!));
           }
 
           return _status != null ? RefreshIndicator(
@@ -57,8 +57,8 @@ class OrderTrackingScreen extends StatelessWidget {
               padding: EdgeInsets.all(Dimensions.PADDING_SIZE_SMALL),
               children: [
 
-                order.trackModel.deliveryMan != null ? DeliveryManWidget(deliveryMan: order.trackModel.deliveryMan) : SizedBox(),
-                order.trackModel.deliveryMan != null ? SizedBox(height: 30) : SizedBox(),
+                order.trackModel!.deliveryMan != null ? DeliveryManWidget(deliveryMan: order.trackModel!.deliveryMan) : SizedBox(),
+                order.trackModel!.deliveryMan != null ? SizedBox(height: 30) : SizedBox(),
 
                 CustomStepper(
                   title: getTranslated('order_placed', context),
@@ -73,7 +73,7 @@ class OrderTrackingScreen extends StatelessWidget {
                   title: getTranslated('preparing_food', context),
                   isActive: _status != _statusList[0] && _status != _statusList[1],
                 ),
-                order.trackModel.orderType != 'take_away' ? CustomStepper(
+                order.trackModel!.orderType != 'take_away' ? CustomStepper(
                   title: getTranslated('food_in_the_way', context),
                   isActive: _status != _statusList[0] && _status != _statusList[1] && _status != _statusList[2],
                 ) : SizedBox(),
@@ -83,7 +83,7 @@ class OrderTrackingScreen extends StatelessWidget {
                   child: _status == _statusList[3] ? TrackingMapWidget(
                     deliveryManModel: order.deliveryManModel,
                     orderID: orderID,
-                    addressModel: Provider.of<LocationProvider>(context).addressList!= null ? Provider.of<LocationProvider>(context).addressList.where((address) => address.id == addressID).first : null,
+                    addressModel: Provider.of<LocationProvider>(context).addressList!= null ? Provider.of<LocationProvider>(context).addressList!.where((address) => address.id == addressID).first : null,
                   ) : null,
                 ),
                 SizedBox(height: 50),

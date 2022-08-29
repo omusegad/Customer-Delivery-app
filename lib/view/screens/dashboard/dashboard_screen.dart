@@ -23,7 +23,7 @@ class DashboardScreen extends StatefulWidget {
 class _DashboardScreenState extends State<DashboardScreen> {
   final PageController _pageController = PageController();
   int _pageIndex = 0;
-  List<Widget> _screens;
+  late List<Widget> _screens;
   GlobalKey<ScaffoldMessengerState> _scaffoldKey = GlobalKey();
 
   @override
@@ -81,7 +81,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             Padding(padding: EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_SMALL), child: Image.asset(Images.closed, width: 25, height: 25)),
             Text(
               '${getTranslated('restaurant_is_close_now', context)} '
-                  '${DateConverter.convertTimeToTime('${Provider.of<SplashProvider>(context, listen: false).configModel.restaurantOpenTime}:00')}',
+                  '${DateConverter.convertTimeToTime('${Provider.of<SplashProvider>(context, listen: false).configModel!.restaurantOpenTime}:00')}',
               style: rubikRegular.copyWith(fontSize: 12, color: Colors.black),
             ),
           ]),
@@ -98,7 +98,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     );
   }
 
-  BottomNavigationBarItem _barItem(IconData icon, String label, int index) {
+  BottomNavigationBarItem _barItem(IconData icon, String? label, int index) {
     return BottomNavigationBarItem(
       icon: Stack(
         clipBehavior: Clip.none, children: [

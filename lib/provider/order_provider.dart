@@ -10,47 +10,47 @@ import 'package:flutter_restaurant/data/repository/order_repo.dart';
 import 'package:flutter_restaurant/helper/api_checker.dart';
 
 class OrderProvider extends ChangeNotifier {
-  final OrderRepo orderRepo;
-  OrderProvider({@required this.orderRepo});
+  final OrderRepo? orderRepo;
+  OrderProvider({required this.orderRepo});
 
-  List<OrderModel> _runningOrderList;
-  List<OrderModel> _historyOrderList;
-  List<OrderDetailsModel> _orderDetails;
+  List<OrderModel>? _runningOrderList;
+  List<OrderModel>? _historyOrderList;
+  List<OrderDetailsModel>? _orderDetails;
   int _paymentMethodIndex = 0;
-  OrderModel _trackModel;
-  ResponseModel _responseModel;
+  OrderModel? _trackModel;
+  ResponseModel? _responseModel;
   int _addressIndex = -1;
   bool _isLoading = false;
   bool _showCancelled = false;
-  DeliveryManModel _deliveryManModel;
-  String _orderType = 'delivery';
+  DeliveryManModel? _deliveryManModel;
+  String? _orderType = 'delivery';
   int _branchIndex = 0;
 
-  List<OrderModel> get runningOrderList => _runningOrderList;
-  List<OrderModel> get historyOrderList => _historyOrderList;
-  List<OrderDetailsModel> get orderDetails => _orderDetails;
+  List<OrderModel>? get runningOrderList => _runningOrderList;
+  List<OrderModel>? get historyOrderList => _historyOrderList;
+  List<OrderDetailsModel>? get orderDetails => _orderDetails;
   int get paymentMethodIndex => _paymentMethodIndex;
-  OrderModel get trackModel => _trackModel;
-  ResponseModel get responseModel => _responseModel;
+  OrderModel? get trackModel => _trackModel;
+  ResponseModel? get responseModel => _responseModel;
   int get addressIndex => _addressIndex;
   bool get isLoading => _isLoading;
   bool get showCancelled => _showCancelled;
-  DeliveryManModel get deliveryManModel => _deliveryManModel;
-  String get orderType => _orderType;
+  DeliveryManModel? get deliveryManModel => _deliveryManModel;
+  String? get orderType => _orderType;
   int get branchIndex => _branchIndex;
 
   Future<void> getOrderList(BuildContext context) async {
-    ApiResponse apiResponse = await orderRepo.getOrderList();
-    if (apiResponse.response != null && apiResponse.response.statusCode == 200) {
+    ApiResponse apiResponse = await orderRepo!.getOrderList();
+    if (apiResponse.response != null && apiResponse.response!.statusCode == 200) {
       _runningOrderList = [];
       _historyOrderList = [];
-      apiResponse.response.data.forEach((order) {
+      apiResponse.response!.data.forEach((order) {
         OrderModel orderModel = OrderModel.fromJson(order);
         if(orderModel.orderStatus == 'pending' || orderModel.orderStatus == 'processing'
             || orderModel.orderStatus == 'out_for_delivery' || orderModel.orderStatus == 'confirmed') {
-          _runningOrderList.add(orderModel);
+          _runningOrderList!.add(orderModel);
         }else if(orderModel.orderStatus == 'delivered') {
-          _historyOrderList.add(orderModel);
+          _historyOrderList!.add(orderModel);
         }
       });
     } else {
@@ -59,16 +59,16 @@ class OrderProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<List<OrderDetailsModel>> getOrderDetails(String orderID, BuildContext context) async {
+  Future<List<OrderDetailsModel>?> getOrderDetails(String orderID, BuildContext context) async {
     _orderDetails = null;
     _isLoading = true;
     _showCancelled = false;
 
-    ApiResponse apiResponse = await orderRepo.getOrderDetails(orderID);
+    ApiResponse apiResponse = await orderRepo!.getOrderDetails(orderID);
     _isLoading = false;
-    if (apiResponse.response != null && apiResponse.response.statusCode == 200) {
+    if (apiResponse.response != null && apiResponse.response!.statusCode == 200) {
       _orderDetails = [];
-      apiResponse.response.data.forEach((orderDetail) => _orderDetails.add(OrderDetailsModel.fromJson(orderDetail)));
+      apiResponse.response!.data.forEach((orderDetail) => _orderDetails!.add(OrderDetailsModel.fromJson(orderDetail)));
     } else {
       ApiChecker.checkApi(context, apiResponse);
     }
@@ -77,9 +77,9 @@ class OrderProvider extends ChangeNotifier {
   }
 
   Future<void> getDeliveryManData(String orderID, BuildContext context) async {
-    ApiResponse apiResponse = await orderRepo.getDeliveryManData(orderID);
-    if (apiResponse.response != null && apiResponse.response.statusCode == 200) {
-      _deliveryManModel = DeliveryManModel.fromJson(apiResponse.response.data);
+    ApiResponse apiResponse = await orderRepo!.getDeliveryManData(orderID);
+    if (apiResponse.response != null && apiResponse.response!.statusCode == 200) {
+      _deliveryManModel = DeliveryManModel.fromJson(apiResponse.response!.data);
     } else {
       ApiChecker.checkApi(context, apiResponse);
     }
@@ -91,7 +91,7 @@ class OrderProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<ResponseModel> trackOrder(String orderID, OrderModel orderModel, BuildContext context, bool fromTracking) async {
+  Future<ResponseModel?> trackOrder(String orderID, OrderModel? orderModel, BuildContext context, bool fromTracking) async {
     _trackModel = null;
     _responseModel = null;
     if(!fromTracking) {
@@ -100,10 +100,10 @@ class OrderProvider extends ChangeNotifier {
     _showCancelled = false;
     if(orderModel == null) {
       _isLoading = true;
-      ApiResponse apiResponse = await orderRepo.trackOrder(orderID);
-      if (apiResponse.response != null && apiResponse.response.statusCode == 200) {
-        _trackModel = OrderModel.fromJson(apiResponse.response.data);
-        _responseModel = ResponseModel(true, apiResponse.response.data.toString());
+      ApiResponse apiResponse = await orderRepo!.trackOrder(orderID);
+      if (apiResponse.response != null && apiResponse.response!.statusCode == 200) {
+        _trackModel = OrderModel.fromJson(apiResponse.response!.data);
+        _responseModel = ResponseModel(true, apiResponse.response!.data.toString());
       } else {
         _responseModel = ResponseModel(false, apiResponse.error.errors[0].message);
         ApiChecker.checkApi(context, apiResponse);
@@ -121,22 +121,22 @@ class OrderProvider extends ChangeNotifier {
     _isLoading = true;
     notifyListeners();
     print(placeOrderBody.toJson());
-    ApiResponse apiResponse = await orderRepo.placeOrder(placeOrderBody);
+    ApiResponse apiResponse = await orderRepo!.placeOrder(placeOrderBody);
     _isLoading = false;
-    if (apiResponse.response != null && apiResponse.response.statusCode == 200) {
-      String message = apiResponse.response.data['message'];
-      String orderID = apiResponse.response.data['order_id'].toString();
+    if (apiResponse.response != null && apiResponse.response!.statusCode == 200) {
+      String? message = apiResponse.response!.data['message'];
+      String orderID = apiResponse.response!.data['order_id'].toString();
       callback(true, message, orderID, placeOrderBody.deliveryAddressId);
       print('-------- Order placed successfully $orderID ----------');
     } else {
-      String errorMessage;
+      String? errorMessage;
       if (apiResponse.error is String) {
         print(apiResponse.error.toString());
         errorMessage = apiResponse.error.toString();
       } else {
         ErrorResponse errorResponse = apiResponse.error;
-        print(errorResponse.errors[0].message);
-        errorMessage = errorResponse.errors[0].message;
+        print(errorResponse.errors![0].message);
+        errorMessage = errorResponse.errors![0].message;
       }
       callback(false, errorMessage, '-1', -1);
     }
@@ -161,18 +161,18 @@ class OrderProvider extends ChangeNotifier {
 
   void cancelOrder(String orderID, Function callback) async {
     _isLoading = true;
-    ApiResponse apiResponse = await orderRepo.cancelOrder(orderID);
+    ApiResponse apiResponse = await orderRepo!.cancelOrder(orderID);
     _isLoading = false;
-    if (apiResponse.response != null && apiResponse.response.statusCode == 200) {
-      OrderModel orderModel;
-      _runningOrderList.forEach((order) {
+    if (apiResponse.response != null && apiResponse.response!.statusCode == 200) {
+      OrderModel? orderModel;
+      _runningOrderList!.forEach((order) {
         if(order.id.toString() == orderID) {
           orderModel = order;
         }
       });
-      _runningOrderList.remove(orderModel);
+      _runningOrderList!.remove(orderModel);
       _showCancelled = true;
-      callback(apiResponse.response.data['message'], true, orderID);
+      callback(apiResponse.response!.data['message'], true, orderID);
     } else {
       print(apiResponse.error.errors[0].message);
       callback(apiResponse.error.errors[0].message, false, '-1');
@@ -183,21 +183,21 @@ class OrderProvider extends ChangeNotifier {
   Future<void> updatePaymentMethod(String orderID, Function callback) async {
     _isLoading = true;
     notifyListeners();
-    ApiResponse apiResponse = await orderRepo.updatePaymentMethod(orderID);
+    ApiResponse apiResponse = await orderRepo!.updatePaymentMethod(orderID);
     _isLoading = false;
-    if (apiResponse.response != null && apiResponse.response.statusCode == 200) {
-      int orderIndex;
-      for(int index=0; index<_runningOrderList.length; index++) {
-        if(_runningOrderList[index].id.toString() == orderID) {
+    if (apiResponse.response != null && apiResponse.response!.statusCode == 200) {
+      int? orderIndex;
+      for(int index=0; index<_runningOrderList!.length; index++) {
+        if(_runningOrderList![index].id.toString() == orderID) {
           orderIndex = index;
           break;
         }
       }
       if(orderIndex != null) {
-        _runningOrderList[orderIndex].paymentMethod = 'cash_on_delivery';
+        _runningOrderList![orderIndex].paymentMethod = 'cash_on_delivery';
       }
-      _trackModel.paymentMethod = 'cash_on_delivery';
-      callback(apiResponse.response.data['message'], true);
+      _trackModel!.paymentMethod = 'cash_on_delivery';
+      callback(apiResponse.response!.data['message'], true);
     } else {
       print(apiResponse.error.errors[0].message);
       callback(apiResponse.error.errors[0].message, false);
@@ -205,7 +205,7 @@ class OrderProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void setOrderType(String type, {bool notify = true}) {
+  void setOrderType(String? type, {bool notify = true}) {
     _orderType = type;
     if(notify) {
       notifyListeners();

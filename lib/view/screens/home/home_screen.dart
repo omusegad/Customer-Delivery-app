@@ -53,7 +53,7 @@ class HomeScreen extends StatelessWidget {
                 elevation: 0,
                 centerTitle: false,
                 automaticallyImplyLeading: false,
-                backgroundColor: Theme.of(context).accentColor,
+                backgroundColor: Theme.of(context).colorScheme.secondary,
                 title: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -65,7 +65,7 @@ class HomeScreen extends StatelessWidget {
                 actions: [
                   IconButton(
                     onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => NotificationScreen())),
-                    icon: Icon(Icons.notifications, color: Theme.of(context).textTheme.bodyText1.color),
+                    icon: Icon(Icons.notifications, color: Theme.of(context).textTheme.bodyText1!.color),
                   ),
                 ],
               ),
@@ -79,7 +79,7 @@ class HomeScreen extends StatelessWidget {
                   },
                   child: Container(
                     height: 50,
-                    color: Theme.of(context).accentColor,
+                    color: Theme.of(context).colorScheme.secondary,
                     padding: EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_SMALL, vertical: 2),
                     child: Container(
                       decoration: BoxDecoration(
@@ -88,7 +88,7 @@ class HomeScreen extends StatelessWidget {
                       ),
                       child: Row(children: [
                         Padding(padding: EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_SMALL), child: Icon(Icons.search, size: 25)),
-                        Expanded(child: Text(getTranslated('search_items_here', context), style: rubikRegular.copyWith(fontSize: 12))),
+                        Expanded(child: Text(getTranslated('search_items_here', context)!, style: rubikRegular.copyWith(fontSize: 12))),
                       ]),
                     ),
                   ),
@@ -100,19 +100,19 @@ class HomeScreen extends StatelessWidget {
 
                   Consumer<CategoryProvider>(
                     builder: (context, category, child) {
-                      return category.categoryList == null ? CategoryView() : category.categoryList.length == 0 ? SizedBox() : CategoryView();
+                      return category.categoryList == null ? CategoryView() : category.categoryList!.length == 0 ? SizedBox() : CategoryView();
                     },
                   ),
 
                   Consumer<SetMenuProvider>(
                     builder: (context, setMenu, child) {
-                      return setMenu.setMenuList == null ? SetMenuView() : setMenu.setMenuList.length == 0 ? SizedBox() : SetMenuView();
+                      return setMenu.setMenuList == null ? SetMenuView() : setMenu.setMenuList!.length == 0 ? SizedBox() : SetMenuView();
                     },
                   ),
 
                   Consumer<BannerProvider>(
                     builder: (context, banner, child) {
-                      return banner.bannerList == null ? BannerView() : banner.bannerList.length == 0 ? SizedBox() : BannerView();
+                      return banner.bannerList == null ? BannerView() : banner.bannerList!.length == 0 ? SizedBox() : BannerView();
                     },
                   ),
 
@@ -135,7 +135,7 @@ class HomeScreen extends StatelessWidget {
 class SliverDelegate extends SliverPersistentHeaderDelegate {
   Widget child;
 
-  SliverDelegate({@required this.child});
+  SliverDelegate({required this.child});
 
   @override
   Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {

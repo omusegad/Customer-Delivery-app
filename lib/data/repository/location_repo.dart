@@ -9,23 +9,23 @@ import 'package:flutter_restaurant/utill/app_constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LocationRepo {
-  final DioClient dioClient;
-  final SharedPreferences sharedPreferences;
+  final DioClient? dioClient;
+  final SharedPreferences? sharedPreferences;
 
   LocationRepo({this.dioClient, this.sharedPreferences});
 
   Future<ApiResponse> getAllAddress() async {
     try {
-      final response = await dioClient.get(AppConstants.ADDRESS_LIST_URI);
+      final response = await dioClient!.get(AppConstants.ADDRESS_LIST_URI);
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
     }
   }
 
-  Future<ApiResponse> removeAddressByID(int id) async {
+  Future<ApiResponse> removeAddressByID(int? id) async {
     try {
-      final response = await dioClient.post('${AppConstants.REMOVE_ADDRESS_URI}$id', data: {"_method": "delete"});
+      final response = await dioClient!.post('${AppConstants.REMOVE_ADDRESS_URI}$id', data: {"_method": "delete"});
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
@@ -34,7 +34,7 @@ class LocationRepo {
 
   Future<ApiResponse> addAddress(AddressModel addressModel) async {
     try {
-      Response response = await dioClient.post(
+      Response response = await dioClient!.post(
         AppConstants.ADD_ADDRESS_URI,
         data: addressModel.toJson(),
       );
@@ -44,9 +44,9 @@ class LocationRepo {
     }
   }
 
-  Future<ApiResponse> updateAddress(AddressModel addressModel, int addressId) async {
+  Future<ApiResponse> updateAddress(AddressModel addressModel, int? addressId) async {
     try {
-      Response response = await dioClient.post(
+      Response response = await dioClient!.post(
         '${AppConstants.UPDATE_ADDRESS_URI}$addressId',
         data: addressModel.toJson(),
       );
@@ -56,7 +56,7 @@ class LocationRepo {
     }
   }
 
-  List<String> getAllAddressType({BuildContext context}) {
+  List<String?> getAllAddressType({required BuildContext context}) {
     return [
       getTranslated('home', context),
       getTranslated('workplace', context),

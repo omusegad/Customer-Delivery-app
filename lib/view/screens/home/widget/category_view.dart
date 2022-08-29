@@ -25,14 +25,14 @@ class CategoryView extends StatelessWidget {
             ),
             SizedBox(
               height: 80,
-              child: category.categoryList != null ? category.categoryList.length > 0 ? ListView.builder(
-                itemCount: category.categoryList.length,
+              child: category.categoryList != null ? category.categoryList!.length > 0 ? ListView.builder(
+                itemCount: category.categoryList!.length,
                 padding: EdgeInsets.only(left: Dimensions.PADDING_SIZE_SMALL),
                 physics: BouncingScrollPhysics(),
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
                   return InkWell(
-                    onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => CategoryScreen(categoryModel: category.categoryList[index]))),
+                    onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => CategoryScreen(categoryModel: category.categoryList![index]))),
                     child: Padding(
                       padding: EdgeInsets.only(right: Dimensions.PADDING_SIZE_SMALL),
                       child: Column(children: [
@@ -40,13 +40,13 @@ class CategoryView extends StatelessWidget {
                         ClipOval(
                           child: FadeInImage.assetNetwork(
                             placeholder: Images.placeholder_image,
-                            image: '${Provider.of<SplashProvider>(context, listen: false).baseUrls.categoryImageUrl}/${category.categoryList[index].image}',
+                            image: '${Provider.of<SplashProvider>(context, listen: false).baseUrls!.categoryImageUrl}/${category.categoryList![index].image}',
                             width: 65, height: 65, fit: BoxFit.cover,
                           ),
                         ),
 
                         Text(
-                          category.categoryList[index].name,
+                          category.categoryList![index].name!,
                           style: rubikMedium.copyWith(fontSize: Dimensions.FONT_SIZE_SMALL),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
@@ -56,7 +56,7 @@ class CategoryView extends StatelessWidget {
                     ),
                   );
                 },
-              ) : Center(child: Text(getTranslated('no_category_available', context))) : CategoryShimmer(),
+              ) : Center(child: Text(getTranslated('no_category_available', context)!)) : CategoryShimmer(),
             ),
           ],
         );
@@ -80,8 +80,8 @@ class CategoryShimmer extends StatelessWidget {
           return Padding(
             padding: EdgeInsets.only(right: Dimensions.PADDING_SIZE_SMALL),
             child: Shimmer.fromColors(
-              baseColor: Colors.grey[300],
-              highlightColor: Colors.grey[100],
+              baseColor: Colors.grey[300]!,
+              highlightColor: Colors.grey[100]!,
               enabled: Provider.of<CategoryProvider>(context).categoryList == null,
               child: Column(children: [
                 Container(

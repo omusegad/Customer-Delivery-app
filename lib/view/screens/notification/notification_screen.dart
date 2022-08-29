@@ -20,16 +20,16 @@ class NotificationScreen extends StatelessWidget {
       body: Consumer<NotificationProvider>(
         builder: (context, notificationProvider, child) {
           List<DateTime> _dateTimeList = [];
-          return notificationProvider.notificationList != null ? notificationProvider.notificationList.length > 0 ? RefreshIndicator(
+          return notificationProvider.notificationList != null ? notificationProvider.notificationList!.length > 0 ? RefreshIndicator(
             onRefresh: () async {
               await Provider.of<NotificationProvider>(context, listen: false).initNotificationList(context);
             },
             backgroundColor: Theme.of(context).primaryColor,
             child: ListView.builder(
-                itemCount: notificationProvider.notificationList.length,
+                itemCount: notificationProvider.notificationList!.length,
                 padding: EdgeInsets.zero,
                 itemBuilder: (context, index) {
-                  DateTime _originalDateTime = DateConverter.isoStringToLocalDate(notificationProvider.notificationList[index].createdAt);
+                  DateTime _originalDateTime = DateConverter.isoStringToLocalDate(notificationProvider.notificationList![index].createdAt!);
                   DateTime _convertedDate = DateTime(_originalDateTime.year, _originalDateTime.month, _originalDateTime.day);
                   bool _addTitle = false;
                   if(!_dateTimeList.contains(_convertedDate)) {
@@ -39,7 +39,7 @@ class NotificationScreen extends StatelessWidget {
                   return InkWell(
                     onTap: () {
                       showDialog(context: context, builder: (BuildContext context) {
-                        return NotificationDialog(notificationModel: notificationProvider.notificationList[index]);
+                        return NotificationDialog(notificationModel: notificationProvider.notificationList![index]);
                       });
                     },
                     child: Column(
@@ -47,12 +47,12 @@ class NotificationScreen extends StatelessWidget {
                       children: [
                         _addTitle ? Padding(
                           padding: EdgeInsets.fromLTRB(10, 10, 10, 2),
-                          child: Text(DateConverter.isoStringToLocalDateOnly(notificationProvider.notificationList[index].createdAt)),
+                          child: Text(DateConverter.isoStringToLocalDateOnly(notificationProvider.notificationList![index].createdAt!)),
                         ) : SizedBox(),
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_LARGE),
                           decoration: BoxDecoration(
-                            color: Theme.of(context).accentColor,
+                            color: Theme.of(context).colorScheme.secondary,
                             borderRadius: BorderRadius.circular(5),
                           ),
                           child: Column(
@@ -63,7 +63,7 @@ class NotificationScreen extends StatelessWidget {
                                   Column(
                                     children: [
                                       Text(
-                                        DateConverter.isoStringToLocalTimeOnly(notificationProvider.notificationList[index].createdAt),
+                                        DateConverter.isoStringToLocalTimeOnly(notificationProvider.notificationList![index].createdAt!),
                                         style: Theme.of(context).textTheme.headline2,
                                       ),
                                       Container(
@@ -73,18 +73,18 @@ class NotificationScreen extends StatelessWidget {
                                           decoration: BoxDecoration(
                                               borderRadius: BorderRadius.circular(Dimensions.PADDING_SIZE_SMALL), color: ColorResources.getSearchBg(context)),
                                           child: Text(
-                                            DateConverter.isoStringToLocalAMPM(notificationProvider.notificationList[index].createdAt),
+                                            DateConverter.isoStringToLocalAMPM(notificationProvider.notificationList![index].createdAt!),
                                             style: Theme.of(context)
                                                 .textTheme
-                                                .headline2
+                                                .headline2!
                                                 .copyWith(fontSize: 11, color: ColorResources.getGrayColor(context).withOpacity(.8)),
                                           )),
                                     ],
                                   ),
                                   SizedBox(width: 24.0),
                                   Text(
-                                    notificationProvider.notificationList[index].title,
-                                    style: Theme.of(context).textTheme.headline2.copyWith(
+                                    notificationProvider.notificationList![index].title!,
+                                    style: Theme.of(context).textTheme.headline2!.copyWith(
                                       fontSize: Dimensions.FONT_SIZE_LARGE,
                                     ),
                                   ),

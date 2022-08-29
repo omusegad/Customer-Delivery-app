@@ -10,8 +10,8 @@ import 'package:provider/provider.dart';
 
 class ProductView extends StatelessWidget {
   final ProductType productType;
-  final ScrollController scrollController;
-  ProductView({@required this.productType, this.scrollController});
+  final ScrollController? scrollController;
+  ProductView({required this.productType, this.scrollController});
 
   @override
   Widget build(BuildContext context) {
@@ -21,12 +21,12 @@ class ProductView extends StatelessWidget {
 
     int offset = 1;
     scrollController?.addListener(() {
-      if(scrollController.position.pixels == scrollController.position.maxScrollExtent
+      if(scrollController!.position.pixels == scrollController!.position.maxScrollExtent
           && Provider.of<ProductProvider>(context, listen: false).popularProductList != null
           && !Provider.of<ProductProvider>(context, listen: false).isLoading) {
-        int pageSize;
+        late int pageSize;
         if(productType == ProductType.POPULAR_PRODUCT) {
-          pageSize = (Provider.of<ProductProvider>(context, listen: false).popularPageSize / 10).ceil();
+          pageSize = (Provider.of<ProductProvider>(context, listen: false).popularPageSize! / 10).ceil();
         }
         if(offset < pageSize) {
           offset++;
@@ -38,7 +38,7 @@ class ProductView extends StatelessWidget {
     });
     return Consumer<ProductProvider>(
       builder: (context, prodProvider, child) {
-        List<Product> productList;
+        List<Product>? productList;
         if(productType == ProductType.POPULAR_PRODUCT) {
           productList = prodProvider.popularProductList;
         }
@@ -51,7 +51,7 @@ class ProductView extends StatelessWidget {
             physics: NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             itemBuilder: (BuildContext context, int index) {
-              return ProductWidget(product: productList[index]);
+              return ProductWidget(product: productList![index]);
             },
           ) : NoDataScreen() : ListView.builder(
             itemCount: 10,

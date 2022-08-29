@@ -1,7 +1,7 @@
 class OnBoardingModel{
   String _imageUrl;
-  String _title;
-  String _description;
+  String? _title;
+  String? _description;
 
   get imageUrl => _imageUrl;
   get title => _title;

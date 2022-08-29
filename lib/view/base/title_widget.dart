@@ -5,21 +5,21 @@ import 'package:flutter_restaurant/utill/dimensions.dart';
 import 'package:flutter_restaurant/utill/styles.dart';
 
 class TitleWidget extends StatelessWidget {
-  final String title;
-  final Function onTap;
+  final String? title;
+  final Function? onTap;
 
-  TitleWidget({@required this.title, this.onTap});
+  TitleWidget({required this.title, this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-      Text(title, style: rubikMedium),
+      Text(title!, style: rubikMedium),
       onTap != null ? InkWell(
-        onTap: onTap,
+        onTap: onTap as void Function()?,
         child: Padding(
           padding: EdgeInsets.fromLTRB(10, 5, 0, 5),
           child: Text(
-            getTranslated('view_all', context),
+            getTranslated('view_all', context)!,
             style: rubikRegular.copyWith(fontSize: Dimensions.FONT_SIZE_SMALL, color: ColorResources.getHintColor(context)),
           ),
         ),

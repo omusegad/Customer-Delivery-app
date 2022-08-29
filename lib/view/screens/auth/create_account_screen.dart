@@ -35,15 +35,15 @@ class CreateAccountScreen extends StatelessWidget {
             children: [
               Center(
                   child: Text(
-                getTranslated('create_account', context),
-                style: Theme.of(context).textTheme.headline3.copyWith(fontSize: 24, color: ColorResources.getGreyBunkerColor(context)),
+                getTranslated('create_account', context)!,
+                style: Theme.of(context).textTheme.headline3!.copyWith(fontSize: 24, color: ColorResources.getGreyBunkerColor(context)),
               )),
               SizedBox(height: 20),
 
               // for first name section
               Text(
-                getTranslated('first_name', context),
-                style: Theme.of(context).textTheme.headline2.copyWith(color: ColorResources.getHintColor(context)),
+                getTranslated('first_name', context)!,
+                style: Theme.of(context).textTheme.headline2!.copyWith(color: ColorResources.getHintColor(context)),
               ),
               SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
               CustomTextField(
@@ -59,8 +59,8 @@ class CreateAccountScreen extends StatelessWidget {
 
               // for last name section
               Text(
-                getTranslated('last_name', context),
-                style: Theme.of(context).textTheme.headline2.copyWith(color: ColorResources.getHintColor(context)),
+                getTranslated('last_name', context)!,
+                style: Theme.of(context).textTheme.headline2!.copyWith(color: ColorResources.getHintColor(context)),
               ),
               SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
               CustomTextField(
@@ -76,8 +76,8 @@ class CreateAccountScreen extends StatelessWidget {
 
               // for email section
               Text(
-                getTranslated('mobile_number', context),
-                style: Theme.of(context).textTheme.headline2.copyWith(color: ColorResources.getHintColor(context)),
+                getTranslated('mobile_number', context)!,
+                style: Theme.of(context).textTheme.headline2!.copyWith(color: ColorResources.getHintColor(context)),
               ),
               SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
               CustomTextField(
@@ -92,8 +92,8 @@ class CreateAccountScreen extends StatelessWidget {
 
               // for password section
               Text(
-                getTranslated('password', context),
-                style: Theme.of(context).textTheme.headline2.copyWith(color: ColorResources.getHintColor(context)),
+                getTranslated('password', context)!,
+                style: Theme.of(context).textTheme.headline2!.copyWith(color: ColorResources.getHintColor(context)),
               ),
               SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
               CustomTextField(
@@ -109,8 +109,8 @@ class CreateAccountScreen extends StatelessWidget {
 
               // for confirm password section
               Text(
-                getTranslated('confirm_password', context),
-                style: Theme.of(context).textTheme.headline2.copyWith(color: ColorResources.getHintColor(context)),
+                getTranslated('confirm_password', context)!,
+                style: Theme.of(context).textTheme.headline2!.copyWith(color: ColorResources.getHintColor(context)),
               ),
               SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
               CustomTextField(
@@ -127,14 +127,14 @@ class CreateAccountScreen extends StatelessWidget {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  authProvider.registrationErrorMessage.length > 0
+                  authProvider.registrationErrorMessage!.length > 0
                       ? CircleAvatar(backgroundColor: ColorResources.getPrimaryColor(context), radius: 5)
                       : SizedBox.shrink(),
                   SizedBox(width: 8),
                   Expanded(
                     child: Text(
                       authProvider.registrationErrorMessage ?? "",
-                      style: Theme.of(context).textTheme.headline2.copyWith(
+                      style: Theme.of(context).textTheme.headline2!.copyWith(
                             fontSize: Dimensions.FONT_SIZE_SMALL,
                             color: ColorResources.getPrimaryColor(context),
                           ),
@@ -155,19 +155,19 @@ class CreateAccountScreen extends StatelessWidget {
                         String _password = _passwordController.text.trim();
                         String _confirmPassword = _confirmPasswordController.text.trim();
                         if (_firstName.isEmpty) {
-                          showCustomSnackBar(getTranslated('enter_first_name', context), context);
+                          showCustomSnackBar(getTranslated('enter_first_name', context)!, context);
                         }else if (_lastName.isEmpty) {
-                          showCustomSnackBar(getTranslated('enter_last_name', context), context);
+                          showCustomSnackBar(getTranslated('enter_last_name', context)!, context);
                         }else if (_number.isEmpty) {
-                          showCustomSnackBar(getTranslated('enter_phone_number', context), context);
+                          showCustomSnackBar(getTranslated('enter_phone_number', context)!, context);
                         }else if (_password.isEmpty) {
-                          showCustomSnackBar(getTranslated('enter_password', context), context);
+                          showCustomSnackBar(getTranslated('enter_password', context)!, context);
                         }else if (_password.length < 6) {
-                          showCustomSnackBar(getTranslated('password_should_be', context), context);
+                          showCustomSnackBar(getTranslated('password_should_be', context)!, context);
                         }else if (_confirmPassword.isEmpty) {
-                          showCustomSnackBar(getTranslated('enter_confirm_password', context), context);
+                          showCustomSnackBar(getTranslated('enter_confirm_password', context)!, context);
                         }else if(_password != _confirmPassword) {
-                          showCustomSnackBar(getTranslated('password_did_not_match', context), context);
+                          showCustomSnackBar(getTranslated('password_did_not_match', context)!, context);
                         }else {
                           SignUpModel signUpModel = SignUpModel(
                             fName: _firstName,
@@ -202,15 +202,15 @@ class CreateAccountScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        getTranslated('already_have_account', context),
-                        style: Theme.of(context).textTheme.headline2.copyWith(fontSize: Dimensions.FONT_SIZE_SMALL, color: ColorResources.getGreyColor(context)),
+                        getTranslated('already_have_account', context)!,
+                        style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: Dimensions.FONT_SIZE_SMALL, color: ColorResources.getGreyColor(context)),
                       ),
                       SizedBox(width: Dimensions.PADDING_SIZE_SMALL),
                       Text(
-                        getTranslated('login', context),
+                        getTranslated('login', context)!,
                         style: Theme.of(context)
                             .textTheme
-                            .headline3
+                            .headline3!
                             .copyWith(fontSize: Dimensions.FONT_SIZE_SMALL, color: ColorResources.getGreyBunkerColor(context)),
                       ),
                     ],

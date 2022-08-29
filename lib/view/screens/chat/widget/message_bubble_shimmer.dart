@@ -6,7 +6,7 @@ import 'package:shimmer/shimmer.dart';
 
 class MessageBubbleShimmer extends StatelessWidget {
   final bool isMe;
-  MessageBubbleShimmer({@required this.isMe});
+  MessageBubbleShimmer({required this.isMe});
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +18,8 @@ class MessageBubbleShimmer extends StatelessWidget {
         children: [
           Flexible(
             child: Shimmer.fromColors(
-              baseColor: Colors.grey[300],
-              highlightColor: Colors.grey[100],
+              baseColor: Colors.grey[300]!,
+              highlightColor: Colors.grey[100]!,
               enabled: Provider.of<ChatProvider>(context).chatList == null,
               child: Container(
                 height: 30, width: MediaQuery.of(context).size.width,

@@ -21,7 +21,7 @@ import 'package:shimmer/shimmer.dart';
 
 class MenuScreen extends StatelessWidget {
   final Function onTap;
-  MenuScreen({@required this.onTap});
+  MenuScreen({required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -41,28 +41,28 @@ class MenuScreen extends StatelessWidget {
                 child: ClipOval(
                   child: _isLoggedIn ? FadeInImage.assetNetwork(
                     placeholder: Images.placeholder_user,
-                    image: '${Provider.of<SplashProvider>(context, listen: false).baseUrls.customerImageUrl}/'
-                        '${profileProvider.userInfoModel != null ? profileProvider.userInfoModel.image : ''}',
+                    image: '${Provider.of<SplashProvider>(context, listen: false).baseUrls!.customerImageUrl}/'
+                        '${profileProvider.userInfoModel != null ? profileProvider.userInfoModel!.image : ''}',
                     height: 80, width: 80, fit: BoxFit.cover,
                   ) : Image.asset(Images.placeholder_user, height: 80, width: 80, fit: BoxFit.cover),
                 ),
               ),
               Shimmer.fromColors(
-                baseColor: Colors.grey[300],
-                highlightColor: Colors.grey[100],
+                baseColor: Colors.grey[300]!,
+                highlightColor: Colors.grey[100]!,
                 enabled: profileProvider.userInfoModel == null,
                 child: Column(children: [
                   SizedBox(height: 20),
                   _isLoggedIn ? profileProvider.userInfoModel != null ? Text(
-                    '${profileProvider.userInfoModel.fName ?? ''} ${profileProvider.userInfoModel.lName ?? ''}',
+                    '${profileProvider.userInfoModel!.fName ?? ''} ${profileProvider.userInfoModel!.lName ?? ''}',
                     style: rubikRegular.copyWith(fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE, color: ColorResources.COLOR_WHITE),
                   ) : Container(height: 15, width: 150, color: Colors.white) : Text(
-                    getTranslated('guest', context),
+                    getTranslated('guest', context)!,
                     style: rubikRegular.copyWith(fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE, color: ColorResources.COLOR_WHITE),
                   ),
                   SizedBox(height: 10),
                   _isLoggedIn ? profileProvider.userInfoModel != null ? Text(
-                    '${profileProvider.userInfoModel.email ?? ''}',
+                    '${profileProvider.userInfoModel!.email ?? ''}',
                     style: rubikRegular.copyWith(color: ColorResources.BACKGROUND_COLOR),
                   ) : Container(height: 15, width: 100, color: Colors.white) : Text(
                     'demo@demo.com',
@@ -78,55 +78,55 @@ class MenuScreen extends StatelessWidget {
             SwitchListTile(
               value: Provider.of<ThemeProvider>(context).darkTheme,
               onChanged: (bool isActive) =>Provider.of<ThemeProvider>(context, listen: false).toggleTheme(),
-              title: Text(getTranslated('dark_theme', context), style: rubikMedium.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
+              title: Text(getTranslated('dark_theme', context)!, style: rubikMedium.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
               activeColor: Theme.of(context).primaryColor,
             ),
             ListTile(
               onTap: () => onTap(2),
-              leading: Image.asset(Images.order, width: 20, height: 20, color: Theme.of(context).textTheme.bodyText1.color),
-              title: Text(getTranslated('my_order', context), style: rubikMedium.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
+              leading: Image.asset(Images.order, width: 20, height: 20, color: Theme.of(context).textTheme.bodyText1!.color),
+              title: Text(getTranslated('my_order', context)!, style: rubikMedium.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
             ),
             ListTile(
               onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => ProfileScreen())),
-              leading: Image.asset(Images.profile, width: 20, height: 20, color: Theme.of(context).textTheme.bodyText1.color),
-              title: Text(getTranslated('profile', context), style: rubikMedium.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
+              leading: Image.asset(Images.profile, width: 20, height: 20, color: Theme.of(context).textTheme.bodyText1!.color),
+              title: Text(getTranslated('profile', context)!, style: rubikMedium.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
             ),
             ListTile(
               onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => AddressScreen())),
-              leading: Image.asset(Images.location, width: 20, height: 20, color: Theme.of(context).textTheme.bodyText1.color),
-              title: Text(getTranslated('address', context), style: rubikMedium.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
+              leading: Image.asset(Images.location, width: 20, height: 20, color: Theme.of(context).textTheme.bodyText1!.color),
+              title: Text(getTranslated('address', context)!, style: rubikMedium.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
             ),
             ListTile(
               onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => ChatScreen())),
-              leading: Image.asset(Images.message, width: 20, height: 20, color: Theme.of(context).textTheme.bodyText1.color),
-              title: Text(getTranslated('message', context), style: rubikMedium.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
+              leading: Image.asset(Images.message, width: 20, height: 20, color: Theme.of(context).textTheme.bodyText1!.color),
+              title: Text(getTranslated('message', context)!, style: rubikMedium.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
             ),
             ListTile(
               onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => CouponScreen())),
-              leading: Image.asset(Images.coupon, width: 20, height: 20, color: Theme.of(context).textTheme.bodyText1.color),
-              title: Text(getTranslated('coupon', context), style: rubikMedium.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
+              leading: Image.asset(Images.coupon, width: 20, height: 20, color: Theme.of(context).textTheme.bodyText1!.color),
+              title: Text(getTranslated('coupon', context)!, style: rubikMedium.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
             ),
             ListTile(
               onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => ChooseLanguageScreen(fromMenu: true))),
-              leading: Image.asset(Images.language, width: 20, height: 20, color: Theme.of(context).textTheme.bodyText1.color),
-              title: Text(getTranslated('language', context), style: rubikMedium.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
+              leading: Image.asset(Images.language, width: 20, height: 20, color: Theme.of(context).textTheme.bodyText1!.color),
+              title: Text(getTranslated('language', context)!, style: rubikMedium.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
             ),
             ListTile(
               onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => SupportScreen())),
-              leading: Icon(Icons.contact_support, size: 20, color: Theme.of(context).textTheme.bodyText1.color),
-              title: Text(getTranslated('help_and_support', context), style: rubikMedium.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
+              leading: Icon(Icons.contact_support, size: 20, color: Theme.of(context).textTheme.bodyText1!.color),
+              title: Text(getTranslated('help_and_support', context)!, style: rubikMedium.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
             ),
             ListTile(
               onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => TermsScreen())),
-              leading: Icon(Icons.rule, size: 20, color: Theme.of(context).textTheme.bodyText1.color),
-              title: Text(getTranslated('terms_and_condition', context), style: rubikMedium.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
+              leading: Icon(Icons.rule, size: 20, color: Theme.of(context).textTheme.bodyText1!.color),
+              title: Text(getTranslated('terms_and_condition', context)!, style: rubikMedium.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
             ),
             ListTile(
               onTap: () {
                 showDialog(context: context, builder: (context) => SignOutConfirmationDialog());
               },
-              leading: Image.asset(Images.log_out, width: 20, height: 20, color: Theme.of(context).textTheme.bodyText1.color),
-              title: Text(getTranslated('logout', context), style: rubikMedium.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
+              leading: Image.asset(Images.log_out, width: 20, height: 20, color: Theme.of(context).textTheme.bodyText1!.color),
+              title: Text(getTranslated('logout', context)!, style: rubikMedium.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
             ),
           ]),
         ),

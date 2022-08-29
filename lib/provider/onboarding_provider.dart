@@ -4,9 +4,9 @@ import 'package:flutter_restaurant/data/model/response/onboarding_model.dart';
 import 'package:flutter_restaurant/data/repository/onboarding_repo.dart';
 
 class OnBoardingProvider with ChangeNotifier {
-  final OnBoardingRepo onboardingRepo;
+  final OnBoardingRepo? onboardingRepo;
 
-  OnBoardingProvider({@required this.onboardingRepo});
+  OnBoardingProvider({required this.onboardingRepo});
 
   List<OnBoardingModel> _onBoardingList = [];
 
@@ -21,10 +21,10 @@ class OnBoardingProvider with ChangeNotifier {
   }
 
   void initBoardingList(BuildContext context) async {
-    ApiResponse apiResponse = await onboardingRepo.getOnBoardingList(context);
-    if (apiResponse.response != null && apiResponse.response.statusCode == 200) {
+    ApiResponse apiResponse = await onboardingRepo!.getOnBoardingList(context);
+    if (apiResponse.response != null && apiResponse.response!.statusCode == 200) {
       _onBoardingList.clear();
-      _onBoardingList.addAll(apiResponse.response.data);
+      _onBoardingList.addAll(apiResponse.response!.data);
       notifyListeners();
     } else {
       print(apiResponse.error.toString());

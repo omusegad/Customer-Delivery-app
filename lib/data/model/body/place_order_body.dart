@@ -1,29 +1,28 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_restaurant/data/model/response/product_model.dart';
 
 class PlaceOrderBody {
-  List<Cart> _cart;
-  double _couponDiscountAmount;
-  String _couponDiscountTitle;
-  double _orderAmount;
-  String _orderType;
-  int _deliveryAddressId;
-  String _paymentMethod;
-  String _orderNote;
-  String _couponCode;
-  int _branchId;
+  List<Cart>? _cart;
+  double? _couponDiscountAmount;
+  String? _couponDiscountTitle;
+  double? _orderAmount;
+  String? _orderType;
+  int? _deliveryAddressId;
+  String? _paymentMethod;
+  String? _orderNote;
+  String? _couponCode;
+  int? _branchId;
 
   PlaceOrderBody(
-      {@required List<Cart> cart,
-        @required double couponDiscountAmount,
-        @required String couponDiscountTitle,
-        @required String couponCode,
-        @required double orderAmount,
-        @required int deliveryAddressId,
-        @required String orderType,
-        @required String paymentMethod,
-        @required int branchId,
-        @required String orderNote}) {
+      {required List<Cart> cart,
+      required double? couponDiscountAmount,
+      required String couponDiscountTitle,
+      required String? couponCode,
+      required double? orderAmount,
+      required int? deliveryAddressId,
+      required String? orderType,
+      required String? paymentMethod,
+      required int? branchId,
+      required String orderNote}) {
     this._cart = cart;
     this._couponDiscountAmount = couponDiscountAmount;
     this._couponDiscountTitle = couponDiscountTitle;
@@ -36,22 +35,22 @@ class PlaceOrderBody {
     this._branchId = branchId;
   }
 
-  List<Cart> get cart => _cart;
-  double get couponDiscountAmount => _couponDiscountAmount;
-  String get couponDiscountTitle => _couponDiscountTitle;
-  double get orderAmount => _orderAmount;
-  String get orderType => _orderType;
-  int get deliveryAddressId => _deliveryAddressId;
-  String get paymentMethod => _paymentMethod;
-  String get orderNote => _orderNote;
-  String get couponCode => _couponCode;
-  int get branchId => _branchId;
+  List<Cart>? get cart => _cart;
+  double? get couponDiscountAmount => _couponDiscountAmount;
+  String? get couponDiscountTitle => _couponDiscountTitle;
+  double? get orderAmount => _orderAmount;
+  String? get orderType => _orderType;
+  int? get deliveryAddressId => _deliveryAddressId;
+  String? get paymentMethod => _paymentMethod;
+  String? get orderNote => _orderNote;
+  String? get couponCode => _couponCode;
+  int? get branchId => _branchId;
 
   PlaceOrderBody.fromJson(Map<String, dynamic> json) {
     if (json['cart'] != null) {
       _cart = [];
       json['cart'].forEach((v) {
-        _cart.add(new Cart.fromJson(v));
+        _cart!.add(new Cart.fromJson(v));
       });
     }
     _couponDiscountAmount = json['coupon_discount_amount'];
@@ -68,7 +67,7 @@ class PlaceOrderBody {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this._cart != null) {
-      data['cart'] = this._cart.map((v) => v.toJson()).toList();
+      data['cart'] = this._cart!.map((v) => v.toJson()).toList();
     }
     data['coupon_discount_amount'] = this._couponDiscountAmount;
     data['coupon_discount_title'] = this._couponDiscountTitle;
@@ -84,26 +83,26 @@ class PlaceOrderBody {
 }
 
 class Cart {
-  String _productId;
-  String _price;
-  String _variant;
-  List<Variation> _variation;
-  double _discountAmount;
-  int _quantity;
-  double _taxAmount;
-  List<int> _addOnIds;
-  List<int> _addOnQtys;
+  String? _productId;
+  String? _price;
+  String? _variant;
+  List<Variation>? _variation;
+  double? _discountAmount;
+  int? _quantity;
+  double? _taxAmount;
+  List<int?>? _addOnIds;
+  List<int?>? _addOnQtys;
 
   Cart(
       String productId,
-        String price,
-        String variant,
-        List<Variation> variation,
-        double discountAmount,
-        int quantity,
-        double taxAmount,
-        List<int> addOnIds,
-        List<int> addOnQtys) {
+      String price,
+      String variant,
+      List<Variation>? variation,
+      double? discountAmount,
+      int? quantity,
+      double? taxAmount,
+      List<int?> addOnIds,
+      List<int?> addOnQtys) {
     this._productId = productId;
     this._price = price;
     this._variant = variant;
@@ -115,15 +114,15 @@ class Cart {
     this._addOnQtys = addOnQtys;
   }
 
-  String get productId => _productId;
-  String get price => _price;
-  String get variant => _variant;
-  List<Variation> get variation => _variation;
-  double get discountAmount => _discountAmount;
-  int get quantity => _quantity;
-  double get taxAmount => _taxAmount;
-  List<int> get addOnIds => _addOnIds;
-  List<int> get addOnQtys => _addOnQtys;
+  String? get productId => _productId;
+  String? get price => _price;
+  String? get variant => _variant;
+  List<Variation>? get variation => _variation;
+  double? get discountAmount => _discountAmount;
+  int? get quantity => _quantity;
+  double? get taxAmount => _taxAmount;
+  List<int?>? get addOnIds => _addOnIds;
+  List<int?>? get addOnQtys => _addOnQtys;
 
   Cart.fromJson(Map<String, dynamic> json) {
     _productId = json['product_id'];
@@ -132,7 +131,7 @@ class Cart {
     if (json['variation'] != null) {
       _variation = [];
       json['variation'].forEach((v) {
-        _variation.add(new Variation.fromJson(v));
+        _variation!.add(new Variation.fromJson(v));
       });
     }
     _discountAmount = json['discount_amount'];
@@ -148,7 +147,7 @@ class Cart {
     data['price'] = this._price;
     data['variant'] = this._variant;
     if (this._variation != null) {
-      data['variation'] = this._variation.map((v) => v.toJson()).toList();
+      data['variation'] = this._variation!.map((v) => v.toJson()).toList();
     }
     data['discount_amount'] = this._discountAmount;
     data['quantity'] = this._quantity;

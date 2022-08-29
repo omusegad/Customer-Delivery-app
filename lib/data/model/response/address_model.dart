@@ -1,15 +1,15 @@
 class AddressModel {
-  int id;
-  String addressType;
-  String contactPersonNumber;
-  String address;
-  String latitude;
-  String longitude;
-  String createdAt;
-  String updatedAt;
-  int userId;
-  String method;
-  String contactPersonName;
+  int? id;
+  String? addressType;
+  String? contactPersonNumber;
+  String? address;
+  String? latitude;
+  String? longitude;
+  String? createdAt;
+  String? updatedAt;
+  int? userId;
+  String? method;
+  String? contactPersonName;
 
   AddressModel(
       {this.id,

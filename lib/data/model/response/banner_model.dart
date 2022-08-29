@@ -1,21 +1,21 @@
 class BannerModel {
-  int _id;
-  String _title;
-  String _image;
-  int _productId;
-  String _createdAt;
-  String _updatedAt;
-  int _categoryId;
+  int? _id;
+  String? _title;
+  String? _image;
+  int? _productId;
+  String? _createdAt;
+  String? _updatedAt;
+  int? _categoryId;
 
   BannerModel(
-      {int id,
-        String title,
-        String image,
-        int productId,
-        int status,
-        String createdAt,
-        String updatedAt,
-        int categoryId}) {
+      {int? id,
+        String? title,
+        String? image,
+        int? productId,
+        int? status,
+        String? createdAt,
+        String? updatedAt,
+        int? categoryId}) {
     this._id = id;
     this._title = title;
     this._image = image;
@@ -25,13 +25,13 @@ class BannerModel {
     this._categoryId = categoryId;
   }
 
-  int get id => _id;
-  String get title => _title;
-  String get image => _image;
-  int get productId => _productId;
-  String get createdAt => _createdAt;
-  String get updatedAt => _updatedAt;
-  int get categoryId => _categoryId;
+  int? get id => _id;
+  String? get title => _title;
+  String? get image => _image;
+  int? get productId => _productId;
+  String? get createdAt => _createdAt;
+  String? get updatedAt => _updatedAt;
+  int? get categoryId => _categoryId;
 
   BannerModel.fromJson(Map<String, dynamic> json) {
     _id = json['id'];

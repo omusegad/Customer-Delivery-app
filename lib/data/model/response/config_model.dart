@@ -1,38 +1,38 @@
 class ConfigModel {
-  String _restaurantName;
-  String _restaurantOpenTime;
-  String _restaurantCloseTime;
-  String _restaurantLogo;
-  String _restaurantAddress;
-  String _restaurantPhone;
-  String _restaurantEmail;
-  BaseUrls _baseUrls;
-  String _currencySymbol;
-  String _deliveryCharge;
-  String _cashOnDelivery;
-  String _digitalPayment;
-  String _termsAndConditions;
-  RestaurantLocationCoverage _restaurantLocationCoverage;
-  double _minimumOrderValue;
-  List<Branches> _branches;
+  String? _restaurantName;
+  String? _restaurantOpenTime;
+  String? _restaurantCloseTime;
+  String? _restaurantLogo;
+  String? _restaurantAddress;
+  String? _restaurantPhone;
+  String? _restaurantEmail;
+  BaseUrls? _baseUrls;
+  String? _currencySymbol;
+  String? _deliveryCharge;
+  String? _cashOnDelivery;
+  String? _digitalPayment;
+  String? _termsAndConditions;
+  RestaurantLocationCoverage? _restaurantLocationCoverage;
+  double? _minimumOrderValue;
+  List<Branches>? _branches;
 
   ConfigModel(
-      {String restaurantName,
-        String restaurantOpenTime,
-        String restaurantCloseTime,
-        String restaurantLogo,
-        String restaurantAddress,
-        String restaurantPhone,
-        String restaurantEmail,
-        BaseUrls baseUrls,
-        String currencySymbol,
-        String deliveryCharge,
-        String cashOnDelivery,
-        String digitalPayment,
-        String termsAndConditions,
-        RestaurantLocationCoverage restaurantLocationCoverage,
-        double minimumOrderValue,
-        List<Branches> branches}) {
+      {String? restaurantName,
+        String? restaurantOpenTime,
+        String? restaurantCloseTime,
+        String? restaurantLogo,
+        String? restaurantAddress,
+        String? restaurantPhone,
+        String? restaurantEmail,
+        BaseUrls? baseUrls,
+        String? currencySymbol,
+        String? deliveryCharge,
+        String? cashOnDelivery,
+        String? digitalPayment,
+        String? termsAndConditions,
+        RestaurantLocationCoverage? restaurantLocationCoverage,
+        double? minimumOrderValue,
+        List<Branches>? branches}) {
     this._restaurantName = restaurantName;
     this._restaurantOpenTime = restaurantOpenTime;
     this._restaurantCloseTime = restaurantCloseTime;
@@ -51,22 +51,22 @@ class ConfigModel {
     this._branches = branches;
   }
 
-  String get restaurantName => _restaurantName;
-  String get restaurantOpenTime => _restaurantOpenTime;
-  String get restaurantCloseTime => _restaurantCloseTime;
-  String get restaurantLogo => _restaurantLogo;
-  String get restaurantAddress => _restaurantAddress;
-  String get restaurantPhone => _restaurantPhone;
-  String get restaurantEmail => _restaurantEmail;
-  BaseUrls get baseUrls => _baseUrls;
-  String get currencySymbol => _currencySymbol;
-  String get deliveryCharge => _deliveryCharge;
-  String get cashOnDelivery => _cashOnDelivery;
-  String get digitalPayment => _digitalPayment;
-  String get termsAndConditions => _termsAndConditions;
-  RestaurantLocationCoverage get restaurantLocationCoverage => _restaurantLocationCoverage;
-  double get minimumOrderValue => _minimumOrderValue;
-  List<Branches> get branches => _branches;
+  String? get restaurantName => _restaurantName;
+  String? get restaurantOpenTime => _restaurantOpenTime;
+  String? get restaurantCloseTime => _restaurantCloseTime;
+  String? get restaurantLogo => _restaurantLogo;
+  String? get restaurantAddress => _restaurantAddress;
+  String? get restaurantPhone => _restaurantPhone;
+  String? get restaurantEmail => _restaurantEmail;
+  BaseUrls? get baseUrls => _baseUrls;
+  String? get currencySymbol => _currencySymbol;
+  String? get deliveryCharge => _deliveryCharge;
+  String? get cashOnDelivery => _cashOnDelivery;
+  String? get digitalPayment => _digitalPayment;
+  String? get termsAndConditions => _termsAndConditions;
+  RestaurantLocationCoverage? get restaurantLocationCoverage => _restaurantLocationCoverage;
+  double? get minimumOrderValue => _minimumOrderValue;
+  List<Branches>? get branches => _branches;
 
   ConfigModel.fromJson(Map<String, dynamic> json) {
     _restaurantName = json['restaurant_name'];
@@ -90,7 +90,7 @@ class ConfigModel {
     if (json['branches'] != null) {
       _branches = [];
       json['branches'].forEach((v) {
-        _branches.add(new Branches.fromJson(v));
+        _branches!.add(new Branches.fromJson(v));
       });
     }
   }
@@ -105,7 +105,7 @@ class ConfigModel {
     data['restaurant_phone'] = this._restaurantPhone;
     data['restaurant_email'] = this._restaurantEmail;
     if (this._baseUrls != null) {
-      data['base_urls'] = this._baseUrls.toJson();
+      data['base_urls'] = this._baseUrls!.toJson();
     }
     data['currency_symbol'] = this._currencySymbol;
     data['delivery_charge'] = this._deliveryCharge;
@@ -113,37 +113,37 @@ class ConfigModel {
     data['digital_payment'] = this._digitalPayment;
     data['terms_and_conditions'] = this._termsAndConditions;
     if (this._restaurantLocationCoverage != null) {
-      data['restaurant_location_coverage'] = this._restaurantLocationCoverage.toJson();
+      data['restaurant_location_coverage'] = this._restaurantLocationCoverage!.toJson();
     }
     data['minimum_order_value'] = this._minimumOrderValue;
     if (this._branches != null) {
-      data['branches'] = this._branches.map((v) => v.toJson()).toList();
+      data['branches'] = this._branches!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class BaseUrls {
-  String _productImageUrl;
-  String _customerImageUrl;
-  String _bannerImageUrl;
-  String _categoryImageUrl;
-  String _reviewImageUrl;
-  String _notificationImageUrl;
-  String _restaurantImageUrl;
-  String _deliveryManImageUrl;
-  String _chatImageUrl;
+  String? _productImageUrl;
+  String? _customerImageUrl;
+  String? _bannerImageUrl;
+  String? _categoryImageUrl;
+  String? _reviewImageUrl;
+  String? _notificationImageUrl;
+  String? _restaurantImageUrl;
+  String? _deliveryManImageUrl;
+  String? _chatImageUrl;
 
   BaseUrls(
-      {String productImageUrl,
-        String customerImageUrl,
-        String bannerImageUrl,
-        String categoryImageUrl,
-        String reviewImageUrl,
-        String notificationImageUrl,
-        String restaurantImageUrl,
-        String deliveryManImageUrl,
-        String chatImageUrl}) {
+      {String? productImageUrl,
+        String? customerImageUrl,
+        String? bannerImageUrl,
+        String? categoryImageUrl,
+        String? reviewImageUrl,
+        String? notificationImageUrl,
+        String? restaurantImageUrl,
+        String? deliveryManImageUrl,
+        String? chatImageUrl}) {
     this._productImageUrl = productImageUrl;
     this._customerImageUrl = customerImageUrl;
     this._bannerImageUrl = bannerImageUrl;
@@ -155,15 +155,15 @@ class BaseUrls {
     this._chatImageUrl = chatImageUrl;
   }
 
-  String get productImageUrl => _productImageUrl;
-  String get customerImageUrl => _customerImageUrl;
-  String get bannerImageUrl => _bannerImageUrl;
-  String get categoryImageUrl => _categoryImageUrl;
-  String get reviewImageUrl => _reviewImageUrl;
-  String get notificationImageUrl => _notificationImageUrl;
-  String get restaurantImageUrl => _restaurantImageUrl;
-  String get deliveryManImageUrl => _deliveryManImageUrl;
-  String get chatImageUrl => _chatImageUrl;
+  String? get productImageUrl => _productImageUrl;
+  String? get customerImageUrl => _customerImageUrl;
+  String? get bannerImageUrl => _bannerImageUrl;
+  String? get categoryImageUrl => _categoryImageUrl;
+  String? get reviewImageUrl => _reviewImageUrl;
+  String? get notificationImageUrl => _notificationImageUrl;
+  String? get restaurantImageUrl => _restaurantImageUrl;
+  String? get deliveryManImageUrl => _deliveryManImageUrl;
+  String? get chatImageUrl => _chatImageUrl;
 
   BaseUrls.fromJson(Map<String, dynamic> json) {
     _productImageUrl = json['product_image_url'];
@@ -193,20 +193,20 @@ class BaseUrls {
 }
 
 class RestaurantLocationCoverage {
-  String _longitude;
-  String _latitude;
-  double _coverage;
+  String? _longitude;
+  String? _latitude;
+  double? _coverage;
 
   RestaurantLocationCoverage(
-      {String longitude, String latitude, double coverage}) {
+      {String? longitude, String? latitude, double? coverage}) {
     this._longitude = longitude;
     this._latitude = latitude;
     this._coverage = coverage;
   }
 
-  String get longitude => _longitude;
-  String get latitude => _latitude;
-  double get coverage => _coverage;
+  String? get longitude => _longitude;
+  String? get latitude => _latitude;
+  double? get coverage => _coverage;
 
   RestaurantLocationCoverage.fromJson(Map<String, dynamic> json) {
     _longitude = json['longitude'];
@@ -224,22 +224,22 @@ class RestaurantLocationCoverage {
 }
 
 class Branches {
-  int _id;
-  String _name;
-  String _email;
-  String _longitude;
-  String _latitude;
-  String _address;
-  double _coverage;
+  int? _id;
+  String? _name;
+  String? _email;
+  String? _longitude;
+  String? _latitude;
+  String? _address;
+  double? _coverage;
 
   Branches(
-      {int id,
-        String name,
-        String email,
-        String longitude,
-        String latitude,
-        String address,
-        double coverage}) {
+      {int? id,
+        String? name,
+        String? email,
+        String? longitude,
+        String? latitude,
+        String? address,
+        double? coverage}) {
     this._id = id;
     this._name = name;
     this._email = email;
@@ -249,13 +249,13 @@ class Branches {
     this._coverage = coverage;
   }
 
-  int get id => _id;
-  String get name => _name;
-  String get email => _email;
-  String get longitude => _longitude;
-  String get latitude => _latitude;
-  String get address => _address;
-  double get coverage => _coverage;
+  int? get id => _id;
+  String? get name => _name;
+  String? get email => _email;
+  String? get longitude => _longitude;
+  String? get latitude => _latitude;
+  String? get address => _address;
+  double? get coverage => _coverage;
 
   Branches.fromJson(Map<String, dynamic> json) {
     _id = json['id'];

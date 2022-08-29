@@ -15,7 +15,7 @@ import 'package:provider/provider.dart';
 class VerificationScreen extends StatelessWidget {
   final String emailAddress;
   final bool fromSignUp;
-  VerificationScreen({@required this.emailAddress, this.fromSignUp = false});
+  VerificationScreen({required this.emailAddress, this.fromSignUp = false});
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,7 @@ class VerificationScreen extends StatelessWidget {
                     child: Text(
                   '${getTranslated('please_enter_4_digit_code', context)}\n $emailAddress',
                   textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.headline2.copyWith(color: ColorResources.getHintColor(context)),
+                  style: Theme.of(context).textTheme.headline2!.copyWith(color: ColorResources.getHintColor(context)),
                 )),
               ),
               Padding(
@@ -74,8 +74,8 @@ class VerificationScreen extends StatelessWidget {
               ),
               Center(
                   child: Text(
-                getTranslated('i_didnt_receive_the_code', context),
-                style: Theme.of(context).textTheme.headline2.copyWith(
+                getTranslated('i_didnt_receive_the_code', context)!,
+                style: Theme.of(context).textTheme.headline2!.copyWith(
                       color: ColorResources.getGreyBunkerColor(context),
                     ),
               )),
@@ -87,7 +87,7 @@ class VerificationScreen extends StatelessWidget {
                         if (value.isSuccess) {
                           showCustomSnackBar('Resent code successful', context, isError: false);
                         } else {
-                          showCustomSnackBar(value.message, context);
+                          showCustomSnackBar(value.message!, context);
                         }
                       });
                     }else {
@@ -95,7 +95,7 @@ class VerificationScreen extends StatelessWidget {
                         if (value.isSuccess) {
                           showCustomSnackBar('Resent code successful', context, isError: false);
                         } else {
-                          showCustomSnackBar(value.message, context);
+                          showCustomSnackBar(value.message!, context);
                         }
                       });
                     }
@@ -103,8 +103,8 @@ class VerificationScreen extends StatelessWidget {
                   child: Padding(
                     padding: EdgeInsets.all(Dimensions.PADDING_SIZE_EXTRA_SMALL),
                     child: Text(
-                      getTranslated('resend_code', context),
-                      style: Theme.of(context).textTheme.headline3.copyWith(
+                      getTranslated('resend_code', context)!,
+                      style: Theme.of(context).textTheme.headline3!.copyWith(
                             color: ColorResources.getGreyBunkerColor(context),
                           ),
                     ),
@@ -123,7 +123,7 @@ class VerificationScreen extends StatelessWidget {
                               if(value.isSuccess) {
                                 Navigator.of(context).push(MaterialPageRoute(builder: (_) => CreateAccountScreen()));
                               }else {
-                                showCustomSnackBar(value.message, context);
+                                showCustomSnackBar(value.message!, context);
                               }
                             });
                           }else {
@@ -134,7 +134,7 @@ class VerificationScreen extends StatelessWidget {
                                   resetToken: authProvider.verificationCode,
                                 )));
                               }else {
-                                showCustomSnackBar(value.message, context);
+                                showCustomSnackBar(value.message!, context);
                               }
                             });
                           }

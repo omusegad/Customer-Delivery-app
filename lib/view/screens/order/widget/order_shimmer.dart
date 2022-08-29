@@ -18,16 +18,16 @@ class OrderShimmer extends StatelessWidget {
           padding: EdgeInsets.all(Dimensions.PADDING_SIZE_SMALL),
           margin: EdgeInsets.only(bottom: Dimensions.PADDING_SIZE_SMALL),
           decoration: BoxDecoration(
-            color: Theme.of(context).accentColor,
+            color: Theme.of(context).colorScheme.secondary,
             boxShadow: [BoxShadow(
-              color: Colors.grey[Provider.of<ThemeProvider>(context).darkTheme ? 700 : 300],
+              color: Colors.grey[Provider.of<ThemeProvider>(context).darkTheme ? 700 : 300]!,
               spreadRadius: 1, blurRadius: 5,
             )],
             borderRadius: BorderRadius.circular(10),
           ),
           child: Shimmer.fromColors(
-            baseColor: Colors.grey[300],
-            highlightColor: Colors.grey[100],
+            baseColor: Colors.grey[300]!,
+            highlightColor: Colors.grey[100]!,
             enabled: Provider.of<OrderProvider>(context).runningOrderList == null,
             child: Column(children: [
 

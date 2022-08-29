@@ -9,11 +9,11 @@ class AppLocalization {
 
   final Locale locale;
 
-  static AppLocalization of(BuildContext context) {
+  static AppLocalization? of(BuildContext context) {
     return Localizations.of<AppLocalization>(context, AppLocalization);
   }
 
-  Map<String, String> _localizedValues;
+  late Map<String, String> _localizedValues;
 
   Future<void> load() async {
     String jsonStringValues = await rootBundle.loadString('assets/language/${locale.languageCode}.json');
@@ -21,7 +21,7 @@ class AppLocalization {
     _localizedValues = mappedJson.map((key, value) => MapEntry(key, value.toString()));
   }
 
-  String translate(String key) {
+  String? translate(String key) {
     return _localizedValues[key];
   }
 
@@ -33,7 +33,7 @@ class _DemoLocalizationsDelegate extends LocalizationsDelegate<AppLocalization> 
 
   @override
   bool isSupported(Locale locale) {
-    List<String> _languageString = [];
+    List<String?> _languageString = [];
     AppConstants.languages.forEach((language) {
       _languageString.add(language.languageCode);
     });

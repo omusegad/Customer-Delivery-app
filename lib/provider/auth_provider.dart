@@ -6,17 +6,17 @@ import 'package:flutter_restaurant/data/model/response/signup_model.dart';
 import 'package:flutter_restaurant/data/repository/auth_repo.dart';
 
 class AuthProvider with ChangeNotifier {
-  final AuthRepo authRepo;
+  final AuthRepo? authRepo;
 
-  AuthProvider({@required this.authRepo});
+  AuthProvider({required this.authRepo});
 
   // for registration section
   bool _isLoading = false;
 
   bool get isLoading => _isLoading;
-  String _registrationErrorMessage = '';
+  String? _registrationErrorMessage = '';
 
-  String get registrationErrorMessage => _registrationErrorMessage;
+  String? get registrationErrorMessage => _registrationErrorMessage;
 
   updateRegistrationErrorMessage(String message) {
     _registrationErrorMessage = message;
@@ -27,21 +27,22 @@ class AuthProvider with ChangeNotifier {
     _isLoading = true;
     _registrationErrorMessage = '';
     notifyListeners();
-    ApiResponse apiResponse = await authRepo.registration(signUpModel);
+    ApiResponse apiResponse = await authRepo!.registration(signUpModel);
     ResponseModel responseModel;
-    if (apiResponse.response != null && apiResponse.response.statusCode == 200) {
-      Map map = apiResponse.response.data;
+    if (apiResponse.response != null &&
+        apiResponse.response!.statusCode == 200) {
+      Map map = apiResponse.response!.data;
       String token = map["token"];
-      authRepo.saveUserToken(token);
-      await authRepo.updateToken();
+      authRepo!.saveUserToken(token);
+      await authRepo!.updateToken();
       responseModel = ResponseModel(true, 'successful');
     } else {
-      String errorMessage;
+      String? errorMessage;
       if (apiResponse.error is String) {
         errorMessage = apiResponse.error.toString();
       } else {
         ErrorResponse errorResponse = apiResponse.error;
-        errorMessage = errorResponse.errors[0].message;
+        errorMessage = errorResponse.errors![0].message;
       }
       print(errorMessage);
       _registrationErrorMessage = errorMessage;
@@ -53,24 +54,26 @@ class AuthProvider with ChangeNotifier {
   }
 
   // for login section
-  String _loginErrorMessage = '';
+  String? _loginErrorMessage = '';
 
-  String get loginErrorMessage => _loginErrorMessage;
+  String? get loginErrorMessage => _loginErrorMessage;
 
   Future<ResponseModel> login(String email, String password) async {
     _isLoading = true;
     _loginErrorMessage = '';
     notifyListeners();
-    ApiResponse apiResponse = await authRepo.login(email: email, password: password);
+    ApiResponse apiResponse =
+        await authRepo!.login(email: email, password: password);
     ResponseModel responseModel;
-    if (apiResponse.response != null && apiResponse.response.statusCode == 200) {
-      Map map = apiResponse.response.data;
+    if (apiResponse.response != null &&
+        apiResponse.response!.statusCode == 200) {
+      Map map = apiResponse.response!.data;
       String token = map["token"];
-      authRepo.saveUserToken(token);
-      await authRepo.updateToken();
+      authRepo!.saveUserToken(token);
+      await authRepo!.updateToken();
       responseModel = ResponseModel(true, 'successful');
     } else {
-      String errorMessage;
+      String? errorMessage;
       if (apiResponse.error is String) {
         errorMessage = apiResponse.error.toString();
       } else {
@@ -93,21 +96,23 @@ class AuthProvider with ChangeNotifier {
   Future<ResponseModel> forgetPassword(String email) async {
     _isForgotPasswordLoading = true;
     notifyListeners();
-    ApiResponse apiResponse = await authRepo.forgetPassword(email);
+    ApiResponse apiResponse = await authRepo!.forgetPassword(email);
     _isForgotPasswordLoading = false;
     notifyListeners();
     ResponseModel responseModel;
-    if (apiResponse.response != null && apiResponse.response.statusCode == 200) {
-      responseModel = ResponseModel(true, apiResponse.response.data["message"]);
+    if (apiResponse.response != null &&
+        apiResponse.response!.statusCode == 200) {
+      responseModel =
+          ResponseModel(true, apiResponse.response!.data["message"]);
     } else {
-      String errorMessage;
+      String? errorMessage;
       if (apiResponse.error is String) {
         print(apiResponse.error.toString());
         errorMessage = apiResponse.error.toString();
       } else {
         ErrorResponse errorResponse = apiResponse.error;
-        print(errorResponse.errors[0].message);
-        errorMessage = errorResponse.errors[0].message;
+        print(errorResponse.errors![0].message);
+        errorMessage = errorResponse.errors![0].message;
       }
       responseModel = ResponseModel(false, errorMessage);
     }
@@ -115,11 +120,11 @@ class AuthProvider with ChangeNotifier {
   }
 
   Future<void> updateToken() async {
-    ApiResponse apiResponse = await authRepo.updateToken();
-    if (apiResponse.response != null && apiResponse.response.statusCode == 200) {
-
+    ApiResponse apiResponse = await authRepo!.updateToken();
+    if (apiResponse.response != null &&
+        apiResponse.response!.statusCode == 200) {
     } else {
-      String errorMessage;
+      String? errorMessage;
       if (apiResponse.error is String) {
         errorMessage = apiResponse.error.toString();
       } else {
@@ -132,45 +137,52 @@ class AuthProvider with ChangeNotifier {
   Future<ResponseModel> verifyToken(String email) async {
     _isPhoneNumberVerificationButtonLoading = true;
     notifyListeners();
-    ApiResponse apiResponse = await authRepo.verifyToken(email, _verificationCode);
+    ApiResponse apiResponse =
+        await authRepo!.verifyToken(email, _verificationCode);
     _isPhoneNumberVerificationButtonLoading = false;
     notifyListeners();
     ResponseModel responseModel;
-    if (apiResponse.response != null && apiResponse.response.statusCode == 200) {
-      responseModel = ResponseModel(true, apiResponse.response.data["message"]);
+    if (apiResponse.response != null &&
+        apiResponse.response!.statusCode == 200) {
+      responseModel =
+          ResponseModel(true, apiResponse.response!.data["message"]);
     } else {
-      String errorMessage;
+      String? errorMessage;
       if (apiResponse.error is String) {
         print(apiResponse.error.toString());
         errorMessage = apiResponse.error.toString();
       } else {
         ErrorResponse errorResponse = apiResponse.error;
-        print(errorResponse.errors[0].message);
-        errorMessage = errorResponse.errors[0].message;
+        print(errorResponse.errors![0].message);
+        errorMessage = errorResponse.errors![0].message;
       }
       responseModel = ResponseModel(false, errorMessage);
     }
     return responseModel;
   }
 
-  Future<ResponseModel> resetPassword(String resetToken, String password, String confirmPassword) async {
+  Future<ResponseModel> resetPassword(
+      String resetToken, String password, String confirmPassword) async {
     _isForgotPasswordLoading = true;
     notifyListeners();
-    ApiResponse apiResponse = await authRepo.resetPassword(resetToken, password, confirmPassword);
+    ApiResponse apiResponse =
+        await authRepo!.resetPassword(resetToken, password, confirmPassword);
     _isForgotPasswordLoading = false;
     notifyListeners();
     ResponseModel responseModel;
-    if (apiResponse.response != null && apiResponse.response.statusCode == 200) {
-      responseModel = ResponseModel(true, apiResponse.response.data["message"]);
+    if (apiResponse.response != null &&
+        apiResponse.response!.statusCode == 200) {
+      responseModel =
+          ResponseModel(true, apiResponse.response!.data["message"]);
     } else {
-      String errorMessage;
+      String? errorMessage;
       if (apiResponse.error is String) {
         print(apiResponse.error.toString());
         errorMessage = apiResponse.error.toString();
       } else {
         ErrorResponse errorResponse = apiResponse.error;
-        print(errorResponse.errors[0].message);
-        errorMessage = errorResponse.errors[0].message;
+        print(errorResponse.errors![0].message);
+        errorMessage = errorResponse.errors![0].message;
       }
       responseModel = ResponseModel(false, errorMessage);
     }
@@ -180,10 +192,11 @@ class AuthProvider with ChangeNotifier {
   // for phone verification
   bool _isPhoneNumberVerificationButtonLoading = false;
 
-  bool get isPhoneNumberVerificationButtonLoading => _isPhoneNumberVerificationButtonLoading;
-  String _verificationMsg = '';
+  bool get isPhoneNumberVerificationButtonLoading =>
+      _isPhoneNumberVerificationButtonLoading;
+  String? _verificationMsg = '';
 
-  String get verificationMessage => _verificationMsg;
+  String? get verificationMessage => _verificationMsg;
   String _email = '';
 
   String get email => _email;
@@ -201,21 +214,22 @@ class AuthProvider with ChangeNotifier {
     _isPhoneNumberVerificationButtonLoading = true;
     _verificationMsg = '';
     notifyListeners();
-    ApiResponse apiResponse = await authRepo.checkEmail(email);
+    ApiResponse apiResponse = await authRepo!.checkEmail(email);
     _isPhoneNumberVerificationButtonLoading = false;
     notifyListeners();
     ResponseModel responseModel;
-    if (apiResponse.response != null && apiResponse.response.statusCode == 200) {
-      responseModel = ResponseModel(true, apiResponse.response.data["token"]);
+    if (apiResponse.response != null &&
+        apiResponse.response!.statusCode == 200) {
+      responseModel = ResponseModel(true, apiResponse.response!.data["token"]);
     } else {
-      String errorMessage;
+      String? errorMessage;
       if (apiResponse.error is String) {
         print(apiResponse.error.toString());
         errorMessage = apiResponse.error.toString();
       } else {
         ErrorResponse errorResponse = apiResponse.error;
-        print(errorResponse.errors[0].message);
-        errorMessage = errorResponse.errors[0].message;
+        print(errorResponse.errors![0].message);
+        errorMessage = errorResponse.errors![0].message;
       }
       responseModel = ResponseModel(false, errorMessage);
       _verificationMsg = errorMessage;
@@ -228,21 +242,24 @@ class AuthProvider with ChangeNotifier {
     _isPhoneNumberVerificationButtonLoading = true;
     _verificationMsg = '';
     notifyListeners();
-    ApiResponse apiResponse = await authRepo.verifyEmail(email, _verificationCode);
+    ApiResponse apiResponse =
+        await authRepo!.verifyEmail(email, _verificationCode);
     _isPhoneNumberVerificationButtonLoading = false;
     notifyListeners();
     ResponseModel responseModel;
-    if (apiResponse.response != null && apiResponse.response.statusCode == 200) {
-      responseModel = ResponseModel(true, apiResponse.response.data["message"]);
+    if (apiResponse.response != null &&
+        apiResponse.response!.statusCode == 200) {
+      responseModel =
+          ResponseModel(true, apiResponse.response!.data["message"]);
     } else {
-      String errorMessage;
+      String? errorMessage;
       if (apiResponse.error is String) {
         print(apiResponse.error.toString());
         errorMessage = apiResponse.error.toString();
       } else {
         ErrorResponse errorResponse = apiResponse.error;
-        print(errorResponse.errors[0].message);
-        errorMessage = errorResponse.errors[0].message;
+        print(errorResponse.errors![0].message);
+        errorMessage = errorResponse.errors![0].message;
       }
       responseModel = ResponseModel(false, errorMessage);
       _verificationMsg = errorMessage;
@@ -250,7 +267,6 @@ class AuthProvider with ChangeNotifier {
     notifyListeners();
     return responseModel;
   }
-
 
   // for verification Code
   String _verificationCode = '';
@@ -282,31 +298,30 @@ class AuthProvider with ChangeNotifier {
   }
 
   bool isLoggedIn() {
-    return authRepo.isLoggedIn();
+    return authRepo!.isLoggedIn();
   }
 
   Future<bool> clearSharedData() async {
-    return await authRepo.clearSharedData();
+    return await authRepo!.clearSharedData();
   }
 
   void saveUserNumberAndPassword(String number, String password) {
-    authRepo.saveUserNumberAndPassword(number, password);
+    authRepo!.saveUserNumberAndPassword(number, password);
   }
 
   String getUserNumber() {
-    return authRepo.getUserNumber() ?? "";
+    return authRepo!.getUserNumber();
   }
+
   String getUserPassword() {
-    return authRepo.getUserPassword() ?? "";
+    return authRepo!.getUserPassword();
   }
 
   Future<bool> clearUserNumberAndPassword() async {
-    return authRepo.clearUserNumberAndPassword();
+    return authRepo!.clearUserNumberAndPassword();
   }
 
   String getUserToken() {
-    return authRepo.getUserToken();
+    return authRepo!.getUserToken();
   }
-
-
 }

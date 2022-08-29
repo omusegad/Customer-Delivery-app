@@ -19,16 +19,16 @@ class WelcomeScreen extends StatelessWidget {
           Container(alignment: Alignment.bottomCenter, padding: EdgeInsets.all(30), child: Image.asset(Images.efood_bike_with_grasp, height: 200)),
           SizedBox(height: 30),
           Text(
-            getTranslated('welcome', context),
+            getTranslated('welcome', context)!,
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.headline3.copyWith(color: Theme.of(context).textTheme.bodyText1.color, fontSize: 32),
+            style: Theme.of(context).textTheme.headline3!.copyWith(color: Theme.of(context).textTheme.bodyText1!.color, fontSize: 32),
           ),
           Padding(
             padding: const EdgeInsets.all(Dimensions.PADDING_SIZE_DEFAULT),
             child: Text( ' To Junubee Xpress',
               //getTranslated('welcome_to_efood', context),
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.headline2.copyWith(color: ColorResources.getGreyColor(context)),
+              style: Theme.of(context).textTheme.headline2!.copyWith(color: ColorResources.getGreyColor(context)),
             ),
           ),
           SizedBox(height: 50),
@@ -64,7 +64,7 @@ class WelcomeScreen extends StatelessWidget {
             },
             child: RichText(text: TextSpan(children: [
               TextSpan(text: '${getTranslated('login_as_a', context)} ', style: rubikRegular.copyWith(color: ColorResources.getGreyColor(context))),
-              TextSpan(text: getTranslated('guest', context), style: rubikMedium.copyWith(color: Theme.of(context).textTheme.bodyText1.color)),
+              TextSpan(text: getTranslated('guest', context), style: rubikMedium.copyWith(color: Theme.of(context).textTheme.bodyText1!.color)),
             ])),
           ),
         ],

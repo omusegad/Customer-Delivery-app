@@ -14,7 +14,7 @@ import 'package:provider/provider.dart';
 class CreateNewPasswordScreen extends StatelessWidget {
   final String resetToken;
   final String email;
-  CreateNewPasswordScreen({@required this.resetToken, @required this.email});
+  CreateNewPasswordScreen({required this.resetToken, required this.email});
 
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController = TextEditingController();
@@ -39,9 +39,9 @@ class CreateNewPasswordScreen extends StatelessWidget {
               SizedBox(height: 40),
               Center(
                   child: Text(
-                    getTranslated('enter_password_to_create', context),
+                    getTranslated('enter_password_to_create', context)!,
                     textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.headline2.copyWith(color: ColorResources.getHintColor(context)),
+                    style: Theme.of(context).textTheme.headline2!.copyWith(color: ColorResources.getHintColor(context)),
                   )),
               Padding(
                 padding: const EdgeInsets.all(Dimensions.PADDING_SIZE_LARGE),
@@ -52,8 +52,8 @@ class CreateNewPasswordScreen extends StatelessWidget {
 
                     SizedBox(height: 60),
                     Text(
-                      getTranslated('new_password', context),
-                      style: Theme.of(context).textTheme.headline2.copyWith(color: ColorResources.getHintColor(context)),
+                      getTranslated('new_password', context)!,
+                      style: Theme.of(context).textTheme.headline2!.copyWith(color: ColorResources.getHintColor(context)),
                     ),
                     SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
                     CustomTextField(
@@ -69,8 +69,8 @@ class CreateNewPasswordScreen extends StatelessWidget {
                     SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
                     // for confirm password section
                     Text(
-                      getTranslated('confirm_password', context),
-                      style: Theme.of(context).textTheme.headline2.copyWith(color: ColorResources.getHintColor(context)),
+                      getTranslated('confirm_password', context)!,
+                      style: Theme.of(context).textTheme.headline2!.copyWith(color: ColorResources.getHintColor(context)),
                     ),
                     SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
                     CustomTextField(
@@ -88,13 +88,13 @@ class CreateNewPasswordScreen extends StatelessWidget {
                       btnTxt: getTranslated('save', context),
                       onTap: () {
                         if (_passwordController.text.isEmpty) {
-                          showCustomSnackBar(getTranslated('enter_password', context), context);
+                          showCustomSnackBar(getTranslated('enter_password', context)!, context);
                         }else if (_passwordController.text.length < 6) {
-                          showCustomSnackBar(getTranslated('password_should_be', context), context);
+                          showCustomSnackBar(getTranslated('password_should_be', context)!, context);
                         }else if (_confirmPasswordController.text.isEmpty) {
-                          showCustomSnackBar(getTranslated('enter_confirm_password', context), context);
+                          showCustomSnackBar(getTranslated('enter_confirm_password', context)!, context);
                         }else if(_passwordController.text != _confirmPasswordController.text) {
-                          showCustomSnackBar(getTranslated('password_did_not_match', context), context);
+                          showCustomSnackBar(getTranslated('password_did_not_match', context)!, context);
                         }else {
                           auth.resetPassword(resetToken, _passwordController.text, _confirmPasswordController.text).then((value) {
                             if(value.isSuccess) {

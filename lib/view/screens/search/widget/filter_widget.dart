@@ -10,8 +10,8 @@ import 'package:flutter_restaurant/view/screens/home/widget/category_view.dart';
 import 'package:provider/provider.dart';
 
 class FilterWidget extends StatelessWidget {
-  final double maxValue;
-  FilterWidget({@required this.maxValue});
+  final double? maxValue;
+  FilterWidget({required this.maxValue});
 
   @override
   Widget build(BuildContext context) {
@@ -33,9 +33,9 @@ class FilterWidget extends StatelessWidget {
                 Align(
                   alignment: Alignment.center,
                   child: Text(
-                    getTranslated('filter', context),
+                    getTranslated('filter', context)!,
                     textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.headline3.copyWith(
+                    style: Theme.of(context).textTheme.headline3!.copyWith(
                       fontSize: Dimensions.FONT_SIZE_LARGE,
                       color: ColorResources.getGreyBunkerColor(context),
                     ),
@@ -48,22 +48,22 @@ class FilterWidget extends StatelessWidget {
                     searchProvider.setLowerAndUpperValue(0, 0);
                   },
                   child: Text(
-                    getTranslated('reset', context),
-                    style: Theme.of(context).textTheme.headline2.copyWith(color: Theme.of(context).primaryColor),
+                    getTranslated('reset', context)!,
+                    style: Theme.of(context).textTheme.headline2!.copyWith(color: Theme.of(context).primaryColor),
                   ),
                 )
               ],
             ),
 
             Text(
-              getTranslated('price', context),
+              getTranslated('price', context)!,
               style: Theme.of(context).textTheme.headline3,
             ),
 
             // price range
             RangeSlider(
               values: RangeValues(searchProvider.lowerValue, searchProvider.upperValue),
-              max: maxValue,
+              max: maxValue!,
               min: 0,
               activeColor: Theme.of(context).primaryColor,
               labels: RangeLabels(searchProvider.lowerValue.toString(), searchProvider.upperValue.toString()),
@@ -73,12 +73,12 @@ class FilterWidget extends StatelessWidget {
             ),
 
             Text(
-              getTranslated('rating', context),
+              getTranslated('rating', context)!,
               style: Theme.of(context).textTheme.headline3,
             ),
 
             Text(
-              getTranslated('rating', context),
+              getTranslated('rating', context)!,
               style: Theme.of(context).textTheme.headline3,
             ),
 
@@ -104,7 +104,7 @@ class FilterWidget extends StatelessWidget {
             ),
             SizedBox(height: 15),
             Text(
-              getTranslated('category', context),
+              getTranslated('category', context)!,
               style: Theme.of(context).textTheme.headline3,
             ),
             SizedBox(height: 13),
@@ -113,7 +113,7 @@ class FilterWidget extends StatelessWidget {
               builder: (context, category, child) {
                 return category.categoryList != null
                     ? GridView.builder(
-                      itemCount: category.categoryList.length,
+                      itemCount: category.categoryList!.length,
                       padding: EdgeInsets.only(left: Dimensions.PADDING_SIZE_SMALL),
                       physics: BouncingScrollPhysics(),
                       shrinkWrap: true,
@@ -135,7 +135,7 @@ class FilterWidget extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(7.0),
                                 color: category.selectCategory == index ? Theme.of(context).primaryColor : Colors.transparent),
                             child: Text(
-                              category.categoryList[index].name,
+                              category.categoryList![index].name!,
                               textAlign: TextAlign.center,
                               style: rubikMedium.copyWith(
                                   fontSize: Dimensions.FONT_SIZE_EXTRA_SMALL,

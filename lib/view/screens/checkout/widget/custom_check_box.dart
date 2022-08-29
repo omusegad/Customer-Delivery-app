@@ -5,9 +5,9 @@ import 'package:flutter_restaurant/utill/styles.dart';
 import 'package:provider/provider.dart';
 
 class CustomCheckBox extends StatelessWidget {
-  final String title;
+  final String? title;
   final int index;
-  CustomCheckBox({@required this.title, @required this.index});
+  CustomCheckBox({required this.title, required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -19,11 +19,11 @@ class CustomCheckBox extends StatelessWidget {
             Checkbox(
               value: order.paymentMethodIndex == index,
               activeColor: ColorResources.getPrimaryColor(context),
-              onChanged: (bool isChecked) => order.setPaymentMethod(index),
+              onChanged: (bool? isChecked) => order.setPaymentMethod(index),
             ),
             Expanded(
-              child: Text(title, style: rubikRegular.copyWith(
-                color: order.paymentMethodIndex == index ? Theme.of(context).textTheme.bodyText1.color : ColorResources.getGreyColor(context),
+              child: Text(title!, style: rubikRegular.copyWith(
+                color: order.paymentMethodIndex == index ? Theme.of(context).textTheme.bodyText1!.color : ColorResources.getGreyColor(context),
               )),
             ),
           ]),

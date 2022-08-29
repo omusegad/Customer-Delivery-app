@@ -1,51 +1,51 @@
 import 'package:flutter_restaurant/data/model/response/product_model.dart';
 
 class OrderModel {
-  int _id;
-  int _userId;
-  double _orderAmount;
-  double _couponDiscountAmount;
-  String _couponDiscountTitle;
-  String _paymentStatus;
-  String _orderStatus;
-  double _totalTaxAmount;
-  String _paymentMethod;
-  String _transactionReference;
-  int _deliveryAddressId;
-  String _createdAt;
-  String _updatedAt;
-  int _deliveryManId;
-  double _deliveryCharge;
-  String _orderNote;
-  List<int> _addOnIds;
-  List<Details> _details;
-  DeliveryMan _deliveryMan;
-  int _detailsCount;
-  String _orderType;
+  int? _id;
+  int? _userId;
+  double? _orderAmount;
+  double? _couponDiscountAmount;
+  String? _couponDiscountTitle;
+  String? _paymentStatus;
+  String? _orderStatus;
+  double? _totalTaxAmount;
+  String? _paymentMethod;
+  String? _transactionReference;
+  int? _deliveryAddressId;
+  String? _createdAt;
+  String? _updatedAt;
+  int? _deliveryManId;
+  double? _deliveryCharge;
+  String? _orderNote;
+  List<int>? _addOnIds;
+  List<Details>? _details;
+  DeliveryMan? _deliveryMan;
+  int? _detailsCount;
+  String? _orderType;
 
   OrderModel(
-      {int id,
-        int userId,
-        double orderAmount,
-        double couponDiscountAmount,
-        String couponDiscountTitle,
-        String paymentStatus,
-        String orderStatus,
-        double totalTaxAmount,
-        String paymentMethod,
-        String transactionReference,
-        int deliveryAddressId,
-        String createdAt,
-        String updatedAt,
-        String checked,
-        int deliveryManId,
-        double deliveryCharge,
-        String orderNote,
-        List<int> addOnIds,
-        List<Details> details,
-        DeliveryMan deliveryMan,
-        int detailsCount,
-        String orderType}) {
+      {int? id,
+        int? userId,
+        double? orderAmount,
+        double? couponDiscountAmount,
+        String? couponDiscountTitle,
+        String? paymentStatus,
+        String? orderStatus,
+        double? totalTaxAmount,
+        String? paymentMethod,
+        String? transactionReference,
+        int? deliveryAddressId,
+        String? createdAt,
+        String? updatedAt,
+        String? checked,
+        int? deliveryManId,
+        double? deliveryCharge,
+        String? orderNote,
+        List<int>? addOnIds,
+        List<Details>? details,
+        DeliveryMan? deliveryMan,
+        int? detailsCount,
+        String? orderType}) {
     this._id = id;
     this._userId = userId;
     this._orderAmount = orderAmount;
@@ -69,30 +69,30 @@ class OrderModel {
     this._orderType = orderType;
   }
 
-  int get id => _id;
-  int get userId => _userId;
-  double get orderAmount => _orderAmount;
-  double get couponDiscountAmount => _couponDiscountAmount;
-  String get couponDiscountTitle => _couponDiscountTitle;
-  String get paymentStatus => _paymentStatus;
-  String get orderStatus => _orderStatus;
-  double get totalTaxAmount => _totalTaxAmount;
+  int? get id => _id;
+  int? get userId => _userId;
+  double? get orderAmount => _orderAmount;
+  double? get couponDiscountAmount => _couponDiscountAmount;
+  String? get couponDiscountTitle => _couponDiscountTitle;
+  String? get paymentStatus => _paymentStatus;
+  String? get orderStatus => _orderStatus;
+  double? get totalTaxAmount => _totalTaxAmount;
   // ignore: unnecessary_getters_setters
-  String get paymentMethod => _paymentMethod;
+  String? get paymentMethod => _paymentMethod;
   // ignore: unnecessary_getters_setters
-  set paymentMethod(String method) => _paymentMethod = method;
-  String get transactionReference => _transactionReference;
-  int get deliveryAddressId => _deliveryAddressId;
-  String get createdAt => _createdAt;
-  String get updatedAt => _updatedAt;
-  int get deliveryManId => _deliveryManId;
-  double get deliveryCharge => _deliveryCharge;
-  String get orderNote => _orderNote;
-  List<int> get addOnIds => _addOnIds;
-  List<Details> get details => _details;
-  DeliveryMan get deliveryMan => _deliveryMan;
-  int get detailsCount => _detailsCount;
-  String get orderType => _orderType;
+  set paymentMethod(String? method) => _paymentMethod = method;
+  String? get transactionReference => _transactionReference;
+  int? get deliveryAddressId => _deliveryAddressId;
+  String? get createdAt => _createdAt;
+  String? get updatedAt => _updatedAt;
+  int? get deliveryManId => _deliveryManId;
+  double? get deliveryCharge => _deliveryCharge;
+  String? get orderNote => _orderNote;
+  List<int>? get addOnIds => _addOnIds;
+  List<Details>? get details => _details;
+  DeliveryMan? get deliveryMan => _deliveryMan;
+  int? get detailsCount => _detailsCount;
+  String? get orderType => _orderType;
 
   OrderModel.fromJson(Map<String, dynamic> json) {
     _id = json['id'];
@@ -118,7 +118,7 @@ class OrderModel {
     if (json['details'] != null) {
       _details = [];
       json['details'].forEach((v) {
-        _details.add(new Details.fromJson(v));
+        _details!.add(new Details.fromJson(v));
       });
     }
     _deliveryMan = json['delivery_man'] != null
@@ -148,10 +148,10 @@ class OrderModel {
     data['add_on_ids'] = this._addOnIds;
     data['details_count'] = this._detailsCount;
     if (this._details != null) {
-      data['details'] = this._details.map((v) => v.toJson()).toList();
+      data['details'] = this._details!.map((v) => v.toJson()).toList();
     }
     if (this._deliveryMan != null) {
-      data['delivery_man'] = this._deliveryMan.toJson();
+      data['delivery_man'] = this._deliveryMan!.toJson();
     }
     data['order_type'] = this._orderType;
     return data;
@@ -159,36 +159,36 @@ class OrderModel {
 }
 
 class Details {
-  int _id;
-  int _productId;
-  int _orderId;
-  double _price;
-  String _productDetails;
-  String _variation;
-  double _discountOnProduct;
-  String _discountType;
-  int _quantity;
-  double _taxAmount;
-  String _createdAt;
-  String _updatedAt;
-  String _addOnIds;
-  String _variant;
+  int? _id;
+  int? _productId;
+  int? _orderId;
+  double? _price;
+  String? _productDetails;
+  String? _variation;
+  double? _discountOnProduct;
+  String? _discountType;
+  int? _quantity;
+  double? _taxAmount;
+  String? _createdAt;
+  String? _updatedAt;
+  String? _addOnIds;
+  String? _variant;
 
   Details(
-      {int id,
-        int productId,
-        int orderId,
-        double price,
-        String productDetails,
-        String variation,
-        double discountOnProduct,
-        String discountType,
-        int quantity,
-        double taxAmount,
-        String createdAt,
-        String updatedAt,
-        String addOnIds,
-        String variant}) {
+      {int? id,
+        int? productId,
+        int? orderId,
+        double? price,
+        String? productDetails,
+        String? variation,
+        double? discountOnProduct,
+        String? discountType,
+        int? quantity,
+        double? taxAmount,
+        String? createdAt,
+        String? updatedAt,
+        String? addOnIds,
+        String? variant}) {
     this._id = id;
     this._productId = productId;
     this._orderId = orderId;
@@ -205,20 +205,20 @@ class Details {
     this._variant = variant;
   }
 
-  int get id => _id;
-  int get productId => _productId;
-  int get orderId => _orderId;
-  double get price => _price;
-  String get productDetails => _productDetails;
-  String get variation => _variation;
-  double get discountOnProduct => _discountOnProduct;
-  String get discountType => _discountType;
-  int get quantity => _quantity;
-  double get taxAmount => _taxAmount;
-  String get createdAt => _createdAt;
-  String get updatedAt => _updatedAt;
-  String get addOnIds => _addOnIds;
-  String get variant => _variant;
+  int? get id => _id;
+  int? get productId => _productId;
+  int? get orderId => _orderId;
+  double? get price => _price;
+  String? get productDetails => _productDetails;
+  String? get variation => _variation;
+  double? get discountOnProduct => _discountOnProduct;
+  String? get discountType => _discountType;
+  int? get quantity => _quantity;
+  double? get taxAmount => _taxAmount;
+  String? get createdAt => _createdAt;
+  String? get updatedAt => _updatedAt;
+  String? get addOnIds => _addOnIds;
+  String? get variant => _variant;
 
   Details.fromJson(Map<String, dynamic> json) {
     _id = json['id'];
@@ -258,36 +258,36 @@ class Details {
 }
 
 class DeliveryMan {
-  int _id;
-  String _fName;
-  String _lName;
-  String _phone;
-  String _email;
-  String _identityNumber;
-  String _identityType;
-  String _identityImage;
-  String _image;
-  String _password;
-  String _createdAt;
-  String _updatedAt;
-  String _authToken;
-  List<Rating> _rating;
+  int? _id;
+  String? _fName;
+  String? _lName;
+  String? _phone;
+  String? _email;
+  String? _identityNumber;
+  String? _identityType;
+  String? _identityImage;
+  String? _image;
+  String? _password;
+  String? _createdAt;
+  String? _updatedAt;
+  String? _authToken;
+  List<Rating>? _rating;
 
   DeliveryMan(
-      {int id,
-        String fName,
-        String lName,
-        String phone,
-        String email,
-        String identityNumber,
-        String identityType,
-        String identityImage,
-        String image,
-        String password,
-        String createdAt,
-        String updatedAt,
-        String authToken,
-        List<Rating> rating}) {
+      {int? id,
+        String? fName,
+        String? lName,
+        String? phone,
+        String? email,
+        String? identityNumber,
+        String? identityType,
+        String? identityImage,
+        String? image,
+        String? password,
+        String? createdAt,
+        String? updatedAt,
+        String? authToken,
+        List<Rating>? rating}) {
     this._id = id;
     this._fName = fName;
     this._lName = lName;
@@ -304,20 +304,20 @@ class DeliveryMan {
     this._rating = rating;
   }
 
-  int get id => _id;
-  String get fName => _fName;
-  String get lName => _lName;
-  String get phone => _phone;
-  String get email => _email;
-  String get identityNumber => _identityNumber;
-  String get identityType => _identityType;
-  String get identityImage => _identityImage;
-  String get image => _image;
-  String get password => _password;
-  String get createdAt => _createdAt;
-  String get updatedAt => _updatedAt;
-  String get authToken => _authToken;
-  List<Rating> get rating => _rating;
+  int? get id => _id;
+  String? get fName => _fName;
+  String? get lName => _lName;
+  String? get phone => _phone;
+  String? get email => _email;
+  String? get identityNumber => _identityNumber;
+  String? get identityType => _identityType;
+  String? get identityImage => _identityImage;
+  String? get image => _image;
+  String? get password => _password;
+  String? get createdAt => _createdAt;
+  String? get updatedAt => _updatedAt;
+  String? get authToken => _authToken;
+  List<Rating>? get rating => _rating;
 
   DeliveryMan.fromJson(Map<String, dynamic> json) {
     _id = json['id'];
@@ -336,7 +336,7 @@ class DeliveryMan {
     if (json['rating'] != null) {
       _rating = [];
       json['rating'].forEach((v) {
-        _rating.add(new Rating.fromJson(v));
+        _rating!.add(new Rating.fromJson(v));
       });
     }
   }
@@ -357,7 +357,7 @@ class DeliveryMan {
     data['updated_at'] = this._updatedAt;
     data['auth_token'] = this._authToken;
     if (this._rating != null) {
-      data['rating'] = this._rating.map((v) => v.toJson()).toList();
+      data['rating'] = this._rating!.map((v) => v.toJson()).toList();
     }
     return data;
   }

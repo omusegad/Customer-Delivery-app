@@ -12,21 +12,26 @@ import 'package:provider/provider.dart';
 class AddressWidget extends StatelessWidget {
   final AddressModel addressModel;
   final int index;
-  AddressWidget({@required this.addressModel, @required this.index});
+  AddressWidget({required this.addressModel, required this.index});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        if(addressModel != null) {
-          Navigator.push(context, MaterialPageRoute(builder: (_) => MapWidget(address: addressModel)));
+        if (addressModel.address != null) {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (_) => MapWidget(address: addressModel)));
         }
       },
       child: Container(
         padding: EdgeInsets.symmetric(vertical: 7, horizontal: 7),
         margin: EdgeInsets.only(bottom: 8.0),
         height: 70,
-        decoration: BoxDecoration(borderRadius: BorderRadius.circular(Dimensions.PADDING_SIZE_SMALL), color: ColorResources.getSearchBg(context)),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(Dimensions.PADDING_SIZE_SMALL),
+            color: ColorResources.getSearchBg(context)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -36,12 +41,16 @@ class AddressWidget extends StatelessWidget {
                 children: [
                   SizedBox(width: Dimensions.PADDING_SIZE_SMALL),
                   Icon(
-                    addressModel.addressType.toLowerCase() == "home"
+                    addressModel.addressType!.toLowerCase() == "home"
                         ? Icons.home_outlined
-                        : addressModel.addressType.toLowerCase() == "workplace"
-                        ? Icons.work_outline
-                        : Icons.list_alt_outlined,
-                    color: Theme.of(context).textTheme.bodyText1.color.withOpacity(.45),
+                        : addressModel.addressType!.toLowerCase() == "workplace"
+                            ? Icons.work_outline
+                            : Icons.list_alt_outlined,
+                    color: Theme.of(context)
+                        .textTheme
+                        .bodyText1!
+                        .color!
+                        .withOpacity(.45),
                     size: 25,
                   ),
                   SizedBox(width: Dimensions.PADDING_SIZE_DEFAULT),
@@ -51,13 +60,29 @@ class AddressWidget extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          addressModel.addressType,
-                          style: Theme.of(context).textTheme.headline2.copyWith(color: Theme.of(context).textTheme.bodyText1.color.withOpacity(.65)),
+                          addressModel.addressType!,
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline2!
+                              .copyWith(
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .bodyText1!
+                                      .color!
+                                      .withOpacity(.65)),
                         ),
                         Text(
-                          addressModel.address,
-                          maxLines: 1, overflow: TextOverflow.ellipsis,
-                          style: Theme.of(context).textTheme.headline2.copyWith(color: Theme.of(context).textTheme.bodyText1.color),
+                          addressModel.address!,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline2!
+                              .copyWith(
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .bodyText1!
+                                      .color),
                         ),
                       ],
                     ),
@@ -67,7 +92,8 @@ class AddressWidget extends StatelessWidget {
               ),
             ),
             Stack(
-              clipBehavior: Clip.none, children: [
+              clipBehavior: Clip.none,
+              children: [
                 Container(
                   margin: EdgeInsets.only(right: 10),
                   child: Container(
@@ -76,8 +102,10 @@ class AddressWidget extends StatelessWidget {
                     margin: EdgeInsets.only(right: 20),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(5),
-                      color: Theme.of(context).accentColor,
-                      border: Border.all(width: 1, color: ColorResources.getGreyColor(context)),
+                      color: Theme.of(context).colorScheme.secondary,
+                      border: Border.all(
+                          width: 1,
+                          color: ColorResources.getGreyColor(context)),
                     ),
                     child: Icon(Icons.map),
                   ),
@@ -85,28 +113,36 @@ class AddressWidget extends StatelessWidget {
                 //SizedBox(width: 9.0),
                 // Image.asset(Images.menu)
                 Positioned(
-                  right: -10, top: 0, bottom: 0,
+                  right: -10,
+                  top: 0,
+                  bottom: 0,
                   child: PopupMenuButton<String>(
                     padding: EdgeInsets.all(0),
                     onSelected: (String result) {
                       if (result == 'delete') {
-                        Provider.of<LocationProvider>(context, listen: false).deleteUserAddressByID(addressModel.id, index, (bool isSuccessful, String message) {
-                          showCustomSnackBar(message, context, isError: !isSuccessful);
+                        Provider.of<LocationProvider>(context, listen: false)
+                            .deleteUserAddressByID(addressModel.id, index,
+                                (bool isSuccessful, String message) {
+                          showCustomSnackBar(message, context,
+                              isError: !isSuccessful);
                         });
                       } else {
                         Navigator.of(context).push(MaterialPageRoute(
-                          builder: (_) => AddNewAddressScreen(isEnableUpdate: true, address: addressModel),
+                          builder: (_) => AddNewAddressScreen(
+                              isEnableUpdate: true, address: addressModel),
                         ));
                       }
                     },
                     itemBuilder: (BuildContext c) => <PopupMenuEntry<String>>[
                       PopupMenuItem<String>(
                         value: 'edit',
-                        child: Text(getTranslated('edit', context), style: Theme.of(context).textTheme.headline2),
+                        child: Text(getTranslated('edit', context)!,
+                            style: Theme.of(context).textTheme.headline2),
                       ),
                       PopupMenuItem<String>(
                         value: 'delete',
-                        child: Text(getTranslated('delete', context), style: Theme.of(context).textTheme.headline2),
+                        child: Text(getTranslated('delete', context)!,
+                            style: Theme.of(context).textTheme.headline2),
                       ),
                     ],
                   ),

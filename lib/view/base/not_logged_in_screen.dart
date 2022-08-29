@@ -22,14 +22,14 @@ class NotLoggedInScreen extends StatelessWidget {
           SizedBox(height: MediaQuery.of(context).size.height*0.03),
 
           Text(
-            getTranslated('guest_mode', context),
+            getTranslated('guest_mode', context)!,
             style: rubikBold.copyWith(fontSize: MediaQuery.of(context).size.height*0.023),
             textAlign: TextAlign.center,
           ),
           SizedBox(height: MediaQuery.of(context).size.height*0.02),
 
           Text(
-            getTranslated('now_you_are_in_guest_mode', context),
+            getTranslated('now_you_are_in_guest_mode', context)!,
             style: rubikRegular.copyWith(fontSize: MediaQuery.of(context).size.height*0.0175),
             textAlign: TextAlign.center,
           ),

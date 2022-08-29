@@ -31,9 +31,9 @@ class ForgotPasswordScreen extends StatelessWidget {
               SizedBox(height: 40),
               Center(
                   child: Text(
-                    getTranslated('please_enter_your_number_to', context),
+                    getTranslated('please_enter_your_number_to', context)!,
                     textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.headline2.copyWith(color: ColorResources.getHintColor(context)),
+                    style: Theme.of(context).textTheme.headline2!.copyWith(color: ColorResources.getHintColor(context)),
                   )),
               Padding(
                 padding: const EdgeInsets.all(Dimensions.PADDING_SIZE_LARGE),
@@ -42,8 +42,8 @@ class ForgotPasswordScreen extends StatelessWidget {
                   children: [
                     SizedBox(height: 80),
                     Text(
-                      getTranslated('email', context),
-                      style: Theme.of(context).textTheme.headline2.copyWith(color: ColorResources.getHintColor(context)),
+                      getTranslated('email', context)!,
+                      style: Theme.of(context).textTheme.headline2!.copyWith(color: ColorResources.getHintColor(context)),
                     ),
                     SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
                     CustomTextField(
@@ -58,15 +58,15 @@ class ForgotPasswordScreen extends StatelessWidget {
                       btnTxt: getTranslated('send', context),
                       onTap: () {
                         if (_emailController.text.isEmpty) {
-                          showCustomSnackBar(getTranslated('enter_email_address', context), context);
+                          showCustomSnackBar(getTranslated('enter_email_address', context)!, context);
                         }else if (!_emailController.text.contains('@')) {
-                          showCustomSnackBar(getTranslated('enter_valid_email', context), context);
+                          showCustomSnackBar(getTranslated('enter_valid_email', context)!, context);
                         }else {
                           Provider.of<AuthProvider>(context, listen: false).forgetPassword(_emailController.text).then((value) {
                             if (value.isSuccess) {
                               Navigator.of(context).push(MaterialPageRoute(builder: (_) => VerificationScreen(emailAddress: _emailController.text)));
                             } else {
-                              showCustomSnackBar(value.message, context);
+                              showCustomSnackBar(value.message!, context);
                             }
                           });
                         }

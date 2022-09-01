@@ -19,7 +19,9 @@ class SplashProvider extends ChangeNotifier {
   Future<bool> initConfig(GlobalKey<ScaffoldMessengerState> globalKey) async {
     ApiResponse apiResponse = await splashRepo!.getConfig();
     bool isSuccess;
-    if (apiResponse.response != null && apiResponse.response!.statusCode == 200) {
+    print('[INFO]===${apiResponse.response}');
+    if (apiResponse.response != null &&
+        apiResponse.response!.statusCode == 200) {
       _configModel = ConfigModel.fromJson(apiResponse.response!.data);
       _baseUrls = ConfigModel.fromJson(apiResponse.response!.data).baseUrls;
       isSuccess = true;
@@ -27,13 +29,14 @@ class SplashProvider extends ChangeNotifier {
     } else {
       isSuccess = false;
       String? _error;
-      if(apiResponse.error is String) {
+      if (apiResponse.error is String) {
         _error = apiResponse.error;
-      }else {
+      } else {
         _error = apiResponse.error.errors[0].message;
       }
       print(_error);
-      globalKey.currentState!.showSnackBar(SnackBar(content: Text(_error!), backgroundColor: Colors.red));
+      globalKey.currentState!.showSnackBar(
+          SnackBar(content: Text(_error!), backgroundColor: Colors.red));
     }
     return isSuccess;
   }
@@ -47,18 +50,21 @@ class SplashProvider extends ChangeNotifier {
   }
 
   bool isRestaurantClosed() {
-    DateTime _open = DateFormat('hh:mm').parse(_configModel!.restaurantOpenTime!);
-    DateTime _close = DateFormat('hh:mm').parse(_configModel!.restaurantCloseTime!);
-    DateTime _openTime = DateTime(_currentTime.year, _currentTime.month, _currentTime.day, _open.hour, _open.minute);
-    DateTime _closeTime = DateTime(_currentTime.year, _currentTime.month, _currentTime.day, _close.hour, _close.minute);
-    if(_closeTime.isBefore(_openTime)) {
+    DateTime _open =
+        DateFormat('hh:mm').parse(_configModel!.restaurantOpenTime!);
+    DateTime _close =
+        DateFormat('hh:mm').parse(_configModel!.restaurantCloseTime!);
+    DateTime _openTime = DateTime(_currentTime.year, _currentTime.month,
+        _currentTime.day, _open.hour, _open.minute);
+    DateTime _closeTime = DateTime(_currentTime.year, _currentTime.month,
+        _currentTime.day, _close.hour, _close.minute);
+    if (_closeTime.isBefore(_openTime)) {
       _closeTime = _closeTime.add(Duration(days: 1));
     }
-    if(_currentTime.isAfter(_openTime) && _currentTime.isBefore(_closeTime)) {
+    if (_currentTime.isAfter(_openTime) && _currentTime.isBefore(_closeTime)) {
       return false;
-    }else {
+    } else {
       return true;
     }
   }
-
 }

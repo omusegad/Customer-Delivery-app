@@ -33,7 +33,7 @@ class Images {
   static const String guest_login = 'assets/image/guest_login.png';
 
   // for Icon
-  static const String efood = 'assets/icon/jubulee_white.png';
+  static const String efood = 'assets/icon/junubee_xpress_bike.png';
   static const String efood_bike = 'assets/icon/efood_bike.png';
   static const String marker = 'assets/icon/marker.png';
   static const String my_location = 'assets/icon/my_location.png';

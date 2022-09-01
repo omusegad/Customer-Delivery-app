@@ -2,7 +2,7 @@ import 'package:flutter_restaurant/data/model/response/language_model.dart';
 import 'package:flutter_restaurant/utill/images.dart';
 
 class AppConstants {
-  static const String BASE_URL = 'https://junubeexpress.com';
+  static const String BASE_URL = 'http://delivery.gooafrica.com';
   static const String CATEGORY_URI = '/api/v1/categories';
   static const String BANNER_URI = '/api/v1/banners';
   static const String POPULAR_PRODUCT_URI = '/api/v1/products/latest';

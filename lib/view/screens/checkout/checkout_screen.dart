@@ -1,4 +1,5 @@
 import 'dart:collection';
+import 'dart:convert' as json;
 import 'dart:typed_data';
 import 'dart:ui';
 
@@ -79,6 +80,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                   .configModel!
                   .digitalPayment ==
               'true';
+
+      print('BRANCHES=========${json.json.encode(_branches)}');
     }
   }
 
@@ -200,10 +203,10 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                                       CameraPosition(
                                                           target: LatLng(
                                                             double.parse(
-                                                                _branches![0]
+                                                                _branches![1]
                                                                     .latitude!),
                                                             double.parse(
-                                                                _branches![0]
+                                                                _branches![1]
                                                                     .longitude!),
                                                           ),
                                                           zoom: 18),

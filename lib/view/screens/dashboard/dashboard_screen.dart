@@ -73,19 +73,27 @@ class _DashboardScreenState extends State<DashboardScreen> {
             _setPage(index);
           },
         ),
-        appBar: Provider.of<SplashProvider>(context, listen: false).isRestaurantClosed() ? AppBar(
-          toolbarHeight: 40,
-          backgroundColor: Theme.of(context).primaryColor,
-          elevation: 1,
-          title: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Padding(padding: EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_SMALL), child: Image.asset(Images.closed, width: 25, height: 25)),
-            Text(
-              '${getTranslated('restaurant_is_close_now', context)} '
-                  '${DateConverter.convertTimeToTime('${Provider.of<SplashProvider>(context, listen: false).configModel!.restaurantOpenTime}:00')}',
-              style: rubikRegular.copyWith(fontSize: 12, color: Colors.black),
-            ),
-          ]),
-        ) : null,
+        appBar: Provider.of<SplashProvider>(context, listen: false)
+                .isRestaurantClosed()
+            ? AppBar(
+                toolbarHeight: 40,
+                backgroundColor: Theme.of(context).primaryColor,
+                elevation: 1,
+                title:
+                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: Dimensions.PADDING_SIZE_SMALL),
+                      child: Image.asset(Images.closed, width: 25, height: 25)),
+                  Text(
+                    '${getTranslated('restaurant_is_close_now', context)} '
+                    '${DateConverter.convertTimeToTime('${Provider.of<SplashProvider>(context, listen: false).configModel!.restaurantOpenTime}:00')}',
+                    style: rubikRegular.copyWith(
+                        fontSize: 12, color: Colors.black),
+                  ),
+                ]),
+              )
+            : null,
         body: PageView.builder(
           controller: _pageController,
           itemCount: _screens.length,
@@ -101,20 +109,33 @@ class _DashboardScreenState extends State<DashboardScreen> {
   BottomNavigationBarItem _barItem(IconData icon, String? label, int index) {
     return BottomNavigationBarItem(
       icon: Stack(
-        clipBehavior: Clip.none, children: [
-          Icon(icon, color: index == _pageIndex ? ColorResources.COLOR_PRIMARY : ColorResources.COLOR_GREY, size: 25),
-          index == 1 ? Positioned(
-            top: -7, right: -7,
-            child: Container(
-              padding: EdgeInsets.all(4),
-              alignment: Alignment.center,
-              decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.red),
-              child: Text(
-                Provider.of<CartProvider>(context).cartList.length.toString(),
-                style: rubikMedium.copyWith(color: ColorResources.COLOR_WHITE, fontSize: 8),
-              ),
-            ),
-          ) : SizedBox(),
+        clipBehavior: Clip.none,
+        children: [
+          Icon(icon,
+              color: index == _pageIndex
+                  ? ColorResources.COLOR_PRIMARY
+                  : ColorResources.COLOR_GREY,
+              size: 25),
+          index == 1
+              ? Positioned(
+                  top: -7,
+                  right: -7,
+                  child: Container(
+                    padding: EdgeInsets.all(4),
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle, color: Colors.red),
+                    child: Text(
+                      Provider.of<CartProvider>(context)
+                          .cartList
+                          .length
+                          .toString(),
+                      style: rubikMedium.copyWith(
+                          color: ColorResources.COLOR_WHITE, fontSize: 8),
+                    ),
+                  ),
+                )
+              : SizedBox(),
         ],
       ),
       label: label,

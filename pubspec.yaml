@@ -41,6 +41,7 @@ flutter_icons:
   ios: true
   image_path: "assets/icon/image_icon.png"
   min_sdk_android: 21
+  color: "#FFFFFF"
 
 flutter:
   uses-material-design: true

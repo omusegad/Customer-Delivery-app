@@ -3,7 +3,7 @@ import 'package:flutter_restaurant/localization/language_constrants.dart';
 import 'package:flutter_restaurant/provider/auth_provider.dart';
 import 'package:flutter_restaurant/provider/profile_provider.dart';
 import 'package:flutter_restaurant/provider/splash_provider.dart';
-import 'package:flutter_restaurant/provider/theme_provider.dart';
+//import 'package:flutter_restaurant/provider/theme_provider.dart';
 import 'package:flutter_restaurant/utill/color_resources.dart';
 import 'package:flutter_restaurant/utill/dimensions.dart';
 import 'package:flutter_restaurant/utill/images.dart';
@@ -11,7 +11,7 @@ import 'package:flutter_restaurant/utill/styles.dart';
 import 'package:flutter_restaurant/view/screens/address/address_screen.dart';
 import 'package:flutter_restaurant/view/screens/chat/chat_screen.dart';
 import 'package:flutter_restaurant/view/screens/coupon/coupon_screen.dart';
-import 'package:flutter_restaurant/view/screens/language/choose_language_screen.dart';
+//import 'package:flutter_restaurant/view/screens/language/choose_language_screen.dart';
 import 'package:flutter_restaurant/view/screens/menu/widget/sign_out_confirmation_dialog.dart';
 import 'package:flutter_restaurant/view/screens/profile/profile_screen.dart';
 import 'package:flutter_restaurant/view/screens/support/support_screen.dart';
@@ -75,12 +75,12 @@ class MenuScreen extends StatelessWidget {
         ),
         Expanded(
           child: ListView(padding: EdgeInsets.zero, physics: BouncingScrollPhysics(), children: [
-            SwitchListTile(
-              value: Provider.of<ThemeProvider>(context).darkTheme,
-              onChanged: (bool isActive) =>Provider.of<ThemeProvider>(context, listen: false).toggleTheme(),
-              title: Text(getTranslated('dark_theme', context)!, style: rubikMedium.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
-              activeColor: Theme.of(context).primaryColor,
-            ),
+            // SwitchListTile(
+            //   value: Provider.of<ThemeProvider>(context).darkTheme,
+            //   onChanged: (bool isActive) =>Provider.of<ThemeProvider>(context, listen: false).toggleTheme(),
+            //   title: Text(getTranslated('dark_theme', context)!, style: rubikMedium.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
+            //   activeColor: Theme.of(context).primaryColor,
+            // ),
             ListTile(
               onTap: () => onTap(2),
               leading: Image.asset(Images.order, width: 20, height: 20, color: Theme.of(context).textTheme.bodyText1!.color),
@@ -106,11 +106,11 @@ class MenuScreen extends StatelessWidget {
               leading: Image.asset(Images.coupon, width: 20, height: 20, color: Theme.of(context).textTheme.bodyText1!.color),
               title: Text(getTranslated('coupon', context)!, style: rubikMedium.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
             ),
-            ListTile(
-              onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => ChooseLanguageScreen(fromMenu: true))),
-              leading: Image.asset(Images.language, width: 20, height: 20, color: Theme.of(context).textTheme.bodyText1!.color),
-              title: Text(getTranslated('language', context)!, style: rubikMedium.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
-            ),
+            // ListTile(
+            //   onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => ChooseLanguageScreen(fromMenu: true))),
+            //   leading: Image.asset(Images.language, width: 20, height: 20, color: Theme.of(context).textTheme.bodyText1!.color),
+            //   title: Text(getTranslated('language', context)!, style: rubikMedium.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
+            // ),
             ListTile(
               onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => SupportScreen())),
               leading: Icon(Icons.contact_support, size: 20, color: Theme.of(context).textTheme.bodyText1!.color),

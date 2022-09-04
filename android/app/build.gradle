@@ -75,6 +75,15 @@ android {
             shrinkResources true
             useProguard true // enables progaurd
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            applicationVariants.all {
+                variant -> variant.outputs.all {
+                    def variantName = variant.name
+                    def versionName = variant.versionName
+                    def formattedDate = new Date().format('dd-MM-YYYY')
+                    outputFileName = "Oryx_${variantName}_${formattedDate}_V_${versionName}.apk"
+                }
+            }
         }
     }
 }

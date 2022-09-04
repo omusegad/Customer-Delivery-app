@@ -33,5 +33,6 @@ ThemeData dark = ThemeData(
     bodyText2: TextStyle(fontSize: 12.0),
     bodyText1: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w600),
   ),
-  colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Color(0xFF252525)),
+  colorScheme: ColorScheme.fromSwatch(brightness: Brightness.dark)
+      .copyWith(secondary: Color(0xFF252525)),
 );

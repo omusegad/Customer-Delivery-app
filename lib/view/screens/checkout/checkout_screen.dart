@@ -203,10 +203,10 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                                       CameraPosition(
                                                           target: LatLng(
                                                             double.parse(
-                                                                _branches![1]
+                                                                _branches![0]
                                                                     .latitude!),
                                                             double.parse(
-                                                                _branches![1]
+                                                                _branches![0]
                                                                     .longitude!),
                                                           ),
                                                           zoom: 18),

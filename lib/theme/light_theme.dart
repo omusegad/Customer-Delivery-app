@@ -32,5 +32,6 @@ ThemeData light = ThemeData(
     bodyText2: TextStyle(fontSize: 12.0),
     bodyText1: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w600),
   ),
-  colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.white),
+  colorScheme: ColorScheme.fromSwatch(brightness: Brightness.light)
+      .copyWith(secondary: Colors.white),
 );

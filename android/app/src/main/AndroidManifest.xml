@@ -11,7 +11,7 @@
 
     <application
         android:name=".Application"
-        android:label="Oryx Energies"
+        android:label="Oryx"
         android:requestLegacyExternalStorage="true"
         android:usesCleartextTraffic="true"
         android:icon="@mipmap/launcher_icon">

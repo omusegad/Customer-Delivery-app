@@ -36,7 +36,9 @@ class Images {
       'assets/image/unselected_restaurant_marker.png';
   static const String wallet = 'assets/image/wallet.png';
   static const String guest_login = 'assets/image/guest_login.png';
-
+  static const String oryx_appbar = 'assets/image/oryx_appbar_bg.png';
+  static const String banner_intro = 'assets/image/bannerinto.jpg';
+  static const String splash_intro = 'assets/image/splash_image_bg.jpg';
   // for Icon
   static const String efood = 'assets/icon/image_icon.png';
   static const String efood_bike = 'assets/icon/image_icon.png';

@@ -60,10 +60,17 @@ class HomeScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     //Image.asset(Images.efood_bike, width: 50, height: 50),
-                    SizedBox(width: 5),
-                    Image.asset(Images.efood,
-                        width: 55,
-                        height: 55,
+                    // Text(
+                    //   getTranslated('app_name', context)!,
+                    //   style: rubikMedium.copyWith(
+                    //       fontSize: 20,
+                    //       color: ColorResources.getPrimaryColor(context)),
+                    // ),
+                    //SizedBox(width: 5),
+                    Image.asset(Images.oryx_appbar,
+                        width: 85,
+                        height: 50,
+                        fit: BoxFit.fitWidth,
                         color: ColorResources.getPrimaryColor(context)),
                   ],
                 ),

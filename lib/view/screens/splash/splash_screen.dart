@@ -95,8 +95,9 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Image.asset(Images.efood_bike, height: 165),
-            SizedBox(height: 45),
+            Image.asset(
+              Images.splash_intro,
+            ),
             //Image.asset(Images.efood, height: 33),
           ],
         ),

@@ -9,8 +9,7 @@ ThemeData light = ThemeData(
   hintColor: Color(0xFF52575C),
   textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
-    primary: Colors.black,
-    textStyle: TextStyle(color: Colors.black),
+    foregroundColor: Colors.black, textStyle: TextStyle(color: Colors.black),
   )),
   textTheme: TextTheme(
     button: TextStyle(color: Colors.white),

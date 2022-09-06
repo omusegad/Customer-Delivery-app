@@ -9,7 +9,6 @@ import 'package:flutter_restaurant/utill/styles.dart';
 import 'package:flutter_restaurant/view/base/custom_app_bar.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-import 'dart:typed_data';
 import 'dart:ui';
 
 class MapWidget extends StatefulWidget {

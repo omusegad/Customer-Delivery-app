@@ -10,8 +10,7 @@ ThemeData dark = ThemeData(
   focusColor: Color(0xFFADC4C8),
   textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
-    primary: Colors.white,
-    textStyle: TextStyle(color: Colors.white),
+    foregroundColor: Colors.white, textStyle: TextStyle(color: Colors.white),
   )),
   textTheme: TextTheme(
     button: TextStyle(color: Color(0xFF252525)),

@@ -13,7 +13,6 @@ import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'dart:collection';
-import 'dart:typed_data';
 import 'dart:ui';
 
 class TrackingMapWidget extends StatefulWidget {

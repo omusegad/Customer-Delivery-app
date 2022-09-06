@@ -94,7 +94,7 @@ class MyApp extends StatelessWidget {
       _locals.add(Locale(language.languageCode!, language.countryCode));
     });
     return MaterialApp(
-      title: 'eFood',
+      title: 'Oryx',
       debugShowCheckedModeBanner: false,
       navigatorKey: navigatorKey,
       theme: Provider.of<ThemeProvider>(context).darkTheme ? dark : light,

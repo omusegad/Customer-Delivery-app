@@ -19,7 +19,7 @@ class SplashProvider extends ChangeNotifier {
   Future<bool> initConfig(GlobalKey<ScaffoldMessengerState> globalKey) async {
     ApiResponse apiResponse = await splashRepo!.getConfig();
     bool isSuccess;
-    print('[INFO]===${apiResponse.response}');
+    //print('[INFO]===${apiResponse.response}');
     if (apiResponse.response != null &&
         apiResponse.response!.statusCode == 200) {
       _configModel = ConfigModel.fromJson(apiResponse.response!.data);

@@ -69,6 +69,9 @@ class _SplashScreenState extends State<SplashScreen> {
     Provider.of<SplashProvider>(context, listen: false)
         .initConfig(_globalKey)
         .then((bool isSuccess) {
+      var token =
+          Provider.of<AuthProvider>(context, listen: false).getUserToken();
+      print('[TOKEN]=============$token');
       if (isSuccess) {
         Timer(Duration(seconds: 1), () async {
           if (Provider.of<AuthProvider>(context, listen: false).isLoggedIn()) {

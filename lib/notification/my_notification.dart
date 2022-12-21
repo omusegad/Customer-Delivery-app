@@ -18,7 +18,7 @@ class MyNotification {
     var initializationsSettings = new InitializationSettings(
         android: androidInitialize, iOS: iOSInitialize);
     flutterLocalNotificationsPlugin.initialize(initializationsSettings,
-        onSelectNotification: (String? payload) async {
+        onSelectNotification: (payload) async {
       try {
         if (payload != null && payload.isNotEmpty) {
           MyApp.navigatorKey.currentState!.push(MaterialPageRoute(

@@ -44,8 +44,9 @@ Future<void> main() async {
       await flutterLocalNotificationsPlugin.getNotificationAppLaunchDetails();
   int? _orderID;
   if (notificationAppLaunchDetails?.didNotificationLaunchApp ?? false) {
-    _orderID = notificationAppLaunchDetails!.payload != null
-        ? int.parse(notificationAppLaunchDetails.payload!)
+    _orderID = notificationAppLaunchDetails!.notificationResponse!.payload !=
+            null
+        ? int.parse(notificationAppLaunchDetails.notificationResponse!.payload!)
         : null;
   }
   await MyNotification.initialize(flutterLocalNotificationsPlugin);

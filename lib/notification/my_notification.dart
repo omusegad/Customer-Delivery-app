@@ -14,16 +14,16 @@ class MyNotification {
       FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin) async {
     var androidInitialize =
         new AndroidInitializationSettings('notification_icon');
-    var iOSInitialize = new IOSInitializationSettings();
+    var iOSInitialize = new DarwinInitializationSettings();
     var initializationsSettings = new InitializationSettings(
         android: androidInitialize, iOS: iOSInitialize);
     flutterLocalNotificationsPlugin.initialize(initializationsSettings,
-        onSelectNotification: (String? payload) async {
+        onDidReceiveNotificationResponse: (payload) async {
       try {
-        if (payload != null && payload.isNotEmpty) {
+        if (payload.payload!.isNotEmpty) {
           MyApp.navigatorKey.currentState!.push(MaterialPageRoute(
               builder: (context) => OrderDetailsScreen(
-                  orderModel: null, orderId: int.parse(payload))));
+                  orderModel: null, orderId: int.parse(payload.payload!))));
         }
       } catch (e) {}
 
@@ -154,7 +154,7 @@ Future<dynamic> myBackgroundMessageHandler(RemoteMessage message) async {
   print('background: ${message.data}');
   var androidInitialize =
       new AndroidInitializationSettings('notification_icon');
-  var iOSInitialize = new IOSInitializationSettings();
+  var iOSInitialize = new DarwinInitializationSettings();
   var initializationsSettings = new InitializationSettings(
       android: androidInitialize, iOS: iOSInitialize);
   FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =

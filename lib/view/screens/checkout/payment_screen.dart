@@ -1,11 +1,9 @@
 import 'dart:async';
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_restaurant/data/model/response/order_model.dart';
 import 'package:flutter_restaurant/localization/language_constrants.dart';
 import 'package:flutter_restaurant/utill/app_constants.dart';
 import 'package:flutter_restaurant/view/base/custom_app_bar.dart';
-import 'package:flutter_restaurant/view/screens/checkout/order_successful_screen.dart';
 import 'package:flutter_restaurant/view/screens/checkout/widget/cancel_dialog.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -32,7 +30,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
     selectedUrl =
         '${AppConstants.BASE_URL}/payment-mobile?customer_id=${widget.orderModel!.userId}&order_id=${widget.orderModel!.id}';
 
-    if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
+    //if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
   }
 
   @override
@@ -46,57 +44,57 @@ class _PaymentScreenState extends State<PaymentScreen> {
             onBackPressed: () => _exitApp(context)),
         body: Stack(
           children: [
-            WebView(
-              javascriptMode: JavascriptMode.unrestricted,
-              initialUrl: selectedUrl,
-              gestureNavigationEnabled: true,
-              userAgent:
-                  'Mozilla/5.0 (Linux; Android 4.4.4; One Build/KTU84L.H4) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/33.0.0.0 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/28.0.0.20.16;]',
-              onWebViewCreated: (WebViewController webViewController) {
-                _controller.future.then((value) => controllerGlobal = value);
-                _controller.complete(webViewController);
-              },
-              onPageStarted: (String url) {
-                print('Page started loading: $url');
-                setState(() {
-                  _isLoading = true;
-                });
-                if (url == '${AppConstants.BASE_URL}/payment-success') {
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (_) => OrderSuccessfulScreen(
-                                orderID: widget.orderModel!.id.toString(),
-                                status: 0,
-                                addressID: widget.orderModel!.deliveryAddressId,
-                              )));
-                } else if (url == '${AppConstants.BASE_URL}/payment-fail') {
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (_) => OrderSuccessfulScreen(
-                                orderID: widget.orderModel!.id.toString(),
-                                status: 1,
-                                addressID: widget.orderModel!.deliveryAddressId,
-                              )));
-                } else if (url == '${AppConstants.BASE_URL}/payment-cancel') {
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (_) => OrderSuccessfulScreen(
-                                orderID: widget.orderModel!.id.toString(),
-                                status: 2,
-                                addressID: widget.orderModel!.deliveryAddressId,
-                              )));
-                }
-              },
-              onPageFinished: (String url) {
-                print('Page finished loading: $url');
-                setState(() {
-                  _isLoading = false;
-                });
-              },
-            ),
+            // WebView(
+            //   javascriptMode: JavascriptMode.unrestricted,
+            //   initialUrl: selectedUrl,
+            //   gestureNavigationEnabled: true,
+            //   userAgent:
+            //       'Mozilla/5.0 (Linux; Android 4.4.4; One Build/KTU84L.H4) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/33.0.0.0 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/28.0.0.20.16;]',
+            //   onWebViewCreated: (WebViewController webViewController) {
+            //     _controller.future.then((value) => controllerGlobal = value);
+            //     _controller.complete(webViewController);
+            //   },
+            //   onPageStarted: (String url) {
+            //     print('Page started loading: $url');
+            //     setState(() {
+            //       _isLoading = true;
+            //     });
+            //     if (url == '${AppConstants.BASE_URL}/payment-success') {
+            //       Navigator.pushReplacement(
+            //           context,
+            //           MaterialPageRoute(
+            //               builder: (_) => OrderSuccessfulScreen(
+            //                     orderID: widget.orderModel!.id.toString(),
+            //                     status: 0,
+            //                     addressID: widget.orderModel!.deliveryAddressId,
+            //                   )));
+            //     } else if (url == '${AppConstants.BASE_URL}/payment-fail') {
+            //       Navigator.pushReplacement(
+            //           context,
+            //           MaterialPageRoute(
+            //               builder: (_) => OrderSuccessfulScreen(
+            //                     orderID: widget.orderModel!.id.toString(),
+            //                     status: 1,
+            //                     addressID: widget.orderModel!.deliveryAddressId,
+            //                   )));
+            //     } else if (url == '${AppConstants.BASE_URL}/payment-cancel') {
+            //       Navigator.pushReplacement(
+            //           context,
+            //           MaterialPageRoute(
+            //               builder: (_) => OrderSuccessfulScreen(
+            //                     orderID: widget.orderModel!.id.toString(),
+            //                     status: 2,
+            //                     addressID: widget.orderModel!.deliveryAddressId,
+            //                   )));
+            //     }
+            //   },
+            //   onPageFinished: (String url) {
+            //     print('Page finished loading: $url');
+            //     setState(() {
+            //       _isLoading = false;
+            //     });
+            //   },
+            // ),
             _isLoading
                 ? Center(
                     child: CircularProgressIndicator(

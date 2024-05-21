@@ -228,7 +228,7 @@ class OrderDetailsScreen extends StatelessWidget {
                                       Row(children: [
                                         Container(height: 10, width: 10, decoration: BoxDecoration(
                                           shape: BoxShape.circle,
-                                          color: Theme.of(context).textTheme.bodyText1!.color,
+                                          color: Theme.of(context).textTheme.bodyLarge!.color,
                                         )),
                                         SizedBox(width: Dimensions.PADDING_SIZE_EXTRA_SMALL),
                                         Text(
@@ -365,7 +365,7 @@ class OrderDetailsScreen extends StatelessWidget {
                         },
                       ));
                     },
-                    child: Text(getTranslated('cancel_order', context)!, style: Theme.of(context).textTheme.headline3!.copyWith(
+                    child: Text(getTranslated('cancel_order', context)!, style: Theme.of(context).textTheme.displaySmall!.copyWith(
                       color: ColorResources.DISABLE_COLOR,
                       fontSize: Dimensions.FONT_SIZE_LARGE,
                     )),

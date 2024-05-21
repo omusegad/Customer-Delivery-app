@@ -9,27 +9,28 @@ ThemeData light = ThemeData(
   hintColor: Color(0xFF52575C),
   textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
-    foregroundColor: Colors.black, textStyle: TextStyle(color: Colors.black),
+    foregroundColor: Colors.black,
+    textStyle: TextStyle(color: Colors.black),
   )),
   textTheme: TextTheme(
-    button: TextStyle(color: Colors.white),
-    headline1: TextStyle(
+    labelLarge: TextStyle(color: Colors.white),
+    displayLarge: TextStyle(
         fontWeight: FontWeight.w300, fontSize: Dimensions.FONT_SIZE_DEFAULT),
-    headline2: TextStyle(
+    displayMedium: TextStyle(
         fontWeight: FontWeight.w400, fontSize: Dimensions.FONT_SIZE_DEFAULT),
-    headline3: TextStyle(
+    displaySmall: TextStyle(
         fontWeight: FontWeight.w500, fontSize: Dimensions.FONT_SIZE_DEFAULT),
-    headline4: TextStyle(
+    headlineMedium: TextStyle(
         fontWeight: FontWeight.w600, fontSize: Dimensions.FONT_SIZE_DEFAULT),
-    headline5: TextStyle(
+    headlineSmall: TextStyle(
         fontWeight: FontWeight.w700, fontSize: Dimensions.FONT_SIZE_DEFAULT),
-    headline6: TextStyle(
+    titleLarge: TextStyle(
         fontWeight: FontWeight.w800, fontSize: Dimensions.FONT_SIZE_DEFAULT),
-    caption: TextStyle(
+    bodySmall: TextStyle(
         fontWeight: FontWeight.w900, fontSize: Dimensions.FONT_SIZE_DEFAULT),
-    subtitle1: TextStyle(fontSize: 15.0, fontWeight: FontWeight.w500),
-    bodyText2: TextStyle(fontSize: 12.0),
-    bodyText1: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w600),
+    titleMedium: TextStyle(fontSize: 15.0, fontWeight: FontWeight.w500),
+    bodyMedium: TextStyle(fontSize: 12.0),
+    bodyLarge: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w600),
   ),
   colorScheme: ColorScheme.fromSwatch(brightness: Brightness.light)
       .copyWith(secondary: Colors.white),

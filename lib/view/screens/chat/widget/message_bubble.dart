@@ -55,7 +55,7 @@ class MessageBubble extends StatelessWidget {
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_LARGE, vertical: Dimensions.PADDING_SIZE_SMALL),
                               child: Text(isMe ? chat.message! : chat.reply!, style: rubikRegular.copyWith(color: isMe ? Theme.of(context).colorScheme.secondary
-                                  : Theme.of(context).textTheme.bodyText1!.color)),
+                                  : Theme.of(context).textTheme.bodyLarge!.color)),
                             ),
 
                             chat.image != null ? ClipRRect(

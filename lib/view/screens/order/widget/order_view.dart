@@ -177,7 +177,7 @@ class OrderView extends StatelessWidget {
                                         getTranslated('details', context)!,
                                         style: Theme.of(context)
                                             .textTheme
-                                            .headline3!
+                                            .displaySmall!
                                             .copyWith(
                                               color:
                                                   ColorResources.DISABLE_COLOR,

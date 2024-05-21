@@ -28,7 +28,7 @@ class OnBoardingScreen extends StatelessWidget {
                     },
                     child: Text(
                       getTranslated('skip', context)!,
-                      style: Theme.of(context).textTheme.headline3!.copyWith(color: Theme.of(context).textTheme.bodyText1!.color),
+                      style: Theme.of(context).textTheme.displaySmall!.copyWith(color: Theme.of(context).textTheme.bodyLarge!.color),
                     )),
               ) : SizedBox(),
 
@@ -64,7 +64,7 @@ class OnBoardingScreen extends StatelessWidget {
                           : onBoardingList.selectedIndex == 1
                               ? onBoardingList.onBoardingList[1].title
                               : onBoardingList.onBoardingList[2].title,
-                      style: Theme.of(context).textTheme.headline3!.copyWith(fontSize: 24.0, color: Theme.of(context).textTheme.bodyText1!.color),
+                      style: Theme.of(context).textTheme.displaySmall!.copyWith(fontSize: 24.0, color: Theme.of(context).textTheme.bodyLarge!.color),
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -76,7 +76,7 @@ class OnBoardingScreen extends StatelessWidget {
                           : onBoardingList.selectedIndex == 1
                               ? onBoardingList.onBoardingList[1].description
                               : onBoardingList.onBoardingList[2].description,
-                      style: Theme.of(context).textTheme.headline2!.copyWith(
+                      style: Theme.of(context).textTheme.displayMedium!.copyWith(
                             fontSize: Dimensions.FONT_SIZE_LARGE,
                             color: ColorResources.getGrayColor(context),
                           ),
@@ -96,7 +96,7 @@ class OnBoardingScreen extends StatelessWidget {
                                 },
                                 child: Text(
                                   getTranslated('previous', context)!,
-                                  style: Theme.of(context).textTheme.headline3!.copyWith(color: ColorResources.getGrayColor(context)),
+                                  style: Theme.of(context).textTheme.displaySmall!.copyWith(color: ColorResources.getGrayColor(context)),
                                 )),
                         onBoardingList.selectedIndex == 2
                             ? SizedBox.shrink()
@@ -106,7 +106,7 @@ class OnBoardingScreen extends StatelessWidget {
                                 },
                                 child: Text(
                                   getTranslated('next', context)!,
-                                  style: Theme.of(context).textTheme.headline3!.copyWith(color: ColorResources.getGrayColor(context)),
+                                  style: Theme.of(context).textTheme.displaySmall!.copyWith(color: ColorResources.getGrayColor(context)),
                                 )),
                       ],
                     ),

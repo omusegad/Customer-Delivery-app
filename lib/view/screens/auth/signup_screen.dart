@@ -35,12 +35,12 @@ class SignUpScreen extends StatelessWidget {
               Center(
                   child: Text(
                 getTranslated('signup', context)!,
-                style: Theme.of(context).textTheme.headline3!.copyWith(fontSize: 24, color: ColorResources.getGreyBunkerColor(context)),
+                style: Theme.of(context).textTheme.displaySmall!.copyWith(fontSize: 24, color: ColorResources.getGreyBunkerColor(context)),
               )),
               SizedBox(height: 35),
               Text(
                 getTranslated('email', context)!,
-                style: Theme.of(context).textTheme.headline2!.copyWith(color: ColorResources.getHintColor(context)),
+                style: Theme.of(context).textTheme.displayMedium!.copyWith(color: ColorResources.getHintColor(context)),
               ),
               SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
               CustomTextField(
@@ -61,7 +61,7 @@ class SignUpScreen extends StatelessWidget {
                   Expanded(
                     child: Text(
                       authProvider.verificationMessage ?? "",
-                      style: Theme.of(context).textTheme.headline2!.copyWith(
+                      style: Theme.of(context).textTheme.displayMedium!.copyWith(
                             fontSize: Dimensions.FONT_SIZE_SMALL,
                             color: ColorResources.getPrimaryColor(context),
                           ),
@@ -113,14 +113,14 @@ class SignUpScreen extends StatelessWidget {
                     children: [
                       Text(
                         getTranslated('already_have_account', context)!,
-                        style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: Dimensions.FONT_SIZE_SMALL, color: ColorResources.getGreyColor(context)),
+                        style: Theme.of(context).textTheme.displayMedium!.copyWith(fontSize: Dimensions.FONT_SIZE_SMALL, color: ColorResources.getGreyColor(context)),
                       ),
                       SizedBox(width: Dimensions.PADDING_SIZE_SMALL),
                       Text(
                         getTranslated('login', context)!,
                         style: Theme.of(context)
                             .textTheme
-                            .headline3!
+                            .displaySmall!
                             .copyWith(fontSize: Dimensions.FONT_SIZE_SMALL, color: ColorResources.getGreyBunkerColor(context)),
                       ),
                     ],

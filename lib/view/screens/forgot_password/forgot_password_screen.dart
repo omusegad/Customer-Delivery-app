@@ -33,7 +33,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                   child: Text(
                     getTranslated('please_enter_your_number_to', context)!,
                     textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.headline2!.copyWith(color: ColorResources.getHintColor(context)),
+                    style: Theme.of(context).textTheme.displayMedium!.copyWith(color: ColorResources.getHintColor(context)),
                   )),
               Padding(
                 padding: const EdgeInsets.all(Dimensions.PADDING_SIZE_LARGE),
@@ -43,7 +43,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                     SizedBox(height: 80),
                     Text(
                       getTranslated('email', context)!,
-                      style: Theme.of(context).textTheme.headline2!.copyWith(color: ColorResources.getHintColor(context)),
+                      style: Theme.of(context).textTheme.displayMedium!.copyWith(color: ColorResources.getHintColor(context)),
                     ),
                     SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
                     CustomTextField(

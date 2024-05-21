@@ -51,7 +51,7 @@ class SupportScreen extends StatelessWidget {
                       'tel:${Provider.of<SplashProvider>(context, listen: false).configModel!.restaurantPhone}'));
                 },
                 child: Text(getTranslated('call_now', context)!,
-                    style: Theme.of(context).textTheme.headline3!.copyWith(
+                    style: Theme.of(context).textTheme.displaySmall!.copyWith(
                           color: Theme.of(context).primaryColor,
                           fontSize: Dimensions.FONT_SIZE_LARGE,
                         )),

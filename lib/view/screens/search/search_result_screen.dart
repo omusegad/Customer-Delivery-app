@@ -86,7 +86,7 @@ class SearchResultScreen extends StatelessWidget {
                   searchProvider.searchProductList != null
                       ? Text(
                           '${searchProvider.searchProductList!.length} ${getTranslated('product_found', context)}',
-                          style: Theme.of(context).textTheme.headline2!.copyWith(color: ColorResources.getGreyBunkerColor(context)),
+                          style: Theme.of(context).textTheme.displayMedium!.copyWith(color: ColorResources.getGreyBunkerColor(context)),
                         )
                       : SizedBox.shrink(),
                   SizedBox(height: 13),

@@ -33,7 +33,7 @@ class ChooseLanguageScreen extends StatelessWidget {
               padding: const EdgeInsets.only(left: Dimensions.PADDING_SIZE_LARGE, top: Dimensions.PADDING_SIZE_LARGE),
               child: Text(
                 Strings.choose_the_language,
-                style: Theme.of(context).textTheme.headline3!.copyWith(fontSize: 22, color: Theme.of(context).textTheme.bodyText1!.color),
+                style: Theme.of(context).textTheme.displaySmall!.copyWith(fontSize: 22, color: Theme.of(context).textTheme.bodyLarge!.color),
               ),
             ),
             SizedBox(height: 30),
@@ -108,7 +108,7 @@ class ChooseLanguageScreen extends StatelessWidget {
                   SizedBox(width: 30),
                   Text(
                     languageModel.languageName!,
-                    style: Theme.of(context).textTheme.headline2!.copyWith(color: Theme.of(context).textTheme.bodyText1!.color),
+                    style: Theme.of(context).textTheme.displayMedium!.copyWith(color: Theme.of(context).textTheme.bodyLarge!.color),
                   ),
                 ],
               ),

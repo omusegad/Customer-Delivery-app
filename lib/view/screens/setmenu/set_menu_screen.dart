@@ -130,7 +130,7 @@ class SetMenuScreen extends StatelessWidget {
                                       discountType: setMenu.setMenuList![index].discountType, asFixed: 1)}' : ''}',
                                   style: rubikBold.copyWith(fontSize: Dimensions.FONT_SIZE_SMALL),
                                 ),
-                                _discount > 0 ? SizedBox() : Icon(Icons.add, color: Theme.of(context).textTheme.bodyText1!.color),
+                                _discount > 0 ? SizedBox() : Icon(Icons.add, color: Theme.of(context).textTheme.bodyLarge!.color),
                               ],
                             ),
                             _discount > 0 ? Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
@@ -143,7 +143,7 @@ class SetMenuScreen extends StatelessWidget {
                                   decoration: TextDecoration.lineThrough,
                                 ),
                               ),
-                              Icon(Icons.add, color: Theme.of(context).textTheme.bodyText1!.color),
+                              Icon(Icons.add, color: Theme.of(context).textTheme.bodyLarge!.color),
                             ]) : SizedBox(),
                           ]),
                         ),

@@ -48,7 +48,7 @@ class AddressWidget extends StatelessWidget {
                             : Icons.list_alt_outlined,
                     color: Theme.of(context)
                         .textTheme
-                        .bodyText1!
+                        .bodyLarge!
                         .color!
                         .withOpacity(.45),
                     size: 25,
@@ -63,11 +63,11 @@ class AddressWidget extends StatelessWidget {
                           addressModel.addressType!,
                           style: Theme.of(context)
                               .textTheme
-                              .headline2!
+                              .displayMedium!
                               .copyWith(
                                   color: Theme.of(context)
                                       .textTheme
-                                      .bodyText1!
+                                      .bodyLarge!
                                       .color!
                                       .withOpacity(.65)),
                         ),
@@ -77,11 +77,11 @@ class AddressWidget extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                           style: Theme.of(context)
                               .textTheme
-                              .headline2!
+                              .displayMedium!
                               .copyWith(
                                   color: Theme.of(context)
                                       .textTheme
-                                      .bodyText1!
+                                      .bodyLarge!
                                       .color),
                         ),
                       ],
@@ -137,12 +137,12 @@ class AddressWidget extends StatelessWidget {
                       PopupMenuItem<String>(
                         value: 'edit',
                         child: Text(getTranslated('edit', context)!,
-                            style: Theme.of(context).textTheme.headline2),
+                            style: Theme.of(context).textTheme.displayMedium),
                       ),
                       PopupMenuItem<String>(
                         value: 'delete',
                         child: Text(getTranslated('delete', context)!,
-                            style: Theme.of(context).textTheme.headline2),
+                            style: Theme.of(context).textTheme.displayMedium),
                       ),
                     ],
                   ),

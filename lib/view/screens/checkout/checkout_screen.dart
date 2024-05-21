@@ -172,7 +172,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                                                 : Theme.of(
                                                                         context)
                                                                     .textTheme
-                                                                    .bodyText1!
+                                                                    .bodyLarge!
                                                                     .color,
                                                           )),
                                                     ),
@@ -371,7 +371,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                                                                     : Icons.list_alt_outlined,
                                                                             color: index == order.addressIndex
                                                                                 ? ColorResources.getPrimaryColor(context)
-                                                                                : Theme.of(context).textTheme.bodyText1!.color,
+                                                                                : Theme.of(context).textTheme.bodyLarge!.color,
                                                                             size:
                                                                                 30,
                                                                           ),
@@ -724,5 +724,4 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
 
     _setMarkers(0);
   }*/
-
 }

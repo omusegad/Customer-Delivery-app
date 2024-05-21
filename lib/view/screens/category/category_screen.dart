@@ -73,7 +73,7 @@ class _CategoryScreenState extends State<CategoryScreen> with TickerProviderStat
                       indicatorWeight: 3,
                       indicatorSize: TabBarIndicatorSize.label,
                       indicatorColor: Theme.of(context).primaryColor,
-                      labelColor: Theme.of(context).textTheme.bodyText1!.color,
+                      labelColor: Theme.of(context).textTheme.bodyLarge!.color,
                       tabs: _tabs(category),
                       onTap: (int index) {
                         _tabIndex = index;

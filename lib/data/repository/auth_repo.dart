@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
@@ -28,11 +29,13 @@ class AuthRepo {
     }
   }
 
-  Future<ApiResponse> login({String? email, String? password}) async {
+  Future<ApiResponse> login({
+    required Map<String, dynamic> body,
+  }) async {
     try {
       Response response = await dioClient!.post(
-        AppConstants.LOGIN_URI,
-        data: {"email": email, "password": password},
+        AppConstants.LOGIN_URI, data: json.encode(body),
+        // data: {"email": email, "password": password},
       );
       return ApiResponse.withSuccess(response);
     } catch (e) {

@@ -36,14 +36,14 @@ class CreateAccountScreen extends StatelessWidget {
               Center(
                   child: Text(
                 getTranslated('create_account', context)!,
-                style: Theme.of(context).textTheme.headline3!.copyWith(fontSize: 24, color: ColorResources.getGreyBunkerColor(context)),
+                style: Theme.of(context).textTheme.displaySmall!.copyWith(fontSize: 24, color: ColorResources.getGreyBunkerColor(context)),
               )),
               SizedBox(height: 20),
 
               // for first name section
               Text(
                 getTranslated('first_name', context)!,
-                style: Theme.of(context).textTheme.headline2!.copyWith(color: ColorResources.getHintColor(context)),
+                style: Theme.of(context).textTheme.displayMedium!.copyWith(color: ColorResources.getHintColor(context)),
               ),
               SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
               CustomTextField(
@@ -60,7 +60,7 @@ class CreateAccountScreen extends StatelessWidget {
               // for last name section
               Text(
                 getTranslated('last_name', context)!,
-                style: Theme.of(context).textTheme.headline2!.copyWith(color: ColorResources.getHintColor(context)),
+                style: Theme.of(context).textTheme.displayMedium!.copyWith(color: ColorResources.getHintColor(context)),
               ),
               SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
               CustomTextField(
@@ -77,7 +77,7 @@ class CreateAccountScreen extends StatelessWidget {
               // for email section
               Text(
                 getTranslated('mobile_number', context)!,
-                style: Theme.of(context).textTheme.headline2!.copyWith(color: ColorResources.getHintColor(context)),
+                style: Theme.of(context).textTheme.displayMedium!.copyWith(color: ColorResources.getHintColor(context)),
               ),
               SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
               CustomTextField(
@@ -93,7 +93,7 @@ class CreateAccountScreen extends StatelessWidget {
               // for password section
               Text(
                 getTranslated('password', context)!,
-                style: Theme.of(context).textTheme.headline2!.copyWith(color: ColorResources.getHintColor(context)),
+                style: Theme.of(context).textTheme.displayMedium!.copyWith(color: ColorResources.getHintColor(context)),
               ),
               SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
               CustomTextField(
@@ -110,7 +110,7 @@ class CreateAccountScreen extends StatelessWidget {
               // for confirm password section
               Text(
                 getTranslated('confirm_password', context)!,
-                style: Theme.of(context).textTheme.headline2!.copyWith(color: ColorResources.getHintColor(context)),
+                style: Theme.of(context).textTheme.displayMedium!.copyWith(color: ColorResources.getHintColor(context)),
               ),
               SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
               CustomTextField(
@@ -134,7 +134,7 @@ class CreateAccountScreen extends StatelessWidget {
                   Expanded(
                     child: Text(
                       authProvider.registrationErrorMessage ?? "",
-                      style: Theme.of(context).textTheme.headline2!.copyWith(
+                      style: Theme.of(context).textTheme.displayMedium!.copyWith(
                             fontSize: Dimensions.FONT_SIZE_SMALL,
                             color: ColorResources.getPrimaryColor(context),
                           ),
@@ -203,14 +203,14 @@ class CreateAccountScreen extends StatelessWidget {
                     children: [
                       Text(
                         getTranslated('already_have_account', context)!,
-                        style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: Dimensions.FONT_SIZE_SMALL, color: ColorResources.getGreyColor(context)),
+                        style: Theme.of(context).textTheme.displayMedium!.copyWith(fontSize: Dimensions.FONT_SIZE_SMALL, color: ColorResources.getGreyColor(context)),
                       ),
                       SizedBox(width: Dimensions.PADDING_SIZE_SMALL),
                       Text(
                         getTranslated('login', context)!,
                         style: Theme.of(context)
                             .textTheme
-                            .headline3!
+                            .displaySmall!
                             .copyWith(fontSize: Dimensions.FONT_SIZE_SMALL, color: ColorResources.getGreyBunkerColor(context)),
                       ),
                     ],

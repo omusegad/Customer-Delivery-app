@@ -81,7 +81,7 @@ class HomeScreen extends StatelessWidget {
                         MaterialPageRoute(
                             builder: (_) => NotificationScreen())),
                     icon: Icon(Icons.notifications,
-                        color: Theme.of(context).textTheme.bodyText1!.color),
+                        color: Theme.of(context).textTheme.bodyLarge!.color),
                   ),
                 ],
               ),

@@ -64,7 +64,7 @@ class NotificationScreen extends StatelessWidget {
                                     children: [
                                       Text(
                                         DateConverter.isoStringToLocalTimeOnly(notificationProvider.notificationList![index].createdAt!),
-                                        style: Theme.of(context).textTheme.headline2,
+                                        style: Theme.of(context).textTheme.displayMedium,
                                       ),
                                       Container(
                                           width: 35,
@@ -76,7 +76,7 @@ class NotificationScreen extends StatelessWidget {
                                             DateConverter.isoStringToLocalAMPM(notificationProvider.notificationList![index].createdAt!),
                                             style: Theme.of(context)
                                                 .textTheme
-                                                .headline2!
+                                                .displayMedium!
                                                 .copyWith(fontSize: 11, color: ColorResources.getGrayColor(context).withOpacity(.8)),
                                           )),
                                     ],
@@ -84,7 +84,7 @@ class NotificationScreen extends StatelessWidget {
                                   SizedBox(width: 24.0),
                                   Text(
                                     notificationProvider.notificationList![index].title!,
-                                    style: Theme.of(context).textTheme.headline2!.copyWith(
+                                    style: Theme.of(context).textTheme.displayMedium!.copyWith(
                                       fontSize: Dimensions.FONT_SIZE_LARGE,
                                     ),
                                   ),

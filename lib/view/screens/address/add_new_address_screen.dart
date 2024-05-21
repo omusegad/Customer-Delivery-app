@@ -193,7 +193,7 @@ class AddNewAddressScreen extends StatelessWidget {
                                 'add_the_location_correctly', context)!,
                             style: Theme.of(context)
                                 .textTheme
-                                .headline2!
+                                .displayMedium!
                                 .copyWith(
                                     color: ColorResources.getGreyBunkerColor(
                                         context),
@@ -208,7 +208,7 @@ class AddNewAddressScreen extends StatelessWidget {
                             getTranslated('label_us', context)!,
                             style: Theme.of(context)
                                 .textTheme
-                                .headline3!
+                                .displaySmall!
                                 .copyWith(
                                     color: ColorResources.getGreyBunkerColor(
                                         context),
@@ -252,7 +252,7 @@ class AddNewAddressScreen extends StatelessWidget {
                                   locationProvider.getAllAddressType[index]!,
                                   style: Theme.of(context)
                                       .textTheme
-                                      .headline2!
+                                      .displayMedium!
                                       .copyWith(
                                           color: locationProvider
                                                       .selectAddressIndex ==
@@ -271,7 +271,7 @@ class AddNewAddressScreen extends StatelessWidget {
                             getTranslated('delivery_address', context)!,
                             style: Theme.of(context)
                                 .textTheme
-                                .headline3!
+                                .displaySmall!
                                 .copyWith(
                                     color: ColorResources.getGreyBunkerColor(
                                         context),
@@ -284,7 +284,7 @@ class AddNewAddressScreen extends StatelessWidget {
                           getTranslated('address_line_01', context)!,
                           style: Theme.of(context)
                               .textTheme
-                              .headline2!
+                              .displayMedium!
                               .copyWith(
                                   color: ColorResources.getHintColor(context)),
                         ),
@@ -305,7 +305,7 @@ class AddNewAddressScreen extends StatelessWidget {
                           getTranslated('contact_person_name', context)!,
                           style: Theme.of(context)
                               .textTheme
-                              .headline2!
+                              .displayMedium!
                               .copyWith(
                                   color: ColorResources.getHintColor(context)),
                         ),
@@ -328,7 +328,7 @@ class AddNewAddressScreen extends StatelessWidget {
                           getTranslated('contact_person_number', context)!,
                           style: Theme.of(context)
                               .textTheme
-                              .headline2!
+                              .displayMedium!
                               .copyWith(
                                   color: ColorResources.getHintColor(context)),
                         ),
@@ -365,7 +365,7 @@ class AddNewAddressScreen extends StatelessWidget {
                               locationProvider.addressStatusMessage ?? "",
                               style: Theme.of(context)
                                   .textTheme
-                                  .headline2!
+                                  .displayMedium!
                                   .copyWith(
                                       fontSize: Dimensions.FONT_SIZE_SMALL,
                                       color: Colors.green,
@@ -389,7 +389,7 @@ class AddNewAddressScreen extends StatelessWidget {
                               locationProvider.errorMessage ?? "",
                               style: Theme.of(context)
                                   .textTheme
-                                  .headline2!
+                                  .displayMedium!
                                   .copyWith(
                                       fontSize: Dimensions.FONT_SIZE_SMALL,
                                       color: ColorResources.getPrimaryColor(

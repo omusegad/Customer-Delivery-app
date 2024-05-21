@@ -41,7 +41,7 @@ class CreateNewPasswordScreen extends StatelessWidget {
                   child: Text(
                     getTranslated('enter_password_to_create', context)!,
                     textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.headline2!.copyWith(color: ColorResources.getHintColor(context)),
+                    style: Theme.of(context).textTheme.displayMedium!.copyWith(color: ColorResources.getHintColor(context)),
                   )),
               Padding(
                 padding: const EdgeInsets.all(Dimensions.PADDING_SIZE_LARGE),
@@ -53,7 +53,7 @@ class CreateNewPasswordScreen extends StatelessWidget {
                     SizedBox(height: 60),
                     Text(
                       getTranslated('new_password', context)!,
-                      style: Theme.of(context).textTheme.headline2!.copyWith(color: ColorResources.getHintColor(context)),
+                      style: Theme.of(context).textTheme.displayMedium!.copyWith(color: ColorResources.getHintColor(context)),
                     ),
                     SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
                     CustomTextField(
@@ -70,7 +70,7 @@ class CreateNewPasswordScreen extends StatelessWidget {
                     // for confirm password section
                     Text(
                       getTranslated('confirm_password', context)!,
-                      style: Theme.of(context).textTheme.headline2!.copyWith(color: ColorResources.getHintColor(context)),
+                      style: Theme.of(context).textTheme.displayMedium!.copyWith(color: ColorResources.getHintColor(context)),
                     ),
                     SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
                     CustomTextField(

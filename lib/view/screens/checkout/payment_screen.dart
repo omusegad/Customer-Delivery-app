@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_restaurant/data/model/response/order_model.dart';
 import 'package:flutter_restaurant/localization/language_constrants.dart';
@@ -20,8 +21,6 @@ class _PaymentScreenState extends State<PaymentScreen> {
   String? selectedUrl;
   double value = 0.0;
   bool _isLoading = true;
-  final Completer<WebViewController> _controller =
-      Completer<WebViewController>();
   late WebViewController controllerGlobal;
 
   @override

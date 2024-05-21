@@ -24,7 +24,7 @@ class ThanksFeedbackScreen extends StatelessWidget {
               SizedBox(height: 60),
               Text(
                 getTranslated('thanks_for_your_order', context)!,
-                style: Theme.of(context).textTheme.headline3!.copyWith(
+                style: Theme.of(context).textTheme.displaySmall!.copyWith(
                       fontSize: Dimensions.FONT_SIZE_LARGE,
                       color: ColorResources.getGreyBunkerColor(context),
                     ),
@@ -33,7 +33,7 @@ class ThanksFeedbackScreen extends StatelessWidget {
               Text(
                 getTranslated('it_will_helps_to_improve', context)!,
                 textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.headline2!.copyWith(
+                style: Theme.of(context).textTheme.displayMedium!.copyWith(
                       color: ColorResources.getGreyBunkerColor(context).withOpacity(.75),
                     ),
               ),

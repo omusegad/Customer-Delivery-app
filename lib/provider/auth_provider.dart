@@ -18,7 +18,7 @@ class AuthProvider with ChangeNotifier {
 
   String? get registrationErrorMessage => _registrationErrorMessage;
 
-  updateRegistrationErrorMessage(String message) {
+  Future<void> updateRegistrationErrorMessage(String message) async {
     _registrationErrorMessage = message;
     notifyListeners();
   }
@@ -62,8 +62,9 @@ class AuthProvider with ChangeNotifier {
     _isLoading = true;
     _loginErrorMessage = '';
     notifyListeners();
-    ApiResponse apiResponse =
-        await authRepo!.login(email: email, password: password);
+    ApiResponse apiResponse = await authRepo!.login(
+      body: {"email": email, password: password},
+    );
     ResponseModel responseModel;
     if (apiResponse.response != null &&
         apiResponse.response!.statusCode == 200) {

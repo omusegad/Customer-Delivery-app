@@ -185,7 +185,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     getTranslated('first_name', context)!,
                                     style: Theme.of(context)
                                         .textTheme
-                                        .headline2!
+                                        .displayMedium!
                                         .copyWith(
                                             color: ColorResources.getHintColor(
                                                 context)),
@@ -209,7 +209,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     getTranslated('last_name', context)!,
                                     style: Theme.of(context)
                                         .textTheme
-                                        .headline2!
+                                        .displayMedium!
                                         .copyWith(
                                             color: ColorResources.getHintColor(
                                                 context)),
@@ -233,7 +233,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     getTranslated('email', context)!,
                                     style: Theme.of(context)
                                         .textTheme
-                                        .headline2!
+                                        .displayMedium!
                                         .copyWith(
                                             color: ColorResources.getHintColor(
                                                 context)),
@@ -258,7 +258,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     getTranslated('mobile_number', context)!,
                                     style: Theme.of(context)
                                         .textTheme
-                                        .headline2!
+                                        .displayMedium!
                                         .copyWith(
                                             color: ColorResources.getHintColor(
                                                 context)),
@@ -280,7 +280,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     getTranslated('password', context)!,
                                     style: Theme.of(context)
                                         .textTheme
-                                        .headline2!
+                                        .displayMedium!
                                         .copyWith(
                                             color: ColorResources.getHintColor(
                                                 context)),
@@ -303,7 +303,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     getTranslated('confirm_password', context)!,
                                     style: Theme.of(context)
                                         .textTheme
-                                        .headline2!
+                                        .displayMedium!
                                         .copyWith(
                                             color: ColorResources.getHintColor(
                                                 context)),

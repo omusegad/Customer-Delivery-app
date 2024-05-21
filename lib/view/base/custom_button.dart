@@ -23,7 +23,7 @@ class CustomButton extends StatelessWidget {
       onPressed: onTap as void Function()?,
       style: flatButtonStyle,
       child: Text(btnTxt??"",
-          style: Theme.of(context).textTheme.headline3!.copyWith(color: ColorResources.COLOR_WHITE, fontSize: Dimensions.FONT_SIZE_LARGE)),
+          style: Theme.of(context).textTheme.displaySmall!.copyWith(color: ColorResources.COLOR_WHITE, fontSize: Dimensions.FONT_SIZE_LARGE)),
     );
   }
 }

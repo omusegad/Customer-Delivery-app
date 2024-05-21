@@ -43,7 +43,7 @@ class _OrderScreenState extends State<OrderScreen> with TickerProviderStateMixin
               color: Theme.of(context).colorScheme.secondary,
               child: TabBar(
                 controller: _tabController,
-                labelColor: Theme.of(context).textTheme.bodyText1!.color,
+                labelColor: Theme.of(context).textTheme.bodyLarge!.color,
                 indicatorColor: ColorResources.COLOR_PRIMARY,
                 indicatorWeight: 3,
                 unselectedLabelStyle: rubikRegular.copyWith(color: ColorResources.COLOR_HINT, fontSize: Dimensions.FONT_SIZE_SMALL),

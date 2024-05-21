@@ -56,7 +56,7 @@ class SearchScreen extends StatelessWidget {
                           },
                           child: Text(
                             getTranslated('cancel', context)!,
-                            style: Theme.of(context).textTheme.headline2!.copyWith(color: ColorResources.getGreyBunkerColor(context)),
+                            style: Theme.of(context).textTheme.displayMedium!.copyWith(color: ColorResources.getGreyBunkerColor(context)),
                           ))
                     ],
                   ),
@@ -67,14 +67,14 @@ class SearchScreen extends StatelessWidget {
                     children: [
                       Text(
                         getTranslated('recent_search', context)!,
-                        style: Theme.of(context).textTheme.headline3!.copyWith(color: ColorResources.COLOR_GREY_BUNKER),
+                        style: Theme.of(context).textTheme.displaySmall!.copyWith(color: ColorResources.COLOR_GREY_BUNKER),
                       ),
                       searchProvider.historyList.length > 0
                           ? TextButton(
                               onPressed: searchProvider.clearSearchAddress,
                               child: Text(
                                 getTranslated('remove_all', context)!,
-                                style: Theme.of(context).textTheme.headline2!.copyWith(color: ColorResources.COLOR_GREY_BUNKER),
+                                style: Theme.of(context).textTheme.displayMedium!.copyWith(color: ColorResources.COLOR_GREY_BUNKER),
                               ))
                           : SizedBox.shrink(),
                     ],
@@ -104,7 +104,7 @@ class SearchScreen extends StatelessWidget {
                                           searchProvider.historyList[index],
                                           style: Theme.of(context)
                                               .textTheme
-                                              .headline2!
+                                              .displayMedium!
                                               .copyWith(color: ColorResources.COLOR_HINT, fontSize: Dimensions.FONT_SIZE_SMALL),
                                         )
                                       ],

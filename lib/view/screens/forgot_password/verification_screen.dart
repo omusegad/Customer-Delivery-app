@@ -39,7 +39,7 @@ class VerificationScreen extends StatelessWidget {
                     child: Text(
                   '${getTranslated('please_enter_4_digit_code', context)}\n $emailAddress',
                   textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.headline2!.copyWith(color: ColorResources.getHintColor(context)),
+                  style: Theme.of(context).textTheme.displayMedium!.copyWith(color: ColorResources.getHintColor(context)),
                 )),
               ),
               Padding(
@@ -75,7 +75,7 @@ class VerificationScreen extends StatelessWidget {
               Center(
                   child: Text(
                 getTranslated('i_didnt_receive_the_code', context)!,
-                style: Theme.of(context).textTheme.headline2!.copyWith(
+                style: Theme.of(context).textTheme.displayMedium!.copyWith(
                       color: ColorResources.getGreyBunkerColor(context),
                     ),
               )),
@@ -104,7 +104,7 @@ class VerificationScreen extends StatelessWidget {
                     padding: EdgeInsets.all(Dimensions.PADDING_SIZE_EXTRA_SMALL),
                     child: Text(
                       getTranslated('resend_code', context)!,
-                      style: Theme.of(context).textTheme.headline3!.copyWith(
+                      style: Theme.of(context).textTheme.displaySmall!.copyWith(
                             color: ColorResources.getGreyBunkerColor(context),
                           ),
                     ),

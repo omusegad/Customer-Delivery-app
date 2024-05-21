@@ -71,7 +71,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Center(
                     child: Text(
                   getTranslated('login', context)!,
-                  style: Theme.of(context).textTheme.headline3!.copyWith(
+                  style: Theme.of(context).textTheme.displaySmall!.copyWith(
                       fontSize: 24,
                       color: ColorResources.getGreyBunkerColor(context)),
                 )),
@@ -80,7 +80,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   getTranslated('email', context)!,
                   style: Theme.of(context)
                       .textTheme
-                      .headline2!
+                      .displayMedium!
                       .copyWith(color: ColorResources.getHintColor(context)),
                 ),
                 SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
@@ -97,7 +97,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   getTranslated('password', context)!,
                   style: Theme.of(context)
                       .textTheme
-                      .headline2!
+                      .displayMedium!
                       .copyWith(color: ColorResources.getHintColor(context)),
                 ),
                 SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
@@ -148,7 +148,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     getTranslated('remember_me', context)!,
                                     style: Theme.of(context)
                                         .textTheme
-                                        .headline2!
+                                        .displayMedium!
                                         .copyWith(
                                             fontSize: Dimensions
                                                 .FONT_SIZE_EXTRA_SMALL,
@@ -169,7 +169,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           getTranslated('forgot_password', context)!,
                           style: Theme.of(context)
                               .textTheme
-                              .headline2!
+                              .displayMedium!
                               .copyWith(
                                   fontSize: Dimensions.FONT_SIZE_SMALL,
                                   color: ColorResources.getHintColor(context)),
@@ -193,7 +193,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     Expanded(
                       child: Text(
                         authProvider.loginErrorMessage ?? "",
-                        style: Theme.of(context).textTheme.headline2!.copyWith(
+                        style: Theme.of(context).textTheme.displayMedium!.copyWith(
                               fontSize: Dimensions.FONT_SIZE_SMALL,
                               color: ColorResources.getPrimaryColor(context),
                             ),
@@ -269,14 +269,14 @@ class _LoginScreenState extends State<LoginScreen> {
                     children: [
                       Text(
                         getTranslated('create_an_account', context)!,
-                        style: Theme.of(context).textTheme.headline2!.copyWith(
+                        style: Theme.of(context).textTheme.displayMedium!.copyWith(
                             fontSize: Dimensions.FONT_SIZE_SMALL,
                             color: ColorResources.getGreyColor(context)),
                       ),
                       SizedBox(width: Dimensions.PADDING_SIZE_SMALL),
                       Text(
                         getTranslated('signup', context)!,
-                        style: Theme.of(context).textTheme.headline3!.copyWith(
+                        style: Theme.of(context).textTheme.displaySmall!.copyWith(
                             fontSize: Dimensions.FONT_SIZE_SMALL,
                             color: ColorResources.getGreyBunkerColor(context)),
                       ),

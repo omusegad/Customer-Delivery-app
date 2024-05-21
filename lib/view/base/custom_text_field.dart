@@ -69,8 +69,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
       maxLines: widget.maxLines,
       controller: widget.controller,
       focusNode: widget.focusNode,
-      style: Theme.of(context).textTheme.headline2!.copyWith(
-          color: Theme.of(context).textTheme.bodyText1!.color,
+      style: Theme.of(context).textTheme.displayMedium!.copyWith(
+          color: Theme.of(context).textTheme.bodyLarge!.color,
           fontSize: Dimensions.FONT_SIZE_LARGE),
       textInputAction: widget.inputAction,
       keyboardType: widget.inputType,
@@ -96,7 +96,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         fillColor: widget.fillColor != null
             ? widget.fillColor
             : Theme.of(context).colorScheme.secondary,
-        hintStyle: Theme.of(context).textTheme.headline2!.copyWith(
+        hintStyle: Theme.of(context).textTheme.displayMedium!.copyWith(
             fontSize: Dimensions.FONT_SIZE_SMALL,
             color: ColorResources.COLOR_GREY_CHATEAU),
         filled: true,
@@ -123,7 +123,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                           widget.suffixIconUrl!,
                           width: 15,
                           height: 15,
-                          color: Theme.of(context).textTheme.bodyText1!.color,
+                          color: Theme.of(context).textTheme.bodyLarge!.color,
                         ),
                       )
                     : null

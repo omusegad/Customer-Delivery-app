@@ -16,19 +16,28 @@ class WelcomeScreen extends StatelessWidget {
       body: ListView(
         children: [
           SizedBox(height: 50),
-          Container(alignment: Alignment.bottomCenter, padding: EdgeInsets.all(30), child: Image.asset(Images.efood_bike_with_grasp, height: 200)),
+          Container(
+              alignment: Alignment.bottomCenter,
+              padding: EdgeInsets.all(30),
+              child: Image.asset(Images.efood_bike_with_grasp, height: 200)),
           SizedBox(height: 30),
           Text(
             getTranslated('welcome', context)!,
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.headline3!.copyWith(color: Theme.of(context).textTheme.bodyText1!.color, fontSize: 32),
+            style: Theme.of(context).textTheme.displaySmall!.copyWith(
+                color: Theme.of(context).textTheme.bodyLarge!.color,
+                fontSize: 32),
           ),
           Padding(
             padding: const EdgeInsets.all(Dimensions.PADDING_SIZE_DEFAULT),
-            child: Text( ' To Oryx Energies',
+            child: Text(
+              ' To Oryx Energies',
               //getTranslated('welcome_to_efood', context),
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.headline2!.copyWith(color: ColorResources.getGreyColor(context)),
+              style: Theme.of(context)
+                  .textTheme
+                  .displayMedium!
+                  .copyWith(color: ColorResources.getGreyColor(context)),
             ),
           ),
           SizedBox(height: 50),
@@ -37,7 +46,8 @@ class WelcomeScreen extends StatelessWidget {
             child: CustomButton(
               btnTxt: getTranslated('login', context),
               onTap: () {
-                Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => LoginScreen()));
+                Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (_) => LoginScreen()));
               },
             ),
           ),
@@ -50,7 +60,8 @@ class WelcomeScreen extends StatelessWidget {
             child: CustomButton(
               btnTxt: getTranslated('signup', context),
               onTap: () {
-                Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => SignUpScreen()));
+                Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (_) => SignUpScreen()));
               },
               backgroundColor: Colors.black,
             ),
@@ -60,11 +71,19 @@ class WelcomeScreen extends StatelessWidget {
               minimumSize: Size(1, 40),
             ),
             onPressed: () {
-              Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => DashboardScreen()));
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (_) => DashboardScreen()));
             },
-            child: RichText(text: TextSpan(children: [
-              TextSpan(text: '${getTranslated('login_as_a', context)} ', style: rubikRegular.copyWith(color: ColorResources.getGreyColor(context))),
-              TextSpan(text: getTranslated('guest', context), style: rubikMedium.copyWith(color: Theme.of(context).textTheme.bodyText1!.color)),
+            child: RichText(
+                text: TextSpan(children: [
+              TextSpan(
+                  text: '${getTranslated('login_as_a', context)} ',
+                  style: rubikRegular.copyWith(
+                      color: ColorResources.getGreyColor(context))),
+              TextSpan(
+                  text: getTranslated('guest', context),
+                  style: rubikMedium.copyWith(
+                      color: Theme.of(context).textTheme.bodyLarge!.color)),
             ])),
           ),
         ],

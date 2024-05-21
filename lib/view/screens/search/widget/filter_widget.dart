@@ -35,7 +35,7 @@ class FilterWidget extends StatelessWidget {
                   child: Text(
                     getTranslated('filter', context)!,
                     textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.headline3!.copyWith(
+                    style: Theme.of(context).textTheme.displaySmall!.copyWith(
                       fontSize: Dimensions.FONT_SIZE_LARGE,
                       color: ColorResources.getGreyBunkerColor(context),
                     ),
@@ -49,7 +49,7 @@ class FilterWidget extends StatelessWidget {
                   },
                   child: Text(
                     getTranslated('reset', context)!,
-                    style: Theme.of(context).textTheme.headline2!.copyWith(color: Theme.of(context).primaryColor),
+                    style: Theme.of(context).textTheme.displayMedium!.copyWith(color: Theme.of(context).primaryColor),
                   ),
                 )
               ],
@@ -57,7 +57,7 @@ class FilterWidget extends StatelessWidget {
 
             Text(
               getTranslated('price', context)!,
-              style: Theme.of(context).textTheme.headline3,
+              style: Theme.of(context).textTheme.displaySmall,
             ),
 
             // price range
@@ -74,12 +74,12 @@ class FilterWidget extends StatelessWidget {
 
             Text(
               getTranslated('rating', context)!,
-              style: Theme.of(context).textTheme.headline3,
+              style: Theme.of(context).textTheme.displaySmall,
             ),
 
             Text(
               getTranslated('rating', context)!,
-              style: Theme.of(context).textTheme.headline3,
+              style: Theme.of(context).textTheme.displaySmall,
             ),
 
             Center(
@@ -105,7 +105,7 @@ class FilterWidget extends StatelessWidget {
             SizedBox(height: 15),
             Text(
               getTranslated('category', context)!,
-              style: Theme.of(context).textTheme.headline3,
+              style: Theme.of(context).textTheme.displaySmall,
             ),
             SizedBox(height: 13),
 

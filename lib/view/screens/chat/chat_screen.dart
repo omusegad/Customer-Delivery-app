@@ -104,9 +104,10 @@ class ChatScreen extends StatelessWidget {
                             child: Row(children: [
                               InkWell(
                                 onTap: () async {
-                                  final PickedFile? pickedFile = await picker
-                                      // ignore: deprecated_member_use
-                                      .getImage(source: ImageSource.gallery);
+                                  final XFile? pickedFile = await picker
+                                      .pickImage(source: ImageSource.gallery);
+                                  // ignore: deprecated_member_use
+                                  //.getImage(source: ImageSource.gallery);
 
                                   if (pickedFile != null) {
                                     Provider.of<ChatProvider>(context,
